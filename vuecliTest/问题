@@ -1,0 +1,13 @@
+v-for="(item,index) in tagsList"  :key="index"
+
+  bus: new Vue(), //（1）子路由传递父路由内容 通过$root
+  this.$root.bus.$emit('collapse', this.collapse)
+
+
+template 为什么循环模板
+
+找路径
+ name:'routeParams',
+ path: '/routeParams',
+
+ 每个页面的那么有什么用
