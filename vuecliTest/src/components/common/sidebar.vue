@@ -98,9 +98,25 @@ export default {
               index: 'vueQuillEditor',
               title: '编辑器'
             },
-             {
+            {
               index: 'vueMap',
               title: '百度地图'
+            },
+            {
+              index: 'vuexBox',
+              title: 'vuex的获取值'
+            },
+            {
+              index: 'vuexBox1',
+              title: 'vuex改变值'
+            },
+            {
+              index: 'vuexBox2',
+              title: 'vuex过滤值'
+            },
+            {
+              index: 'vuexBox3',
+              title: 'vuex异步修改状态'
             }
           ]
         }
@@ -136,5 +152,8 @@ export default {
 }
 .sidebar > ul {
   height: 100%;
+}
+.sidebar-el-menu{
+  overflow: auto
 }
 </style>

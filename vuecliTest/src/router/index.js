@@ -5,8 +5,7 @@ import HelloWorld from '@/components/HelloWorld'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/HelloWorld',
       name: 'HelloWorld',
       component: HelloWorld,
@@ -17,40 +16,38 @@ export default new Router({
       }
     },
     {
-      path:'/',
-      redirect:'/Home'
+      path: '/',
+      redirect: '/Home'
     },
     {
-      path:'/',
-      component: resolve => require(['&/common/homePage.vue'],resolve),
-      meta:{
-        title:'首页',
-        isUseCache:false,
+      path: '/',
+      component: resolve => require(['&/common/homePage.vue'], resolve),
+      meta: {
+        title: '首页',
+        isUseCache: false,
       },
-      children:[
-        {
-          path:'/home',
-          name:'Home',
+      children: [{
+          path: '/home',
+          name: 'Home',
           component: resolve => require(['#/user/user.vue'], resolve),
-          meta:{
-            title:'用户信息',
-            isUseCache:false,
-            keepAlive:false,
+          meta: {
+            title: '用户信息',
+            isUseCache: false,
+            keepAlive: false,
           }
         },
         {
-          path:'/routeParams',
-          name:'routeParams',
+          path: '/routeParams',
+          name: 'routeParams',
           component: resolve => require(['#/route/routeParams.vue'], resolve),
-          meta:{
-            title:'路由参数',
-            isUseCache:false,
-            keepAlive:false,
+          meta: {
+            title: '路由参数',
+            isUseCache: false,
+            keepAlive: false,
           },
-          children:[
-            {
-              path:'routeSon1',
-              name:'routeSon1',
+          children: [{
+              path: 'routeSon1',
+              name: 'routeSon1',
               component: resolve => require(['#/route/children/routeSon1.vue'], resolve),
               meta: {
                 title: 'query接收路由参数',
@@ -59,8 +56,8 @@ export default new Router({
               }
             },
             {
-              path:'routeSon2',
-              name:'routeSon2',
+              path: 'routeSon2',
+              name: 'routeSon2',
               component: resolve => require(['#/route/children/routeSon2.vue'], resolve),
               meta: {
                 title: 'params接收路由参数',
@@ -71,61 +68,59 @@ export default new Router({
           ]
         },
         {
-          path:'/routeMethods',
-          name:'routeMethods',
+          path: '/routeMethods',
+          name: 'routeMethods',
           component: resolve => require(['#/route/routeMethods.vue'], resolve),
-          meta:{
-            title:'路由钩子',
-            isUseCache:false,
-            keepAlive:false,
+          meta: {
+            title: '路由钩子',
+            isUseCache: false,
+            keepAlive: false,
           },
-          children: [
-            {
-              path: 'gouZi/:id',
-              name: 'gouZi',
-              component: resolve => require(['#/route/children/gouZi.vue'], resolve),
-              meta: {
-                title: '路由钩子',
-                isUseCache: false,
-                keepAlive: false
-              },
-              // beforeEnter: (to, from, next) => {
-              //   console.log(to)
-              //   console.log(from)
-              //   next()//必须写
-              // }
-            }
-          ]
+          children: [{
+            path: 'gouZi/:id',
+            name: 'gouZi',
+            component: resolve => require(['#/route/children/gouZi.vue'], resolve),
+            meta: {
+              title: '路由钩子',
+              isUseCache: false,
+              keepAlive: false
+            },
+            // beforeEnter: (to, from, next) => {
+            //   console.log(to)
+            //   console.log(from)
+            //   next()//必须写
+            // }
+          }]
         },
         // 状态管理timer
         {
-          path:'propsEmit',
-          name:'propsEmit',
-          component:resolve => require(['#/vuex/propsEmit.vue'],resolve),
-          meta:{
-            title:'props和emit的通讯',
+          path: 'propsEmit',
+          name: 'propsEmit',
+          component: resolve => require(['#/vuex/propsEmit.vue'], resolve),
+          meta: {
+            title: 'props和emit的通讯',
             isUseCache: false,
-            keepAlive:false
+            keepAlive: false
           }
         },
         {
-          path:'timer',
-          name:'timer',
-          component:resolve => require(['#/timer/timer.vue'],resolve),
-          meta:{
-            title:'离开页面关闭定时器',
+          path: 'timer',
+          name: 'timer',
+          component: resolve => require(['#/timer/timer.vue'], resolve),
+          meta: {
+            title: '离开页面关闭定时器',
             isUseCache: false,
-            keepAlive:false
+            keepAlive: false
           }
         },
         {
-          path:'timerChiid',
-          name:'timerChiid',
-          component:resolve => require(['#/timer/timerChiid.vue'],resolve),
-          meta:{
-            title:'定时器是否关闭',
+          path: 'timerChiid',
+          name: 'timerChiid',
+          component: resolve => require(['#/timer/timerChiid.vue'], resolve),
+          meta: {
+            title: '定时器是否关闭',
             isUseCache: false,
-            keepAlive:false
+            keepAlive: false
           }
         },
         {
@@ -196,7 +191,47 @@ export default new Router({
             title: '百度地图',
             isUseCache: false,
             keepAlive: false
-          }
+          },
+        },
+        {
+          path: '/vuexBox',
+          name: 'vuexBox',
+          component: resolve => require(['#/vuex/vuexBox.vue'], resolve),
+          meta: {
+            title: 'vuex获取值mapState',
+            isUseCache: false,
+            keepAlive: false
+          },
+        },
+        {
+          path: '/vuexBox1',
+          name: 'vuexBox1',
+          component: resolve => require(['#/vuex/vuexBox1.vue'], resolve),
+          meta: {
+            title: 'vuex改变值',
+            isUseCache: false,
+            keepAlive: false
+          },
+        },
+        {
+          path: '/vuexBox2',
+          name: 'vuexBox2',
+          component: resolve => require(['#/vuex/vuexBox2.vue'], resolve),
+          meta: {
+            title: 'vuex过滤值',
+            isUseCache: false,
+            keepAlive: false
+          },
+        },
+        {
+          path: '/vuexBox3',
+          name: 'vuexBox3',
+          component: resolve => require(['#/vuex/vuexBox3.vue'], resolve),
+          meta: {
+            title: 'vuex异步修改状态',
+            isUseCache: false,
+            keepAlive: false
+          },
         },
       ]
     },
