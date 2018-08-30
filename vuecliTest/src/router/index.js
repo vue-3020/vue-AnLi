@@ -4,6 +4,14 @@ import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
+import Layout from '&/common/homePage' //将常用内容设置成变量
+/*
+知识点
+（1）二级标题（http://localhost:9091/#/tableDemo/box）的写法
+（2）给meta 增加自定义属性
+（3）在其它页面获取路由属性中的内容
+（4）
+*/
 export default new Router({
   routes: [
     {
@@ -17,40 +25,41 @@ export default new Router({
       }
     },
     {
-      path:'/',
-      redirect:'/Home'
+      path: '/',
+      redirect: '/Home' //重定向
     },
     {
-      path:'/',
-      component: resolve => require(['&/common/homePage.vue'],resolve),
-      meta:{
-        title:'首页',
-        isUseCache:false,
+      path: '/',
+      component: Layout,
+      meta: {
+        title: '首页',
+        isUseCache: false,
+        keepAlive: false,
       },
-      children:[
+      children: [
         {
-          path:'/home',
-          name:'Home',
+          path: '/home',
+          name: 'Home',
           component: resolve => require(['#/user/user.vue'], resolve),
-          meta:{
-            title:'用户信息',
-            isUseCache:false,
-            keepAlive:false,
+          meta: {
+            title: '用户信息',
+            isUseCache: false,
+            keepAlive: false,
           }
         },
         {
-          path:'/routeParams',
-          name:'routeParams',
+          path: '/routeParams',
+          name: 'routeParams',
           component: resolve => require(['#/route/routeParams.vue'], resolve),
-          meta:{
-            title:'路由参数',
-            isUseCache:false,
-            keepAlive:false,
+          meta: {
+            title: '路由参数',
+            isUseCache: false,
+            keepAlive: false,
           },
-          children:[
+          children: [
             {
-              path:'routeSon1',
-              name:'routeSon1',
+              path: 'routeSon1',
+              name: 'routeSon1',
               component: resolve => require(['#/route/children/routeSon1.vue'], resolve),
               meta: {
                 title: 'query接收路由参数',
@@ -59,8 +68,8 @@ export default new Router({
               }
             },
             {
-              path:'routeSon2',
-              name:'routeSon2',
+              path: 'routeSon2',
+              name: 'routeSon2',
               component: resolve => require(['#/route/children/routeSon2.vue'], resolve),
               meta: {
                 title: 'params接收路由参数',
@@ -71,13 +80,13 @@ export default new Router({
           ]
         },
         {
-          path:'/routeMethods',
-          name:'routeMethods',
+          path: '/routeMethods',
+          name: 'routeMethods',
           component: resolve => require(['#/route/routeMethods.vue'], resolve),
-          meta:{
-            title:'路由钩子',
-            isUseCache:false,
-            keepAlive:false,
+          meta: {
+            title: '路由钩子',
+            isUseCache: false,
+            keepAlive: false,
           },
           children: [
             {
@@ -99,33 +108,33 @@ export default new Router({
         },
         // 状态管理timer
         {
-          path:'propsEmit',
-          name:'propsEmit',
-          component:resolve => require(['#/vuex/propsEmit.vue'],resolve),
-          meta:{
-            title:'props和emit的通讯',
+          path: 'propsEmit',
+          name: 'propsEmit',
+          component: resolve => require(['#/vuex/propsEmit.vue'], resolve),
+          meta: {
+            title: 'props和emit的通讯',
             isUseCache: false,
-            keepAlive:false
+            keepAlive: false
           }
         },
         {
-          path:'timer',
-          name:'timer',
-          component:resolve => require(['#/timer/timer.vue'],resolve),
-          meta:{
-            title:'离开页面关闭定时器',
+          path: 'timer',
+          name: 'timer',
+          component: resolve => require(['#/timer/timer.vue'], resolve),
+          meta: {
+            title: '离开页面关闭定时器',
             isUseCache: false,
-            keepAlive:false
+            keepAlive: false
           }
         },
         {
-          path:'timerChiid',
-          name:'timerChiid',
-          component:resolve => require(['#/timer/timerChiid.vue'],resolve),
-          meta:{
-            title:'定时器是否关闭',
+          path: 'timerChiid',
+          name: 'timerChiid',
+          component: resolve => require(['#/timer/timerChiid.vue'], resolve),
+          meta: {
+            title: '定时器是否关闭',
             isUseCache: false,
-            keepAlive:false
+            keepAlive: false
           }
         },
         {
@@ -201,14 +210,61 @@ export default new Router({
       ]
     },
     {
+      path: '/boxRoute', //只有父元素可以加 / 子元素不能加 /
+      name: 'boxRoute',
+      component: Layout, //路径入库
+      name: '二级路由',
+      // redirect: 'noredirect', //重定向 如果是这个就不跳转，这个给二级路由应用的
+      meta: {
+        title: '二级路由',
+        isUseCache: false, //是否缓存页面
+        keepAlive: false
+      },
+      children: [
+        {
+          path: 'accountTable',
+          name: 'accountTable',
+          component: resolve => require(['#/system/accountTable.vue'], resolve),
+          meta: {
+            title: '账号管理',
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true, //自定义属性
+          }
+        },
+      ]
+    },
+    {
       path: '/Login',
       name: 'Login',
-      component: resolve => require(['#/Login.vue'], resolve),
+      component: Layout,
       meta: {
         title: '首页',
         isUseCache: false,
         keepAlive: false
       }
+    },
+    {
+      path: '/table',
+      name: 'table',
+      component: Layout,
+      meta: {
+        title: '首页',
+        isUseCache: false,
+        keepAlive: false
+      },
+      children: [
+        {
+          path: 'tableVisible',
+          name: 'tableVisible',
+          component: resolve => require(['#/table/tableVisible.vue'], resolve),
+          meta: {
+            title: '定制可见列',
+            isUseCache: false,
+            keepAlive: false,
+          }
+        },
+      ]
     },
     {
       path: '/404',

@@ -11,3 +11,5 @@ template 为什么循环模板
  path: '/routeParams',
 
  每个页面的那么有什么用
+
+定制可见列 和 <el-table-column prop="CREATE_TIME" label="审核时间" :key="Math.random()"  v-if="isActive =='2'"> Math.random()相结合

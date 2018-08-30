@@ -31,8 +31,13 @@ export default {
       items: [
         {
           icon: 'el-icon-setting',
-          index: 'Home',
+          index: '/Home',
           title: '系统首页'
+        },
+        {
+          icon: 'el-icon-setting',
+          index: '/boxRoute/accountTable', //在路径前面加 / 就不会 一级和二级路由重叠
+          title: '二级路由'
         },
         {
           icon: 'el-icon-date',
@@ -40,11 +45,11 @@ export default {
           title: 'vue-route的使用',
           subs: [
             {
-              index: 'routeParams',
+              index: '/routeParams',
               title: '路由传参'
             },
             {
-              index: 'routeMethods',
+              index: '/routeMethods',
               title: '路由钩子函数'
             }
           ]
@@ -55,53 +60,64 @@ export default {
           title: '组件通信',
           subs: [
             {
-              index: 'propsEmit',
+              index: '/propsEmit',
               title: 'props和emit的使用'
             },
             {
-              index: 'timer',
+              index: '/timer',
               title: '页面跳转关闭定时器'
             },
             {
-              index: 'refsParent',
+              index: '/refsParent',
               title: 'refs、children、parents'
             },
             {
-              index: 'busUsed',
+              index: '/busUsed',
               title: '兄弟组件之间方法调用'
             },
             {
-              index: 'vuexUsed',
+              index: '/vuexUsed',
               title: 'vuex的使用'
             },
             {
-              index: 'useMiXin',
+              index: '/useMiXin',
               title: 'MiXin的使用'
             },
             {
-              index: 'lifeCycle',
+              index: '/lifeCycle',
               title: '生命周期'
             },
             {
-              index: 'directSingle',
+              index: '/directSingle',
               title: '局部指令'
             },
             {
-              index: 'tableDemo',
+              index: '/tableDemo',
               title: '表格示例'
             },
             {
-              index: 'preview',
+              index: '/preview',
               title: '图片预览'
             },
             {
-              index: 'vueQuillEditor',
+              index: '/vueQuillEditor',
               title: '编辑器'
             },
-             {
-              index: 'vueMap',
+            {
+              index: '/vueMap',
               title: '百度地图'
             }
+          ]
+        },
+        {
+          icon: 'el-icon-tickets',
+          index: '5',
+          title: '表格内容',
+          subs: [
+            {
+              index: '/table/tableVisible',
+              title: '定制可见列'
+            },
           ]
         }
       ]
@@ -109,7 +125,7 @@ export default {
   },
   computed: {
     onRoutes() {
-      console.log(this.$route.path);
+      // console.log(this.$route.path);
       return this.$route.path.replace('/', '')
     },
   },

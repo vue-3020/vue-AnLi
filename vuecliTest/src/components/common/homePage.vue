@@ -6,6 +6,8 @@
     <div class="content_box" :class="{'content_collapse':collapse}">
       <!-- 标题导航 -->
       <Tags></Tags>
+       <!-- 面包屑导航 -->
+       <breadcrumb class="breadcrumb-container"></breadcrumb>
       <!-- 中间部分 -->
       <div class="content">
         <transition name="move" mode="out-in">
@@ -18,29 +20,34 @@
   </div>
 </template>
 <script>
-  import Header from './header'
-  import Sidebar from './sidebar'
-  import Tags from './tags'
+import Header from './header'
+import Sidebar from './sidebar'
+import Tags from './tags'
+import Breadcrumb from '&/Breadcrumb'
 
-
-  export default {
-    data() {
-        return{
-          collapse:false
-        }
-    },
-    components: {
-      Sidebar,
-      Header,
-      Tags
-    },
-    created() {
-      this.$root.bus.$on('collapse', msg => {
-        this.collapse = msg
-      })
+export default {
+  data() {
+    return {
+      collapse: false
     }
+  },
+  components: {
+    Sidebar,
+    Header,
+    Tags,
+    Breadcrumb
+  },
+  created() {
+    this.$root.bus.$on('collapse', msg => {
+      this.collapse = msg
+    })
   }
+}
 </script >
 <style scoped>
-
+.breadcrumb-container {
+  top: 40px;
+  left: 6px;
+  position: absolute;
+}
 </style>
