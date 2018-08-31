@@ -33,7 +33,7 @@ export default {
   },
   // 获取table列表数据
   uGetTableList: {
-    url: resorve('/api/tableList'),
+    url: 'http://localhost:3000/tableList',
     method: 'GET'
   }
 }

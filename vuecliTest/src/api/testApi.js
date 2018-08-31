@@ -10,5 +10,6 @@ export function getData(params) {
  * @param {carentPage: 1, pageSize: 10, jumpTo: 5} params object
  */
 export function getTableList(params) {
+  
   return http.ajax(Api.uGetTableList, params)
 }

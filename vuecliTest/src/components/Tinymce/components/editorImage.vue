@@ -1,8 +1,8 @@
 <template>
   <div class="upload-container">
-    <el-button icon='el-icon-upload' size="mini" :style="{background:color,borderColor:color}" @click=" dialogVisible=true" type="primary">上传图片
+    <el-button icon='el-icon-upload' size="mini" class="uploadBox" :style="{background:color,borderColor:color}" @click=" dialogVisible=true" type="primary">上传图片
     </el-button>
-    <el-dialog :visible.sync="dialogVisible">
+    <el-dialog :visible.sync="dialogVisible" :modal-append-to-body='false'>
       <el-upload class="editor-slide-upload" action="https://httpbin.org/post" :multiple="true" :file-list="fileList" :show-file-list="true"
         list-type="picture-card" :on-remove="handleRemove" :on-success="handleSuccess" :before-upload="beforeUpload">
         <el-button size="small" type="primary">点击上传</el-button>
@@ -69,6 +69,7 @@ export default {
       }
     },
     beforeUpload(file) {
+      console.log(file)
       const _self = this
       const _URL = window.URL || window.webkitURL
       const fileName = file.uid
@@ -76,7 +77,7 @@ export default {
       return new Promise((resolve, reject) => {
         const img = new Image()
         img.src = _URL.createObjectURL(file)
-        img.onload = function() {
+        img.onload = function () {
           _self.listObj[fileName] = { hasSuccess: false, uid: file.uid, width: this.width, height: this.height }
         }
         resolve(true)
@@ -86,11 +87,16 @@ export default {
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
-// .editor-slide-upload {
-//   margin-bottom: 20px;
-//   /deep/ .el-upload--picture-card {
-//     width: 100%;
-//   }
-// }
+<style scoped>
+
+ .editor-slide-upload {
+  margin-bottom: 20px;
+}
+.el-upload--picture-card {
+  width: 100%;
+}
+/* .uploadBox{
+  position: relative;
+  top: -3px ;
+} */
 </style>

@@ -55,7 +55,8 @@ const vuexTest = {
     getTableData({ commit }, params) {
       console.log('324324')
       return new Promise((resolve, reject) => {
-        getTableList(params).then(response => {
+        getTableList(params).then(response => { //请求方法
+          debugger
           const data = response.data
           commit('set_table_data', data); //必须commit
           resolve(data)

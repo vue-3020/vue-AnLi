@@ -192,7 +192,17 @@ export default new Router({
           name: 'vueQuillEditor',
           component: resolve => require(['#/vuex/vueQuillEditor.vue'], resolve),
           meta: {
-            title: '编辑器',
+            title: 'quill-editor编辑器',
+            isUseCache: false,
+            keepAlive: false
+          }
+        },
+        {
+          path: '/tinymce',
+          name: 'tinymce',
+          component: resolve => require(['#/vuex/tinymce.vue'], resolve),
+          meta: {
+            title: 'tinymce编辑器',
             isUseCache: false,
             keepAlive: false
           }

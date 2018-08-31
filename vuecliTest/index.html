@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>vuelictest</title>
-    <!-- <script src="https://unpkg.com/vue-baidu-map"></script> -->
-  </head>
-  <body>
-    <div id="app"></div>
-    <!--加速打包速度-->
-    <script src="<%= webpackConfig.output.publicPath %>static/js/vendor.dll.js"></script>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>vuelictest</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!--加速打包速度-->
+  <script src="<%= webpackConfig.output.publicPath %>static/js/vendor.dll.js"></script>
+  <script src="<%= webpackConfig.output.publicPath %>static/js/tinymce4.7.5/tinymce.min.js"></script>
+</body>
+
 </html>

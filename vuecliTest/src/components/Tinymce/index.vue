@@ -174,7 +174,7 @@ export default {
 .editor-custom-btn-container {
   position: absolute;
   right: 4px;
-  top: 4px;
+  top: 0px;
   /*z-index: 2005;*/
 }
 .fullscreen .editor-custom-btn-container {
@@ -183,5 +183,8 @@ export default {
 }
 .editor-upload-btn {
   display: inline-block;
+}
+.tinymce-container >>> .el-form-item__content{
+  height: auto ;
 }
 </style>

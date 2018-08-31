@@ -101,7 +101,11 @@ export default {
             },
             {
               index: '/vueQuillEditor',
-              title: '编辑器'
+              title: 'quill-editor编辑器'
+            },
+            {
+              index: '/tinymce',
+              title: 'tinymce编辑器'
             },
             {
               index: '/vueMap',
