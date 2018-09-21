@@ -95,6 +95,24 @@ export default {
               index: '/tableDemo',
               title: '表格示例'
             },
+          ]
+        },
+        {
+          icon: 'el-icon-tickets',
+          index: '5',
+          title: '表格内容',
+          subs: [
+            {
+              index: '/table/tableVisible',
+              title: '定制可见列'
+            },
+          ]
+        },
+        {
+          icon: 'el-icon-tickets',
+          index: '6',
+          title: '常用组件',
+          subs: [
             {
               index: '/preview',
               title: '图片预览'
@@ -111,17 +129,6 @@ export default {
               index: '/vueMap',
               title: '百度地图'
             }
-          ]
-        },
-        {
-          icon: 'el-icon-tickets',
-          index: '5',
-          title: '表格内容',
-          subs: [
-            {
-              index: '/table/tableVisible',
-              title: '定制可见列'
-            },
           ]
         }
       ]

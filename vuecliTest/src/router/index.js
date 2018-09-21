@@ -13,7 +13,7 @@ import Layout from '&/common/homePage' //将常用内容设置成变量
 （4）
 */
 export default new Router({
-  routes: [
+  routes: [//配置路由，这里是个数组
     {
       path: '/HelloWorld',
       name: 'HelloWorld',
@@ -177,6 +177,53 @@ export default new Router({
             keepAlive: false
           }
         },
+      ]
+    },
+    {
+      path: '/boxRoute', //只有父元素可以加 / 子元素不能加 /  //链接路径
+      name: 'boxRoute',  //路由名称，
+      component: Layout, //路径入库 对应的组件模板
+      name: '二级路由',
+      // redirect: 'noredirect', //重定向 如果是这个就不跳转，这个给二级路由应用的
+      meta: {
+        title: '二级路由',
+        isUseCache: false, //是否缓存页面
+        keepAlive: false
+      },
+      children: [
+        {
+          path: 'accountTable',
+          name: 'accountTable',
+          component: resolve => require(['#/system/accountTable.vue'], resolve),
+          meta: {
+            title: '账号管理',
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true, //自定义属性
+          }
+        },
+      ]
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: Layout,
+      meta: {
+        title: '首页',
+        isUseCache: false,
+        keepAlive: false
+      }
+    },
+    {
+      path: '/commonly',
+      name: 'commonly',
+      component: Layout,
+      meta: {
+        title: '首页',
+        isUseCache: false,
+        keepAlive: false
+      },
+      children: [
         {
           path: '/preview',
           name: 'preview',
@@ -215,63 +262,6 @@ export default new Router({
             title: '百度地图',
             isUseCache: false,
             keepAlive: false
-          }
-        },
-      ]
-    },
-    {
-      path: '/boxRoute', //只有父元素可以加 / 子元素不能加 /
-      name: 'boxRoute',
-      component: Layout, //路径入库
-      name: '二级路由',
-      // redirect: 'noredirect', //重定向 如果是这个就不跳转，这个给二级路由应用的
-      meta: {
-        title: '二级路由',
-        isUseCache: false, //是否缓存页面
-        keepAlive: false
-      },
-      children: [
-        {
-          path: 'accountTable',
-          name: 'accountTable',
-          component: resolve => require(['#/system/accountTable.vue'], resolve),
-          meta: {
-            title: '账号管理',
-            isUseCache: false,
-            keepAlive: false,
-            breadcrumbLeft: true, //自定义属性
-          }
-        },
-      ]
-    },
-    {
-      path: '/Login',
-      name: 'Login',
-      component: Layout,
-      meta: {
-        title: '首页',
-        isUseCache: false,
-        keepAlive: false
-      }
-    },
-    {
-      path: '/table',
-      name: 'table',
-      component: Layout,
-      meta: {
-        title: '首页',
-        isUseCache: false,
-        keepAlive: false
-      },
-      children: [
-        {
-          path: 'tableVisible',
-          name: 'tableVisible',
-          component: resolve => require(['#/table/tableVisible.vue'], resolve),
-          meta: {
-            title: '定制可见列',
-            isUseCache: false,
-            keepAlive: false,
           }
         },
       ]
