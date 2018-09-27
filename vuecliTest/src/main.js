@@ -29,7 +29,8 @@ Vue.use(vueQuillEditor)
 var options = {
   fullscreenEl: false //关闭全屏按钮
 }
-Vue.use(preview, options)
+
+Vue.use(preview, options) //图片预览
 
 Vue.config.productionTip = false
 Vue.prototype.API = API
