@@ -1,6 +1,6 @@
 <template>
-    <div class="sidebar">
-      <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" background-color="#324157"
+  <div class="sidebar">
+    <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" background-color="#324157"
       text-color="#bfcbd9" active-text-color="#20a0ff" unique-opened router>
         <template v-for="item in items">
           <template v-if="item.subs">
@@ -20,7 +20,7 @@
           </template>
         </template>
       </el-menu>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -140,7 +140,7 @@ export default {
       return this.$route.path.replace('/', '')
     },
   },
-  created() {
+  created() { //接受header里面传过来的参数，
     // 通过 Event Bus 进行组件间通信，来折叠侧边栏
     this.$root.bus.$on('collapse', msg => {
       console.log(msg)

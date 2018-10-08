@@ -11,8 +11,10 @@ import store from './store'
 import Filters from './filters/filters'
 import 'element-ui/lib/theme-chalk/index.css' // 默认主题
 import './components/common/css/common.css'
+
 import preview from 'vue-photo-preview' //图片预览
 import 'vue-photo-preview/dist/skin.css'
+
 import vueQuillEditor from 'vue-quill-editor' // 引入富文本工具
 import BaiduMap from 'vue-baidu-map'
 import 'quill/dist/quill.core.css'
