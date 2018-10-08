@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import http from './utils/httpAxios'
+
 import ElementUI from 'element-ui'//element 内容
 import 'element-ui/lib/theme-chalk/index.css' // element默认主题
 import './components/common/css/common.css' //
@@ -14,6 +16,10 @@ require('es6-promise/auto')
 
 //(1)引入element-ui
 Vue.use(ElementUI, { size: 'small' })
+
+//http ajax请求的方法
+Vue.prototype.http = http
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
