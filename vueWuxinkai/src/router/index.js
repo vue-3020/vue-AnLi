@@ -200,6 +200,17 @@ export default new Router({
                   keepAlive: false,
                   breadcrumbLeft: true, //自定义属性
               },
+            },
+            {
+                path: 'watch',
+                name: 'watch',
+                component: resolve => require(['#/vueVitality/watch.vue'], resolve),
+                meta: {
+                    title: '生命周期watch',
+                    isUseCache: false,
+                    keepAlive: false,
+                    breadcrumbLeft: true,
+                },
             }
         ]
     },
