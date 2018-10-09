@@ -26,10 +26,11 @@
 import Header from './header'
 import Sidebar from './sidebar'
 import Tags from './tags'
+
 export default {
   data() {
     return {
-      collapse: false
+      collapse: false //（2）传递者 父页面，
     }
   },
   components: {
@@ -38,6 +39,11 @@ export default {
     Tags,
     // Breadcrumb
   },
+  created() { //,接收 header.vue 的内容
+    this.$root.bus.$on('collapse', msg => {
+      this.collapse = msg
+    })
+  }
 }
 </script >
 <style scoped>

@@ -1,8 +1,11 @@
 <template>
   <div id="app">
       <!-- 第二层内容 -->
-    <!-- <img src="./assets/logo.png"> -->
-    <router-view/>
+    <!--keep-alive 走缓存  在meta属性上定义一个keepAlive，-->
+    <keep-alive>
+      <router-view  v-if='$route.meta.keepAlive'></router-view>
+    </keep-alive>
+    <router-view v-if='!$route.meta.keepAlive'></router-view>
   </div>
 </template>
 
@@ -13,12 +16,7 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+/*引入全局css*/
+@import "../static/css/main.css";
+@import "../static/css/color-dark.css";
 </style>

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import BaiduMap from 'vue-baidu-map/components/map/Map.vue'
+
 export default {
   data() {
     return {
@@ -41,9 +41,6 @@ export default {
       console.log(e.point.lat);
       console.log(e.point.lng);
     },
-  },
-  components: {
-    BaiduMap,
   },
 }
 </script>
