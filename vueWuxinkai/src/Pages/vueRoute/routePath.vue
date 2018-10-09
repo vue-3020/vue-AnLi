@@ -3,7 +3,7 @@
     <div class="clearfix">
      <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <span>url路由传递参数： -- {{this.$route.query.name}} -- {{this.$route.query.age}} -- {{this.$route.query.sex}}</span>
+          <span>url路由传递参数： -- {{this.$route.query.name}} -- {{this.$route.query.age}}岁-- {{this.$route.query.sex}}</span>
           <el-button style="float: right; padding: 3px 0" type="text" @click="sendQuery">query切换参数</el-button>
         </div>
         <div v-for="(o,index) in 4" :key="o" class="text item">

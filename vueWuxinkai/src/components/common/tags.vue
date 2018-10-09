@@ -6,6 +6,18 @@
         <span class="tags-li-icon" @click="closeTags(index)"><i class="el-icon-close"></i></span>
       </li>
     </ul>
+    <!--右侧信息-->
+      <div class="tags-close-box">
+        <el-dropdown @command="handleTags">
+          <el-button size="mini" type="primary">
+            标签选项<i class="el-icon-arrow-down el-icon--right"></i>
+          </el-button>
+          <el-dropdown-menu size="small" slot="dropdown">
+            <el-dropdown-item command="other">关闭其他</el-dropdown-item>
+            <el-dropdown-item command="all">关闭所有</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
   </div>
 </template>
 
@@ -48,16 +60,32 @@ export default {
     closeTags(index) {
       const delItem = this.tagsList.splice(index, 1)[0] //进入第一组数据
       const item = this.tagsList[index] ? this.tagsList[index] : this.tagsList[index - 1] //判断
-      if(item){ //注意  this.$route 和  this.$router的应用 多了一个 r
+      if (item) { //注意  this.$route 和  this.$router的应用 多了一个 r
         delItem.path === this.$route.path && this.$router.push(item.path)
-      }else{ //删掉最后一个的时候，让他等于 首页
+      } else { //删掉最后一个的时候，让他等于 首页
         this.$router.push('/')
       }
+    },
+    //第五步 右侧内容切换的方法
+    handleTags(command) {
+      command === 'other' ? this.closeOther() : this.closeAll()
+    },
+    closeOther() { //关闭其他标签,只剩下自己
+      const curItem = this.tagsList.filter(item => { //
+        return item.path === this.$route.path; //数组路径和 当前页面路由做对比 ，
+      })
+      this.tagsList = curItem;
+    },
+    closeAll() {//关闭全部标签
+      this.tagsList = [];
+      this.$router.push('/')
+
     }
   },
-  watch: {
+  watch: { //只有页面跳转的时候才会执行这个方法
     $route(newValue, oldValue) {
-      this.setTags(newValue)
+      // debugger
+      this.setTags(newValue) //页面跳转的时候向页面增加内容
     }
   }
 }

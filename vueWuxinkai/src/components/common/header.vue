@@ -51,6 +51,7 @@ export default {
       this.$root.bus.$emit('collapse', this.collapse) //发送给父页面的指令 homePage.vue
     },
     handleCommand(command) { //退出登录
+      localStorage.removeItem("localMenus") //清楚routeStorage.vue的缓存菜单
       if (command === 'loginout') {
         this.$router.push('/login')
       }

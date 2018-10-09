@@ -50,6 +50,7 @@
       submitForm(formName){
         this.$refs[formName].validate (valid => { // 验证elementUi 表单
           if(valid){
+            localStorage.removeItem("localMenus") //清楚routeStorage.vue的缓存菜单
             this.$router.push("/");
             // this.login(this.userInfo).then((response) =>{
             //   this.$router.push("/");
