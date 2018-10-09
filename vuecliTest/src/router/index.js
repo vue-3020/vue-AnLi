@@ -38,6 +38,16 @@ export default new Router({
       },
       children: [
         {
+            path: '/directive',
+            name: 'directive',
+            component: resolve => require(['#/zhufeng/directive.vue'], resolve),
+            meta: {
+                title: '珠峰视频学习',
+                isUseCache: false,
+                keepAlive: false
+            }
+        },
+        {
           path: '/home',
           name: 'Home',
           component: resolve => require(['#/user/user.vue'], resolve),

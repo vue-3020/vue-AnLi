@@ -130,7 +130,18 @@ export default {
               title: '百度地图'
             }
           ]
-        }
+        },
+        {
+          icon: 'el-icon-tickets',
+          index: '7',
+          title: '珠峰vue',
+          subs: [
+            {
+              index: '/directive',
+              title: '定制可见列'
+            },
+          ]
+        },
       ]
     }
   },
