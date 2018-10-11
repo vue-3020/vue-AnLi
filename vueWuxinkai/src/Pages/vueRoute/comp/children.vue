@@ -4,7 +4,7 @@
       <span>弟弟组件</span>
     </div>
     <div v-for="item in menuItems" :key="item.NAMES" class="text item">
-     <i :class="item.ICON"></i> {{item.PARENT_ID}}{{ item.NAMES }}
+      <i :class="item.ICON"></i> {{item.PARENT_ID}}{{ item.NAMES }}
     </div>
   </el-card>
 </template>

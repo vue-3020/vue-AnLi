@@ -14,9 +14,6 @@ export default {
   components: {
     Tinymce
   },
-  mounted: {
-
-  }
 }
 </script>
 <style scoped>

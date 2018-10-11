@@ -16,12 +16,11 @@ import preview from 'vue-photo-preview' //图片预览
 import 'vue-photo-preview/dist/skin.css'
 
 import vueQuillEditor from 'vue-quill-editor' // 引入富文本工具
-import BaiduMap from 'vue-baidu-map'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
-
+import BaiduMap from 'vue-baidu-map'
 Vue.use(BaiduMap, { //钥匙
   ak: 'u8n7EbYE9SUmhF7WKOBu8xtbTDNiY9ex'
 })

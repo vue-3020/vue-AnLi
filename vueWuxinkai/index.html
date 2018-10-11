@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>sell</title>
-  </head>
-  <body>
-    <!-- 第一层内容 -->
-    <div id="app"></div>
-    <!--折叠隐藏左侧菜单的作用-->
-    <script src="<%= webpackConfig.output.publicPath %>static/js/vendor.dll.js"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>sell</title>
+</head>
+
+<body>
+  <!-- 第一层内容 -->
+  <div id="app"></div>
+  <!--折叠隐藏左侧菜单的作用-->
+  <script src="<%= webpackConfig.output.publicPath %>static/js/vendor.dll.js"></script>
+  <!-- tinymce编辑器 -->
+  <script src="<%= webpackConfig.output.publicPath %>static/js/tinymce4.7.5/tinymce.min.js"></script>
+</body>
+
 </html>

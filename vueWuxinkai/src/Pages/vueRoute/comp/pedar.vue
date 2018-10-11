@@ -4,7 +4,8 @@
       <span>哥哥组件</span>
     </div>
     <div v-for="(item,index) in items" :key="index" class="text item">
-      <router-link :to="item.PATH">{{item.ID}} <i :class="item.ICON"></i> {{item.NAMES}}</router-link>
+      <router-link :to="item.PATH">{{item.ID}}
+        <i :class="item.ICON"></i> {{item.NAMES}}</router-link>
     </div>
   </el-card>
 </template>
@@ -34,14 +35,14 @@ export default {
       this.activeIndexClick()
     }
   },
-  methods:{
-        menuChange(index){ //index == /vueRoute/routeComp 
+  methods: {
+    menuChange(index) { //index == /vueRoute/routeComp 
       let obj = this.items.filter(function (item) { //items 等于空 方法不执行
         return item.ROUTER_NAME.toLowerCase().indexOf(index.split('/')[3].toLowerCase()) >= 0; //判断是否大于等于 0  如果大于等于说明。两个字符串相等。
       })
       this.$root.menuItem = obj[0].CHILDREN; //二级菜单内容
     },
-    activeIndexClick(){
+    activeIndexClick() {
       //this.$route.matched.length - 1 后去最后一级的路由内容，
       this.activeIndex = this.$route.matched[this.$route.matched.length - 1].path //结果： /vueRoute/routeComp/comp1
       //将内容传到一级菜单中
