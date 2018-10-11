@@ -6,6 +6,8 @@ import router from './router'
 
 import http from './utils/httpAxios'
 
+import store from './store' //vuex
+
 import ElementUI from 'element-ui'//element 内容
 import 'element-ui/lib/theme-chalk/index.css' // element默认主题
 import './components/common/css/common.css' //
@@ -45,6 +47,7 @@ Vue.use(BaiduMap, {
 new Vue({
   el: '#app',
   router,
+  store,
   // components: { App },
   // template: '<App/>',
   render: h => h(App),

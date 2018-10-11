@@ -11,6 +11,5 @@ function resorve(path){
 
  //导出内容
  export function getTableList(params){ //进行 ajax请求
-
    return http.ajax({ url: resorve('/example/tableData'), method: 'POST' }, params)
  }

@@ -47,13 +47,13 @@ export default {
     }
   },
   methods: { //计算属性
-    ...mapActions("affairs", ["getTableListClick"]),
+    // ...mapActions("affairs", ["getTableListClick"]),
   },
   mounted() {
-    this.getTableListClick({pageIndex: 1, pageSize: 20, WORK_STATE: 1})
+    // this.getTableListClick({pageIndex: 1, pageSize: 20, WORK_STATE: 1})
   },
   computed: {
-    // ...mapGetters("affairs", ["getTableList"]),
+    ...mapGetters("affairs", ["getTableList"]),
   }
 }
 </script>

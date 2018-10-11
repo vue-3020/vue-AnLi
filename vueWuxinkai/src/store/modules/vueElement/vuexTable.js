@@ -1,4 +1,4 @@
-import { getTableList } from "@/api/vueElement/vuexTable";
+import { getTableList } from "@/api/vueElement/tableApi";
 const vuesAccount = {
   state: {
     AffairsData: [],
@@ -20,5 +20,4 @@ const vuesAccount = {
     }
   }
 };
-alert('1')
 export default vuesAccount;
