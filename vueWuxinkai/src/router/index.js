@@ -341,6 +341,30 @@ export default new Router({
           }
         }
       ]
-    }
+    },
+    {
+        path: "/directive",
+        name: "directive",
+        component: Layout,
+        name: "内置指令",
+        meta: {
+          title: "内置指令",
+          isUseCache: false,
+          keepAlive: false
+        },
+        children: [
+          {
+            path: "vueAttribute",
+            name: "vueAttribute",
+            component: resolve => require(["#/directive/vueAttribute.vue"], resolve),
+            meta: {
+              title: "指令",
+              isUseCache: false,
+              keepAlive: false,
+              breadcrumbLeft: true //自定义属性
+            }
+          }
+        ]
+      }
   ]
 });
