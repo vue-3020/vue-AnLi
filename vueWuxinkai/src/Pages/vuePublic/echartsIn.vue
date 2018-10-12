@@ -16,6 +16,9 @@
       <div class="clear">
         <el-col class="fff" :span="7">
           <el-card :body-style="{ padding: '0px' }">
+            <div class="headerTitle">
+              定时器 饼图的引入和应用
+            </div>
             <chart class="chartHW" :options="pie" :init-options="initOptions" ref="pie" auto-resize />
             <div style="padding: 14px;">
               <span>饼图</span>
@@ -24,6 +27,9 @@
         </el-col>
         <el-col class="fff" :span="7" :offset="1">
           <el-card :body-style="{ padding: '0px' }">
+            <div class="headerTitle">
+              柱状图加载生成随机数
+            </div>
             <figure>
               <chart class="chartHW" :options="barData" :init-options="initOptions" ref="barData" theme="ovilia-green" auto-resize />
             </figure>
@@ -43,6 +49,9 @@
         </el-col>
         <el-col class="fff" :span="7" :offset="1">
           <el-card :body-style="{ padding: '0px' }">
+            <div class="headerTitle">
+              折线图切换主题
+            </div>
             <figure :style="polarTheme === 'dark' ? 'background-color: #333' : ''">
               <chart class="chartHW" :options="polar" :init-options="initOptions" :theme="polarTheme" auto-resize />
             </figure>
@@ -53,18 +62,23 @@
                   <option value="dark">Dark</option>
                 </select>
               </p>
-              <span>折线图</span>
             </div>
           </el-card>
         </el-col>
       </div>
       <div class="clear">
         <el-col class="fff" :span="7">
+          <div class="headerTitle">
+            散点图
+          </div>
           <el-card :body-style="{ padding: '0px' }">
             <chart class="chartHW" :options="scatter" :init-options="initOptions" auto-resize />
           </el-card>
         </el-col>
         <el-col class="fff" :span="7" :offset="1">
+          <div class="headerTitle">
+            地图 加截图功能
+          </div>
           <el-card :body-style="{ padding: '0px' }">
             <chart class="chartHW" :options="map" :init-options="initOptions" ref="map" auto-resize />
           </el-card>
@@ -78,6 +92,9 @@
           </aside>
         </el-col>
         <el-col class="fff" :span="7" :offset="1">
+          <div class="headerTitle">
+            vuex请求数据，设置每个属性的 多少
+          </div>
           <el-card :body-style="{ padding: '0px' }">
             <figure>
               <chart class="chartHW" :options="scoreRadar" :init-options="initOptions" auto-resize />
@@ -96,34 +113,48 @@
         </el-col>
       </div>
       <div class="clear">
-        <el-col class="fff" :span="6">
+        <el-col class="fff" :span="7">
+          <div class="headerTitle">
+            c1和c2数据连动
+          </div>
           <el-card :body-style="{ padding: '0px' }">
             <figure class="half">
-              <chart  class="chartHW" :options="c1" :init-options="initOptions" group="radiance" ref="c1" auto-resize />
+              <chart class="chartHW" :options="c1" :init-options="initOptions" group="radiance" ref="c1" auto-resize />
             </figure>
           </el-card>
         </el-col>
-        <el-col class="fff" :span="2">
-          <el-card :body-style="{ padding: '0px' }">
-           <label>
-          <input
-            type="checkbox"
-            v-model="connected"
-          >
-          连接来个数据
-        </label>
+        <el-col class="fff" :span="1">
+          <el-card :body-style="{ padding: '0px' }" style="margin-top:100px">
+            <label>
+              <input type="checkbox" v-model="connected"> 连接来个数据
+            </label>
           </el-card>
         </el-col>
-        <el-col class="fff" :span="6" :offset="1">
+        <el-col class="fff" :span="7">
+          <div class="headerTitle">
+            c1和c2数据连动
+          </div>
           <el-card :body-style="{ padding: '0px' }">
             <figure class="half">
-              <chart  class="chartHW" :options="c2" :init-options="initOptions" group="radiance" ref="c2" auto-resize />
+              <chart class="chartHW" :options="c2" :init-options="initOptions" group="radiance" ref="c2" auto-resize />
             </figure>
+          </el-card>
+        </el-col>
+        <el-col class="fff" :span="7" :offset="1">
+          <el-card :body-style="{ padding: '0px' }">
+            <div class="headerTitle">
+            fetch 本地请求，和手动加载数据
+          </div>
+            <figure class="half">
+              <chart class="chartHW" ref="flight" :init-options="initOptions" :options="flightOptions" auto-resize />
+            </figure>
+            <p>
+              <button :disabled="flightLoaded" @click="loadFlights">加载数据</button>
+            </p>
           </el-card>
         </el-col>
       </div>
     </el-row>
-
   </div>
 </template>
 
@@ -163,14 +194,6 @@ import scatter from './data/scatter' //4.1散点图
 import map from './data/map' //5.1地图
 
 import { c1, c2 } from './data/connect' //7 数据连动效果
-
-// import logo from './data/logo'
-// import getBar from './data/bar'
-
-
-// import polar from './data/polar'
-// import scatter from './data/scatter'
-// import map from './data/map'
 
 //5.2中国地图 map组件
 import chinaMap from './data/china.json'
@@ -215,6 +238,9 @@ export default {
       c1, //7.1
       c2, //7.2
       connected: true,
+      //------------手动更新----------------
+      flightOptions: null,
+      flightLoaded: false,
     }
   },
   computed: {
@@ -277,12 +303,102 @@ export default {
         this.$store.dispatch('asyncIncrement', { amount, index: this.metricIndex, delay: 1500 })
       }
     },
+    //地图加载
+    loadFlights() {
+      this.flightLoaded = true //禁用状态
+      let { flight } = this.$refs //获取元素上的内容
+      flight.showLoading({ //页面加载
+        text: '',
+        color: '#c23531',
+        textColor: 'rgba(255, 255, 255, 0.5)',
+        maskColor: '#003',
+        zlevel: 0
+      })
+      // fetch('../static/flight.json') 
+      //   .then(response => response.json()) 这种方式不用 手动 return 
+      //   .then(data => {
+      fetch('../static/flight.json') //本地请求方法
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          console.log(data)
+          flight.hideLoading()
+          function getAirportCoord(idx) {
+            return [data.airports[idx][3], data.airports[idx][4]]
+          }
+          let routes = data.routes.map(function (airline) {
+            return [
+              getAirportCoord(airline[1]),
+              getAirportCoord(airline[2])
+            ]
+          })
+          this.flightOptions = ({
+            title: {
+              text: 'World Flights',
+              left: 'center',
+              textStyle: {
+                color: '#eee'
+              }
+            },
+            backgroundColor: '#003',
+            tooltip: {
+              formatter(param) {
+                let route = data.routes[param.dataIndex]
+                return data.airports[route[1]][1] + ' > ' + data.airports[route[2]][1]
+              }
+            },
+            geo: {
+              map: 'world',
+              left: 0,
+              right: 0,
+              silent: true,
+              itemStyle: {
+                normal: {
+                  borderColor: '#003',
+                  color: '#005'
+                }
+              }
+            },
+            series: [
+              {
+                type: 'lines',
+                coordinateSystem: 'geo',
+                data: routes,
+                large: true,
+                largeThreshold: 100,
+                lineStyle: {
+                  normal: {
+                    opacity: 0.05,
+                    width: 0.5,
+                    curveness: 0.3
+                  }
+                },
+                // 设置混合模式为叠加
+                blendMode: 'lighter'
+              }
+            ]
+          })
+        })
+    }
   },
   components: {
     chart: ECharts,
   },
   mounted() {
 
+  },
+  watch: { //散点图连动效果
+    connected: {
+      handler(value) {
+        //echarts.connect（多个图表实例实现联动）；
+        //echarts.disconnect（解除图表实例的联动，如果只需要移出单个实例，可以将通过将该图表实例group设为空）
+        ECharts[value ? 'connect' : 'disconnect']('radiance')
+      },
+      //immediate:true代表如果在 wacth 里声明了之后，就会立即先去执行里面的handler方法，
+      //如果为 false就跟我们以前的效果一样，不会在绑定的时候就执行。
+      immediate: true
+    }
   }
 }
 </script>
@@ -340,5 +456,11 @@ button[disabled] {
   opacity: 0.5;
   cursor: not-allowed;
 }
-
+.headerTitle {
+  font-weight: bold;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
 </style>

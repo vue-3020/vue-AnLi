@@ -60,6 +60,7 @@ export default {
   left: 0;
   top: 70px;
   bottom: 0;
+  overflow: auto;
 }
 /*.sidebar-el-menu上不带.el-menu--collapse样式的被修改*/
 .sidebar-el-menu:not(.el-menu--collapse) {
