@@ -143,8 +143,8 @@
         <el-col class="fff" :span="7" :offset="1">
           <el-card :body-style="{ padding: '0px' }">
             <div class="headerTitle">
-            fetch 本地请求，和手动加载数据
-          </div>
+              fetch 本地请求，和手动加载数据
+            </div>
             <figure class="half">
               <chart class="chartHW" ref="flight" :init-options="initOptions" :options="flightOptions" auto-resize />
             </figure>
@@ -303,7 +303,7 @@ export default {
         this.$store.dispatch('asyncIncrement', { amount, index: this.metricIndex, delay: 1500 })
       }
     },
-    //地图加载
+    //红色地图加载
     loadFlights() {
       this.flightLoaded = true //禁用状态
       let { flight } = this.$refs //获取元素上的内容
@@ -385,9 +385,6 @@ export default {
   components: {
     chart: ECharts,
   },
-  mounted() {
-
-  },
   watch: { //散点图连动效果
     connected: {
       handler(value) {
@@ -399,7 +396,34 @@ export default {
       //如果为 false就跟我们以前的效果一样，不会在绑定的时候就执行。
       immediate: true
     }
-  }
+  },
+  mounted() { //计算属性
+    //1.4饼图 定时转圈
+    let dataIndex = -1
+    let pie = this.$refs.pie //获取饼图上的属性
+    let dataLen = pie.options.series[0].data.length; //获取多少个标题
+    setInterval(() => {
+      //echartsInstance.dispatchAction（触发图表行为，例如图表开关legendToggleSelect，
+      // 数据区域缩放dataZoom，显示提示框showTip等等）；
+      pie.dispatchAction({
+        type: 'downplay',
+        seriesIndex: 0,
+        dataIndex
+      })
+      dataIndex = (dataIndex + 1) % dataLen
+      pie.dispatchAction({
+        type: 'highlight',
+        seriesIndex: 0,
+        dataIndex
+      })
+      // 显示 tooltip
+      pie.dispatchAction({
+        type: '',
+        seriesIndex: 0,
+        dataIndex
+      })
+    }, 1000)
+  },
 }
 </script>
 <style scoped>
