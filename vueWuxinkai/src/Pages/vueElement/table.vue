@@ -12,6 +12,7 @@
           </template>
         </el-table-column>
       </el-table>
+
     </div>
     <div class="operation">
       <!-- <el-pagination :page-size="pageSize" :current-page="currentPage" prev-text="上一页" next-text="下一页" layout="total, prev, pager, next" @current-change="handleCurrentChange" :total="getAffairsCount">
@@ -30,30 +31,26 @@
 </template>
 
   <script>
-import { mapGetters, mapActions} from "vuex";
-
-// import { uExportExcel } from '@/api/vueElement/tableApi'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   data() {
     return {
       currentPage: 1,
       pageSize: 20,
-      getTableList: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }]
     }
   },
-  methods: { //计算属性
-    // ...mapActions("affairs", ["getTableListClick"]),
+  methods: {
+    //页面请求数据
+    ...mapActions("tableVisible", ["getData"]), //（五）
   },
   mounted() {
-    // this.getTableListClick({pageIndex: 1, pageSize: 20, WORK_STATE: 1})
+    // console.log(this.getTableList); //获取同步数据
+    this.getData() //异步请求第一步
   },
   computed: {
-    ...mapGetters("affairs", ["getTableList"]),
+    ...mapGetters("tableVisible", ["getTableList"]),
+    ...mapActions("tableVisible", ["getAsynData"]),
   }
 }
 </script>

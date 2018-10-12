@@ -251,8 +251,8 @@ export default new Router({
       ]
     },
     {
-      path: "/vueElement",
-      name: "vueElement",
+      path: "/table",
+      name: "table",
       component: Layout,
       name: "element-ui",
       meta: {
@@ -262,8 +262,8 @@ export default new Router({
       },
       children: [
         {
-          path: "table",
-          name: "table",
+          path: "tableVisible",
+          name: "tableVisible",
           component: resolve => require(["#/vueElement/table.vue"], resolve),
           meta: {
             title: "vue面试题",

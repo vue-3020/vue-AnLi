@@ -9,7 +9,7 @@ function resorve(path){
  * @param {carentPage: 1, pageSize: 10, jumpTo: 5} params object
  */
 
- //导出内容
- export function getTableList(params){ //进行 ajax请求
-   return http.ajax({ url: resorve('/example/tableData'), method: 'POST' }, params)
+ //请求数据
+ export function getAsynData(params){ //进行 ajax请求
+  return http.ajax({ url: resorve('/example/tableData'), method: 'GET' }, params)
  }
