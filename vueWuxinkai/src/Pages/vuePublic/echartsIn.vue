@@ -317,7 +317,7 @@ export default {
       // fetch('../static/flight.json') 
       //   .then(response => response.json()) 这种方式不用 手动 return 
       //   .then(data => {
-      fetch('../static/flight.json') //本地请求方法
+      fetch('../static/json/flight.json') //本地请求方法
         .then(response => {
           return response.json()
         })
