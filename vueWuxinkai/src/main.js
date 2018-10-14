@@ -57,4 +57,4 @@ new Vue({
       haha: 'hahah'
     }
   }
-}).$mount('#app')
+}).$mount('#app')  //挂载app，要保证有编译的元素

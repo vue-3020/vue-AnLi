@@ -49,5 +49,6 @@
 </script>
 
 <style scoped>
+ul li{list-style: none}
   .FU{background: #20a0ff;width: 100%;height: 100%;position: relative;overflow: hidden;color: #fff}
 </style>
