@@ -436,6 +436,16 @@ export default new Router({
           keepAlive: false,
           breadcrumbLeft: true //自定义属性
         }
+      },{
+        path: "busUsed",
+        name: "busUsed",
+        component: resolve => require(["#/vueComm/busUsed.vue"], resolve),
+        meta: {
+          title: "兄弟页面的事件调用",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true //自定义属性
+        }
       }]
     }
   ]
