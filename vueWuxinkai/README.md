@@ -215,3 +215,64 @@ fuDiaoZiShiJian() {
         this.text ='子内容被修改';
     },
 ```
+### 兄弟组件的 传送数据
+```
+（1）在vue-AnLi/vueWuxinkai/src/main.js中设置
+new Vue({
+  el: '#app',
+  data() {
+    return {
+      bus: new Vue(),
+    }
+  }
+}).$mount('#app') 
+
+（2）在vueWuxinkai/src/components/common/bus.js 声明js
+
+（3）在哥哥js中
+<template>
+    <div class="box">
+        <div class="hezi" v-show="changingOver"></div>
+        <br>    
+        <el-button type="" @click="changingChage">点击事件传递给兄弟组件</el-button>
+    </div>
+</template>
+<script>
+export default {
+    data(){
+        return {
+            changingOver:true
+        }
+    },
+    methods:{
+        changingChage(){
+            this.changingOver = !this.changingOver;
+            //发送事件
+            this.$root.bus.$emit('changingOver', this.changingOver)
+        }
+    }
+}
+</script>
+
+（4）在弟弟页面
+<template>
+    <div class="box">
+        <div class="heziNext " v-show="changingOver"></div>
+    </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      changingOver: true
+    };
+  },
+  created() { //接收数据
+    this.$root.bus.$on("changingOver", msg => {
+      console.log(msg);
+      this.changingOver = msg;
+    });
+  }
+};
+</script>
+```

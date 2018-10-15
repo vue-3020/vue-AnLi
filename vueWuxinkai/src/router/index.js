@@ -7,6 +7,11 @@ Vue.use(Router);
 
 import Layout from "&/common/homePage"; //将常用内容设置成变量
 
+/*
+this.$router.push('/login')     强制跳转路径
+this.$router.replace('/login')   路由替换，将当前历史替换掉，在点击后退按钮的时候不会出现错误
+*/
+
 export default new Router({
   routes: [{
       path: "/HelloWorld",
@@ -258,7 +263,7 @@ export default new Router({
               isUseCache: false,
               keepAlive: false,
               breadcrumbLeft: true
-            }
+            },
           },
         {
             path: "slot",
