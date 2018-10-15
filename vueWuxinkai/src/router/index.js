@@ -315,7 +315,17 @@ export default new Router({
         name: "tableVisible",
         component: resolve => require(["#/vueElement/table.vue"], resolve),
         meta: {
-          title: "vue面试题",
+          title: "表格",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true //自定义属性
+        }
+      },{
+        path: "tableDemo",
+        name: "tableDemo",
+        component: resolve => require(["#/vueElement/tableDemo.vue"], resolve),
+        meta: {
+          title: "表格分页",
           isUseCache: false,
           keepAlive: false,
           breadcrumbLeft: true //自定义属性
@@ -405,6 +415,48 @@ export default new Router({
         component: resolve => require(["#/directive/vueAttribute.vue"], resolve),
         meta: {
           title: "指令",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true //自定义属性
+        }
+      }]
+    },
+    {
+      path: "/vueComm",
+      name: "vueComm",
+      component: Layout,
+      name: "通用组件",
+      meta: {
+        title: "通用组件",
+        isUseCache: false,
+        keepAlive: false
+      },
+      children: [{
+        path: "timer",
+        name: "timer",
+        component: resolve => require(["#/vueComm/timer.vue"], resolve),
+        meta: {
+          title: "页面跳转关闭定时器",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true //自定义属性
+        }
+      },{
+        path: "timerChiid",
+        name: "timerChiid",
+        component: resolve => require(["#/vueComm/timerChiid.vue"], resolve),
+        meta: {
+          title: "页面的子页面",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true //自定义属性
+        }
+      },{
+        path: "busUsed",
+        name: "busUsed",
+        component: resolve => require(["#/vueComm/busUsed.vue"], resolve),
+        meta: {
+          title: "兄弟页面的事件调用",
           isUseCache: false,
           keepAlive: false,
           breadcrumbLeft: true //自定义属性

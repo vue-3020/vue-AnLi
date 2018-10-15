@@ -2,7 +2,9 @@
     <div class="right">
       <h3>子组件,弟弟组件</h3>
       <p>{{gegeData}}</p>
-      
+      <br> 
+      <br> 
+   
     </div>
 </template>
 
@@ -11,7 +13,8 @@ import bus from '&/common/bus'
 export default {
   data() {
     return {
-      gegeData: '弟弟的默认数据'
+      gegeData: '弟弟的默认数据',
+      b:'给哥哥的数据'
     }
   },
   mounted() { //$on 中的this 指向的不是this  所以需要存储变量
@@ -21,11 +24,6 @@ export default {
       _this.$set(_this, 'gegeData', newLike)
     })
   },
-  methods:{
-    goGG(){
-      alert()
-    }
-  }
 }
 </script>
 

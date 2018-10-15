@@ -25,7 +25,7 @@
           window.timeTwo = setInterval(function () {
             console.log('停止第二个 定时器停止')
           }, 1000);
-          _this.$router.push({
+           _this.$router.push({
             name: 'timerChiid'
           })
         }

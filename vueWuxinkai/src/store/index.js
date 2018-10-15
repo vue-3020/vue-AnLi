@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import tableVisible from './modules/vueElement/vuexTable'
+import vuexTestIndex from './modules/vueElement/vuexTest'
 import echartRadar from './echart/radar'
 Vue.use(Vuex)
 
@@ -9,6 +10,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   modules: {
     tableVisible, //定制可见列
+    vuexTestIndex, //获取表格数据和分页
     echartRadar, //echar数据
   },
   // plugins: [vuexLocal.plugin]
