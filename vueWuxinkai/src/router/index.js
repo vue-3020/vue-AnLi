@@ -405,6 +405,38 @@ export default new Router({
           breadcrumbLeft: true //自定义属性
         }
       }]
+    },
+    {
+      path: "/vueComm",
+      name: "vueComm",
+      component: Layout,
+      name: "通用组件",
+      meta: {
+        title: "通用组件",
+        isUseCache: false,
+        keepAlive: false
+      },
+      children: [{
+        path: "timer",
+        name: "timer",
+        component: resolve => require(["#/vueComm/timer.vue"], resolve),
+        meta: {
+          title: "页面跳转关闭定时器",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true //自定义属性
+        }
+      },{
+        path: "timerChiid",
+        name: "timerChiid",
+        component: resolve => require(["#/vueComm/timerChiid.vue"], resolve),
+        meta: {
+          title: "页面的子页面",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true //自定义属性
+        }
+      }]
     }
   ]
 });
