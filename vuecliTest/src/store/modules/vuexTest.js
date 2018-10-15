@@ -16,7 +16,7 @@ const vuexTest = {
     getMsgData: state => {
       return state.msgData
     },
-    getTableList: state => {
+    getTableList: state => { //1获取数据
       return state.tableData
     }
   },

@@ -98,6 +98,7 @@ export default {
       this.currentPage = val;
       this.getTableData({ carentPage: val, pageSize: this.pageSize });
     },
+    
     // 表格编辑
     handleEdit: function (row) {
       //遍历数组改变editeFlag

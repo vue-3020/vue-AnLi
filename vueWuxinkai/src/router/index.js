@@ -310,7 +310,17 @@ export default new Router({
         name: "tableVisible",
         component: resolve => require(["#/vueElement/table.vue"], resolve),
         meta: {
-          title: "vue面试题",
+          title: "表格",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true //自定义属性
+        }
+      },{
+        path: "tableDemo",
+        name: "tableDemo",
+        component: resolve => require(["#/vueElement/tableDemo.vue"], resolve),
+        meta: {
+          title: "表格分页",
           isUseCache: false,
           keepAlive: false,
           breadcrumbLeft: true //自定义属性
