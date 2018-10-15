@@ -30,7 +30,7 @@ export default {
     return {
       currentPage: 1, //当前是第几页
       pageSize: 3,//总共多少页
-      total: 100, //每页显示多少条
+      // getCount 显示有多少条数据
     }
   },
 
