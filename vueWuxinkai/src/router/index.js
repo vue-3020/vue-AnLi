@@ -532,6 +532,30 @@ export default new Router({
           }
         }
       ]
-    }
+    },
+    {
+        path: "/vuex",
+        name: "vuex",
+        component: Layout,
+        name: "vuex学习",
+        meta: {
+          title: "vuex学习",
+          isUseCache: false,
+          keepAlive: false
+        },
+        children: [
+          {
+            path: "vuexExample",
+            name: "vuexExample",
+            component: resolve => require(["#/vuex/vuexExample.vue"], resolve),
+            meta: {
+              title: "vuex学习",
+              isUseCache: false,
+              keepAlive: false,
+              breadcrumbLeft: true //自定义属性
+            }
+          },
+        ]
+      }
   ]
 });

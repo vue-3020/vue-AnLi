@@ -30,7 +30,7 @@ const tableVisible = {
       };
     }
   },
-  mutations: {
+  mutations: { //管理员 用来更改状态，
     increment({ scores }, { amount = 1, index = 0 }) {
       let metric = scores[index];
       metric.value = Math.max(Math.min(metric.value + amount, metric.max), 0);
