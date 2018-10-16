@@ -9,7 +9,7 @@
 </style>
 <script>
 export default {
-  name: "digui",
+  name: "digui", //递归组件是指组件自身调用自身
   props: ["tree"]
 };
 </script>

@@ -34,6 +34,7 @@
       <span style="color:blue">初始化</span> ，否则新加入的属性不会导致页面刷新，</p>
     <p>//此方法可以给对象 添加响应式数据变化 </p>
     <p>// bus.$set(bus.a,'123')</p>
+    <p><span class="red width">this.$set</span>修改对象(data)属性</p>
     <br>
     <div>取数组方法, 改变数组的某一项是监听不到的,改变数组的内置方法：pop push shift unshift sort reserve splice</div>
     <ul>

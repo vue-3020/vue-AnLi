@@ -396,6 +396,28 @@ export default new Router({
             keepAlive: false,
             breadcrumbLeft: true //自定义属性
           }
+        },
+        {
+          path: "recursion",
+          name: "recursion",
+          component: resolve => require(["#/vuePublic/recursion.vue"], resolve),
+          meta: {
+            title: "递归组件的应用",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
+          path: "parentChild",
+          name: "parentChild",
+          component: resolve => require(["#/vuePublic/parentChild.vue"], resolve),
+          meta: {
+            title: "父子组件在同一页面",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
         }
       ]
     },
