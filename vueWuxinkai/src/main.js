@@ -46,8 +46,8 @@ Vue.use(BaiduMap, {
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
-  store,
+  router, //引入路由
+  store, //引入 vuex
   // components: { App },
   // template: '<App/>',
   render: h => h(App),
