@@ -37,6 +37,11 @@ export default {
       type: Number,
       required: false,
       default: 360
+    },
+    readonly: { //子页面传过来的值
+      // type: String, //不加校验
+      required: false,
+      default: false
     }
   },
   data() {
@@ -85,6 +90,7 @@ export default {
         imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
         default_link_target: '_blank',
         link_title: false,
+        readonly: this.readonly == true, //禁用 输入框
         nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
         init_instance_callback: editor => {
           if (_this.value) {
