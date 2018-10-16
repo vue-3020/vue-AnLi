@@ -20,14 +20,14 @@
         <p>//此方法可以给对象 添加响应式数据变化 </p>
         <p>// bus.$set(bus.a,'123')</p>
         <br>
-        <div>取数组方法, 改变数组的某一项是监听不到的</div>
-        <div>改变数组的内置方法：pop push shift unshift sort reserve splice</div>
+        <div>取数组方法, 改变数组的某一项是监听不到的,改变数组的内置方法：pop push shift unshift sort reserve splice</div>
+    
         <p>{{arr}}</p>
         <ul>
-            <li v-for="(fruit,index) in fruits">
+            <li v-for="(fruit,index) in fruits" :key="index">
                 {{index+1}} {{fruit.name}}
                 <ul style="margin-left:20px">
-                    <li v-for="(c,childIndex) in fruit.color">
+                    <li v-for="(c,childIndex) in fruit.color"  :key="childIndex">
                         {{childIndex+1}} {{c}}
                     </li>
                 </ul>
@@ -39,7 +39,7 @@
          <h2 style="color:green">（4）键盘事件</h2>
          <input type="text" v-model="val" @keyup="add">
          <ul>
-             <li v-for="(a,index) in arr3">
+             <li v-for="(a,index) in arr3" :key="index">
                  {{a}} 
                  <button @click="remove(index)">删除</button>
              </li>

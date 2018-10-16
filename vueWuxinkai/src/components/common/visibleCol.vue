@@ -30,13 +30,13 @@ export default {
       //对列表的定制可见列赋值
       this.Content.forEach(item => {
         //拿当前的和修改的做对比
-        if (this.checkList.indexOf(item.property) >= 0) {
+        if (this.checkList.indexOf(item.property) >= 0) { //判断里面是否有数据如果有就是，改成true，没有就是false
           item.isChecked = true //增加自定义属性
         } else {
           item.isChecked = false
         }
       })
-      //返回给前端
+      //返回给父组件 finishCustom 事件，
       this.$emit('setCustomCols', this.Content);
     },
     cancle: function () {
