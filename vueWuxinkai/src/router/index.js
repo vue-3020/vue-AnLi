@@ -13,7 +13,8 @@ this.$router.replace('/login')   路由替换，将当前历史替换掉，在�
 */
 
 export default new Router({
-  routes: [{
+  routes: [
+    {
       path: "/HelloWorld",
       name: "HelloWorld",
       component: HelloWorld
@@ -40,17 +41,19 @@ export default new Router({
         isUseCache: false,
         keepAlive: false
       },
-      children: [{
-        path: "/home",
-        name: "Home",
-        // 当你用require这种方式引入的时候，会将你的component分别打包成不同的js，加载的时候也是按需加载，只用访问这个路由网址时才会加载这个js。
-        component: resolve => require(["#/user/user.vue"], resolve), //第四层内容部分
-        meta: {
-          title: "用户信息",
-          isUseCache: false,
-          keepAlive: false
+      children: [
+        {
+          path: "/home",
+          name: "Home",
+          // 当你用require这种方式引入的时候，会将你的component分别打包成不同的js，加载的时候也是按需加载，只用访问这个路由网址时才会加载这个js。
+          component: resolve => require(["#/user/user.vue"], resolve), //第四层内容部分
+          meta: {
+            title: "用户信息",
+            isUseCache: false,
+            keepAlive: false
+          }
         }
-      }]
+      ]
     },
     {
       path: "/vueRoute", //只有父元素可以加 / 子元素不能加 /  //链接路径
@@ -63,7 +66,8 @@ export default new Router({
         isUseCache: false, //是否缓存页面
         keepAlive: false
       },
-      children: [{
+      children: [
+        {
           path: "routePath",
           name: "routePath",
           component: resolve => require(["#/vueRoute/routePath.vue"], resolve),
@@ -73,7 +77,8 @@ export default new Router({
             keepAlive: false,
             breadcrumbLeft: true //自定义属性
           },
-          children: [{
+          children: [
+            {
               path: "routeSon1",
               name: "routeSon1",
               component: resolve =>
@@ -100,34 +105,35 @@ export default new Router({
         {
           path: "routeHook",
           name: "routeHook",
-          component: () =>
-            import("#/vueRoute/routeHook"), //第二种引入方式
+          component: () => import("#/vueRoute/routeHook"), //第二种引入方式
           meta: {
             title: "路由钩子函数",
             isUseCache: false,
             keepAlive: false,
             breadcrumbLeft: true //自定义属性
           },
-          children: [{
-            path: "hookSon/:id",
-            name: "hookSon",
-            component: resolve =>
-              require(["#/vueRoute/children/hookSon.vue"], resolve),
-            meta: {
-              title: "钩子函数子页面",
-              isUseCache: false,
-              keepAlive: false
-            },
-            beforeEnter: (to, from, next) => {
-              console.log("/router/index.js 里的beforeEnter");
-              next(); //必须写
-            },
-            beforeLeave: (to, from, next) => {
-              //不触发
-              console.log("/router/index.js 里的beforeLeave");
-              next(); //必须写
+          children: [
+            {
+              path: "hookSon/:id",
+              name: "hookSon",
+              component: resolve =>
+                require(["#/vueRoute/children/hookSon.vue"], resolve),
+              meta: {
+                title: "钩子函数子页面",
+                isUseCache: false,
+                keepAlive: false
+              },
+              beforeEnter: (to, from, next) => {
+                console.log("/router/index.js 里的beforeEnter");
+                next(); //必须写
+              },
+              beforeLeave: (to, from, next) => {
+                //不触发
+                console.log("/router/index.js 里的beforeLeave");
+                next(); //必须写
+              }
             }
-          }]
+          ]
         },
         {
           path: "routeStorage",
@@ -151,7 +157,8 @@ export default new Router({
             keepAlive: false,
             breadcrumbLeft: true //自定义属性
           },
-          children: [{
+          children: [
+            {
               path: "comp1",
               name: "comp1",
               component: resolve =>
@@ -198,7 +205,8 @@ export default new Router({
         isUseCache: false,
         keepAlive: false
       },
-      children: [{
+      children: [
+        {
           path: "computed",
           name: "computed",
           component: resolve =>
@@ -246,7 +254,8 @@ export default new Router({
         {
           path: "subscribe",
           name: "subscribe",
-          component: resolve => require(["#/vueVitality/subscribe.vue"], resolve),
+          component: resolve =>
+            require(["#/vueVitality/subscribe.vue"], resolve),
           meta: {
             title: "发布订阅模式",
             isUseCache: false,
@@ -255,27 +264,38 @@ export default new Router({
           }
         },
         {
-            path: "brother",
-            name: "brother",
-            component: resolve => require(["#/vueVitality/brother.vue"], resolve),
-            meta: {
-              title: "兄弟组件通信",
-              isUseCache: false,
-              keepAlive: false,
-              breadcrumbLeft: true
-            },
-          },
-        {
-            path: "slot",
-            name: "slot",
-            component: resolve => require(["#/vueVitality/slot.vue"], resolve),
-            meta: {
-              title: "发布订阅模式",
-              isUseCache: false,
-              keepAlive: false,
-              breadcrumbLeft: true
-            }
+          path: "brother",
+          name: "brother",
+          component: resolve => require(["#/vueVitality/brother.vue"], resolve),
+          meta: {
+            title: "兄弟组件通信",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true
           }
+        },
+        {
+          path: "slot",
+          name: "slot",
+          component: resolve => require(["#/vueVitality/slot.vue"], resolve),
+          meta: {
+            title: "发布订阅模式",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true
+          }
+        },
+        {
+          path: "lifeCycle",
+          name: "lifeCycle",
+          component: resolve => require(["#/vueVitality/lifeCycle.vue"], resolve),
+          meta: {
+            title: "生命周期的执行过程",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        }
       ]
     },
     {
@@ -288,17 +308,19 @@ export default new Router({
         isUseCache: false,
         keepAlive: false
       },
-      children: [{
-        path: "vueTopic1",
-        name: "vueTopic1",
-        component: resolve => require(["#/Interview/vueTopic1.vue"], resolve),
-        meta: {
-          title: "vue面试题",
-          isUseCache: false,
-          keepAlive: false,
-          breadcrumbLeft: true //自定义属性
+      children: [
+        {
+          path: "vueTopic1",
+          name: "vueTopic1",
+          component: resolve => require(["#/Interview/vueTopic1.vue"], resolve),
+          meta: {
+            title: "vue面试题",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
         }
-      }]
+      ]
     },
     {
       path: "/table",
@@ -310,27 +332,43 @@ export default new Router({
         isUseCache: false,
         keepAlive: false
       },
-      children: [{
-        path: "tableVisible",
-        name: "tableVisible",
-        component: resolve => require(["#/vueElement/table.vue"], resolve),
-        meta: {
-          title: "表格",
-          isUseCache: false,
-          keepAlive: false,
-          breadcrumbLeft: true //自定义属性
+      children: [
+        {
+          path: "tableVisible",
+          name: "tableVisible",
+          component: resolve => require(["#/vueElement/table.vue"], resolve),
+          meta: {
+            title: "表格",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
+          path: "tableDemo",
+          name: "tableDemo",
+          component: resolve =>
+            require(["#/vueElement/tableDemo.vue"], resolve),
+          meta: {
+            title: "表格分页",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
+          path: "exportTable",
+          name: "exportTable",
+          component: resolve =>
+            require(["#/vueElement/exportTableToExcel.vue"], resolve),
+          meta: {
+            title: "表格分页",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
         }
-      },{
-        path: "tableDemo",
-        name: "tableDemo",
-        component: resolve => require(["#/vueElement/tableDemo.vue"], resolve),
-        meta: {
-          title: "表格分页",
-          isUseCache: false,
-          keepAlive: false,
-          breadcrumbLeft: true //自定义属性
-        }
-      }]
+      ]
     },
     {
       path: "/vuePublic",
@@ -342,7 +380,8 @@ export default new Router({
         isUseCache: false,
         keepAlive: false
       },
-      children: [{
+      children: [
+        {
           path: "map1",
           name: "map1",
           component: resolve => require(["#/vuePublic/map1.vue"], resolve),
@@ -367,7 +406,8 @@ export default new Router({
         {
           path: "vueQuillEditor",
           name: "vueQuillEditor",
-          component: resolve => require(["#/vuePublic/vueQuillEditor.vue"], resolve),
+          component: resolve =>
+            require(["#/vuePublic/vueQuillEditor.vue"], resolve),
           meta: {
             title: "vueQuillEditor编辑器",
             isUseCache: false,
@@ -411,7 +451,8 @@ export default new Router({
         {
           path: "parentChild",
           name: "parentChild",
-          component: resolve => require(["#/vuePublic/parentChild.vue"], resolve),
+          component: resolve =>
+            require(["#/vuePublic/parentChild.vue"], resolve),
           meta: {
             title: "父子组件在同一页面",
             isUseCache: false,
@@ -431,17 +472,20 @@ export default new Router({
         isUseCache: false,
         keepAlive: false
       },
-      children: [{
-        path: "vueAttribute",
-        name: "vueAttribute",
-        component: resolve => require(["#/directive/vueAttribute.vue"], resolve),
-        meta: {
-          title: "指令",
-          isUseCache: false,
-          keepAlive: false,
-          breadcrumbLeft: true //自定义属性
+      children: [
+        {
+          path: "vueAttribute",
+          name: "vueAttribute",
+          component: resolve =>
+            require(["#/directive/vueAttribute.vue"], resolve),
+          meta: {
+            title: "指令",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
         }
-      }]
+      ]
     },
     {
       path: "/vueComm",
@@ -453,37 +497,41 @@ export default new Router({
         isUseCache: false,
         keepAlive: false
       },
-      children: [{
-        path: "timer",
-        name: "timer",
-        component: resolve => require(["#/vueComm/timer.vue"], resolve),
-        meta: {
-          title: "页面跳转关闭定时器",
-          isUseCache: false,
-          keepAlive: false,
-          breadcrumbLeft: true //自定义属性
+      children: [
+        {
+          path: "timer",
+          name: "timer",
+          component: resolve => require(["#/vueComm/timer.vue"], resolve),
+          meta: {
+            title: "页面跳转关闭定时器",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
+          path: "timerChiid",
+          name: "timerChiid",
+          component: resolve => require(["#/vueComm/timerChiid.vue"], resolve),
+          meta: {
+            title: "页面的子页面",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
+          path: "busUsed",
+          name: "busUsed",
+          component: resolve => require(["#/vueComm/busUsed.vue"], resolve),
+          meta: {
+            title: "兄弟页面的事件调用",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
         }
-      },{
-        path: "timerChiid",
-        name: "timerChiid",
-        component: resolve => require(["#/vueComm/timerChiid.vue"], resolve),
-        meta: {
-          title: "页面的子页面",
-          isUseCache: false,
-          keepAlive: false,
-          breadcrumbLeft: true //自定义属性
-        }
-      },{
-        path: "busUsed",
-        name: "busUsed",
-        component: resolve => require(["#/vueComm/busUsed.vue"], resolve),
-        meta: {
-          title: "兄弟页面的事件调用",
-          isUseCache: false,
-          keepAlive: false,
-          breadcrumbLeft: true //自定义属性
-        }
-      }]
+      ]
     }
   ]
 });

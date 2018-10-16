@@ -29,6 +29,7 @@ export default {
       products: [{ isSelected: true }, { isSelected: true }],
       msg: '',
       b: '', //先声明
+      nowData:''
     };
   },
   computed: {
