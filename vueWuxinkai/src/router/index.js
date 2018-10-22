@@ -471,6 +471,17 @@ export default new Router({
           }
         },
         {
+          path: "resizeDom",
+          name: "resizeDom",
+          component: resolve => require(["#/vuePublic/resizeDom.vue"], resolve),
+          meta: {
+            title: "动态设置页面高度",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
           path: "parentChild",
           name: "parentChild",
           component: resolve =>
