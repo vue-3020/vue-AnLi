@@ -27,6 +27,26 @@ Vue.use(preview, options) //图片预览
 
 import BaiduMap from 'vue-baidu-map'  //引入百度地图
 
+import VueHighcharts from 'vue-highcharts';
+import Highcharts from 'highcharts';
+
+// load these modules as your need
+import loadStock from 'highcharts/modules/stock';
+import loadMap from 'highcharts/modules/map';
+import loadDrilldown from 'highcharts/modules/drilldown';
+// some charts like solid gauge require `highcharts-more.js`, you can find it in official demo.
+import loadHighchartsMore from 'highcharts/highcharts-more';
+import loadSolidGauge from 'highcharts/modules/solid-gauge';
+
+loadStock(Highcharts);
+loadMap(Highcharts);
+loadDrilldown(Highcharts);
+loadHighchartsMore(Highcharts);
+loadSolidGauge(Highcharts);
+// import highcharts3d from 'highcharts/highcharts-3d'
+// highcharts3d(highcharts)
+Vue.use(VueHighcharts, { Highcharts });
+
 Vue.config.productionTip = false
 
 require('es6-promise').polyfill()

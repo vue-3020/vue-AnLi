@@ -295,6 +295,17 @@ export default new Router({
             keepAlive: false,
             breadcrumbLeft: true //自定义属性
           }
+        },
+        {
+          path: "effect",
+          name: "effect",
+          component: resolve => require(["#/vueVitality/effect.vue"], resolve),
+          meta: {
+            title: "vue属性作用",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
         }
       ]
     },
@@ -387,6 +398,17 @@ export default new Router({
           component: resolve => require(["#/vuePublic/map1.vue"], resolve),
           meta: {
             title: "百度地图",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
+          path: "highcharts",
+          name: "highcharts",
+          component: resolve => require(["#/vuePublic/highcharts.vue"], resolve),
+          meta: {
+            title: "highcharts",
             isUseCache: false,
             keepAlive: false,
             breadcrumbLeft: true //自定义属性
