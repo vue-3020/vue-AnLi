@@ -20,6 +20,7 @@
     "vue-baidu-map": "^0.21.11",
     "vue-echarts": "^3.1.2",
     "vue-highcharts": "^0.0.10",
+    "vue-i18n": "^8.2.1",
     "vue-photo-preview": "^1.0.9",
     "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.0.1",

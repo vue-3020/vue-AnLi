@@ -25,7 +25,7 @@ export default {
     initHeight() {
       // this.$refs.mybox.style.height;  只有写到行内元素才能获取到  <div class="mybox2" ref="mybox" style="height:200px"></div>
       this.clientHeight = document.body.clientHeight - 200;
-      window.onresize = () => {
+      window.onresize = () => { //在事件中执行事件
         this.clientHeight = document.body.clientHeight - 200;
       }
     }
@@ -36,7 +36,7 @@ export default {
 .hello {
   /* width: 200px;
   height: 200px; */
-  background: red;
+  background: #ccc;
 }
 
 .mybox2 {

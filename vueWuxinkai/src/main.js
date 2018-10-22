@@ -25,6 +25,13 @@ var options = {
 }
 Vue.use(preview, options) //图片预览
 
+import i18n from './lang' 
+
+import Filters from './filters/filters' //过滤器
+for (let key in Filters) {
+  Vue.filter(key, Filters[key])
+}
+
 import BaiduMap from 'vue-baidu-map'  //引入百度地图
 
 import VueHighcharts from 'vue-highcharts';
@@ -68,6 +75,7 @@ new Vue({
   el: '#app',
   router, //引入路由
   store, //引入 vuex
+  i18n, //切换语言
   // components: { App },
   // template: '<App/>',
   render: h => h(App),

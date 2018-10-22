@@ -29,12 +29,14 @@
     <div>
       <b style="color:red">v-clock</b> : 页面刷新会出现{}闪烁，加v-clock就不会闪烁，第二步需要加个[v-cloak] { display: none }</div>
     <br>
+
     <h2 style="color:green">（2）响应式的数据变化 reactivity</h2>
     <p>使用变量先要
       <span style="color:blue">初始化</span> ，否则新加入的属性不会导致页面刷新，</p>
     <p>//此方法可以给对象 添加响应式数据变化 </p>
     <p>// bus.$set(bus.a,'123')</p>
-    <p><span class="red width">this.$set</span>修改对象(data)属性</p>
+    <p>
+      <span class="red width">this.$set</span>修改对象(data)属性</p>
     <br>
     <div>取数组方法, 改变数组的某一项是监听不到的,改变数组的内置方法：pop push shift unshift sort reserve splice</div>
     <ul>
@@ -58,6 +60,25 @@
         <button @click="remove(index)">删除</button>
       </li>
     </ul>
+    <br>
+    <br>
+    <p>事件修饰符；</p>
+    <p>.prevent : 阻止事件的默认行为；</p>
+    <p>.stop : 阻止事件的冒泡传播</p>
+    <p>.capture : 事件行为在捕获阶段执行；</p>
+    <p>.once : 只执行一次；</p>
+    <p>.self :只有触发自己的事件行为才会执行</p>
+    <div @click="parent" style="font-size: 40px;color:red; cursor: pointer;">
+      <span>parent元素 </span>
+      <div @click.self="child">
+        child点击事件
+        <div @click="grandChild">
+          grandChild
+        </div>
+      </div>
+    </div>
+    <br>
+     <a href="https://www.baidu.com" @click.prevent="fn">请点击页面跳转百度</a>
   </div>
 </template>
 <script>
@@ -115,7 +136,18 @@ export default {
       }
     },
     remove(i) { //如果相等就删除，
-      this.arr3 = this.arr3.filter((item, index) => index !== i)    }
+      this.arr3 = this.arr3.filter((item, index) => index !== i)
+    },
+    //----------事件修饰符-----------------------------------------
+    parent() {
+      console.log('parent')
+    },
+    child() {
+      console.log("child");
+    },
+    grandChild() {
+      console.log("grandChild")
+    }
   },
 }
 </script>

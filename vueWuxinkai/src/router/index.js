@@ -241,6 +241,17 @@ export default new Router({
           }
         },
         {
+          path: "filter",
+          name: "filter",
+          component: resolve => require(["#/vueVitality/filter.vue"], resolve),
+          meta: {
+            title: "过滤器",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true
+          }
+        },
+        {
           path: "mounted",
           name: "mounted",
           component: resolve => require(["#/vueVitality/mounted.vue"], resolve),
@@ -302,6 +313,17 @@ export default new Router({
           component: resolve => require(["#/vueVitality/effect.vue"], resolve),
           meta: {
             title: "vue属性作用",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
+          path: "useMiXin",
+          name: "useMiXin",
+          component: resolve => require(["#/vueVitality/useMiXin.vue"], resolve),
+          meta: {
+            title: "useMiXin",
             isUseCache: false,
             keepAlive: false,
             breadcrumbLeft: true //自定义属性
@@ -454,6 +476,17 @@ export default new Router({
           component: resolve => require(["#/vuePublic/echartsIn.vue"], resolve),
           meta: {
             title: "echarts图",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
+          path: "translate",
+          name: "translate",
+          component: resolve => require(["#/vuePublic/translate.vue"], resolve),
+          meta: {
+            title: "中英翻译",
             isUseCache: false,
             keepAlive: false,
             breadcrumbLeft: true //自定义属性

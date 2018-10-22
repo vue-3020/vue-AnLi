@@ -85,8 +85,10 @@ export default {
     },
     toggleShow() {
       this.isShow = !this.isShow
-      this.$nextTick().then(function () {
-        document.getElementById('box').innerHTML = this.num1 + 1
+      console.log(this.num1 + 1)
+      let _this = this
+      this.$nextTick().then(function () { //必须在外层定义      let _this = this
+        document.getElementById('box').innerHTML = _this.num1 + 1
       })
     }
   },
@@ -101,6 +103,8 @@ export default {
       let _this = this;
       _this.$set(_this, "obj", oldVal);
       _this.$set(_this, "newValue", curVal);
+
+      console.log(_this)
       // 下面是使用nextTick来监听页面dom发生变化后，再处理一下事情。
       // _this.$nextTick(function () {
       //   console.log(this.$el.textContent);

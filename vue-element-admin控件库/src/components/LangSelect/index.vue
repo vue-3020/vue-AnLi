@@ -19,8 +19,10 @@ export default {
   },
   methods: {
     handleSetLanguage(lang) {
+      //locale 设置是什么语言类型
+      //this.$i18n 在main中存入内容
       this.$i18n.locale = lang
-      this.$store.dispatch('setLanguage', lang)
+      this.$store.dispatch('setLanguage', lang) //dispatch：含有异步操作，例如向后台提交数据
       this.$message({
         message: 'switch language success',
         type: 'success'
