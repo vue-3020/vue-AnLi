@@ -49,23 +49,33 @@
         </ul>
       </li>
     </ul>
-    <h2 style="color:green">(3)事件</h2>
-    <button @click="btnClick($event,1)">@click点击事件</button>
+    <el-card class="box-card">
+      <h2 style="color:green">(3)事件</h2>
+      <button @click="btnClick($event,1)">@click点击事件</button>
+    </el-card>
     <br>
-    <h2 style="color:green">（4）键盘事件</h2>
-    <input type="text" v-model="val" @keyup="add">
-    <ul>
-      <li v-for="(a,index) in arr3" :key="index">
-        {{a}}
-        <button @click="remove(index)">删除</button>
-      </li>
-    </ul>
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>键盘事件 点击回车增加内容</span>
+        <input type="text" v-model="val" @keyup="add">
+        <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+      </div>
+      <div>
+        <ul>
+          <li v-for="(a,index) in arr3" :key="index">
+            {{a}}
+            <button @click="remove(index)">删除</button>
+          </li>
+        </ul>
+      </div>
+    </el-card>
+
     <br>
     <br>
     <p>事件修饰符；</p>
     <p>.prevent : 阻止事件的默认行为；</p>
-    <p>.stop : 阻止事件的冒泡传播</p>
-    <p>.capture : 事件行为在捕获阶段执行；</p>
+    <p>.stop : 阻止事件的冒泡传播（儿子向父亲传播）</p>
+    <p>.capture : 事件行为在捕获阶段执行；(从父亲向儿子传播)</p>
     <p>.once : 只执行一次；</p>
     <p>.self :只有触发自己的事件行为才会执行</p>
     <div @click="parent" style="font-size: 40px;color:red; cursor: pointer;">
@@ -78,7 +88,7 @@
       </div>
     </div>
     <br>
-     <a href="https://www.baidu.com" @click.prevent="fn">请点击页面跳转百度</a>
+    <a href="https://www.baidu.com" @click.prevent="fn">请点击页面跳转百度</a>
   </div>
 </template>
 <script>
@@ -126,7 +136,7 @@ export default {
     console.log(this.products)
   },
   //把事件都写到methods上
-  methods: { //麦瑟的 ， methods 和data数据都放到 vue的实例上 而且名字不能冲突，冲突会报错，methods的this指向的都是实例
+  methods: { // ， methods 和data数据都放到 vue的实例上 而且名字不能冲突，冲突会报错，methods的this指向的都是实例
     btnClick(event, b) {
       console.log(this.a, event, b)
     },
@@ -139,6 +149,9 @@ export default {
       this.arr3 = this.arr3.filter((item, index) => index !== i)
     },
     //----------事件修饰符-----------------------------------------
+    fn() {
+      console.log(1);
+    },
     parent() {
       console.log('parent')
     },

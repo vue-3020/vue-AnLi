@@ -2,6 +2,9 @@
   <div>
     <p>（1）computed 默认调用 get方法，必须的有return，</p>
     <p>（2）不支持异步逻辑 ，假设注册用户，进行用户校验，需要向后台请求，就变成异步的了。需要watch实现</p>
+    <p>（3）computed 支持缓存，只有依赖数据发生改变，才会重新进行计算</p>
+    <p>（4） computed 中的属性同样不能和data中重名，也不能和methods中的属性重名</p>
+    <p>（5） 如果一个属性是由其他属性计算而来的，这个属性依赖其他属性，是一个多对一；一般用computed</p>
     <br>
     <p>常用语表单，校验</p>
     （1）全选 <input type="checkbox" v-model="chekAll">

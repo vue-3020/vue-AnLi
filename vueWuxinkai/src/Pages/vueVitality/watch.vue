@@ -3,6 +3,8 @@
      <p> <a target=“_self” href="https://cn.vuejs.org/v2/guide/computed.html">计算属性和侦听器</a></p>
      <p>computed:根据a的值变化了， 算出一个新的值</p>
      <p>watch:观察a的值，a的值变化了，要去做一件事</p>
+     <p>不支持缓存，数据变，直接会触发相应的操作</p>
+     <p>当一个属性发生变化时，需要执行对应的操作；一对多</p>
     <br>
      <p>支持异步方法，可以进行表单校验, 延迟一秒执行</p>
    <input class="text" type="text" v-model="a">

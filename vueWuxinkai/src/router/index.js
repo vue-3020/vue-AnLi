@@ -550,6 +550,18 @@ export default new Router({
             keepAlive: false,
             breadcrumbLeft: true //自定义属性
           }
+        },
+        {
+          path: "vueTodo",
+          name: "vueTodo",
+          component: resolve =>
+            require(["#/directive/vueTodo.vue"], resolve),
+          meta: {
+            title: "增删改查案例",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true 
+          }
         }
       ]
     },
