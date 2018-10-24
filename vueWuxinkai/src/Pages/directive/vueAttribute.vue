@@ -39,16 +39,20 @@
       <span class="red width">this.$set</span>修改对象(data)属性</p>
     <br>
     <div>取数组方法, 改变数组的某一项是监听不到的,改变数组的内置方法：pop push shift unshift sort reserve splice</div>
-    <ul>
-      <li v-for="(fruit,index) in fruits" :key="index">
-        {{index+1}} {{fruit.name}}
-        <ul style="margin-left:20px">
-          <li v-for="(c,childIndex) in fruit.color" :key="childIndex">
-            {{childIndex+1}} {{c}}
-          </li>
-        </ul>
-      </li>
-    </ul>
+
+    <el-card class="box-card">
+      <ul>
+        <li v-for="(fruit,index) in fruits" :key="index">
+          {{index+1}} {{fruit.name}}
+          <ul style="margin-left:20px">
+            <li v-for="(c,childIndex) in fruit.color" :key="childIndex">
+              {{childIndex+1}} {{c}}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </el-card>
+    <br>
     <el-card class="box-card">
       <h2 style="color:green">(3)事件</h2>
       <button @click="btnClick($event,1)">@click点击事件</button>
@@ -89,6 +93,35 @@
     </div>
     <br>
     <a href="https://www.baidu.com" @click.prevent="fn">请点击页面跳转百度</a>
+    <br>
+    <el-card class="box-card">
+      <p>vue 中提供一个行间属性： ref</p>
+      <p>this.$refs : 获取到所有的元素带有行间属性ref的属性</p>
+      <p>this.$set :</p>
+      <p>this.$mount : 挂载</p>
+      <p>this.$el : 挂载的元素</p>
+      <p>this.$data:</p>
+      <p>this.$options</p>
+      <p>this.$nextTick</p>
+      <p>this.$emit </p>
+      <p>this.$on: 订阅</p>
+    </el-card>
+    <br>
+    <p>在原数组的上面追加一个页面会检查不到，所以我们用$nextTick</p>
+    <el-card class="box-card">
+      <ul>
+        <li v-for="arr in arrs" :key="arr" ref="wrap">{{arr}}</li>
+      </ul>
+      <div style="font-size:29px">
+        上面数组总长度错误结果：{{arrsLength}}
+      </div>
+      <div style="font-size:29px">
+        上面数组总长度正确结果：{{arrsLength2}}
+      </div>
+      <div style="font-size:29px">
+        在updated中获取正确结果：{{arrsLength3}}
+      </div>
+    </el-card>
   </div>
 </template>
 <script>
@@ -99,7 +132,10 @@ export default {
       arr3: [],
       val: '',
       msg: '这是默认数据v-once',
-      arr: [1, 2, 3, 4, 5],
+      arrs: [1, 2, 3, 4, 5],
+      arrsLength3: 0,
+      arrsLength2: 0,
+      arrsLength: 0,
       a: '1',
       fruits: [
         { name: '香蕉', color: ['green', 'red', 'pink'] },
@@ -123,6 +159,15 @@ export default {
 
       }
     }
+  },
+  mounted() {
+    this.arrs = [1, 2, 3, 4, 5, 6, 7],
+      this.arrsLength = this.$refs.wrap.length;//错误结果
+    this.$nextTick(() => {
+      // 这个回调函数会等待DOM异步渲染完成执行；
+      this.arrsLength2 = this.$refs.wrap.length
+    });
+
   },
   //专门发送ajax用
   created() { //数据被初始化后被调用，调用数据的地方 (也叫钩子函数)
@@ -162,6 +207,9 @@ export default {
       console.log("grandChild")
     }
   },
+  updated() {
+    this.arrsLength3 = this.$refs.wrap.length
+  }
 }
 </script>
 <style>

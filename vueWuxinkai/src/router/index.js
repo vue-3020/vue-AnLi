@@ -550,6 +550,17 @@ export default new Router({
             keepAlive: false,
             breadcrumbLeft: true //自定义属性
           }
+        },{
+          path: "vueDir",
+          name: "vueDir",
+          component: resolve =>
+            require(["#/directive/vueDir.vue"], resolve),
+          meta: {
+            title: "自定义指令",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
         },
         {
           path: "vueTodo",
