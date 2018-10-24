@@ -7,10 +7,10 @@
             <div class="container">
               <h2>热门图书</h2>
               <ul>
-                <!-- <li v-for="item in hotBooks">
+                <li v-for="(item,index) in hotBooks" :key="index">
                   <img :src="item.bookCover" alt="">
                   <b>{{item.bookName}}</b>
-                </li> -->
+                </li>
               </ul>
             </div>
         </div>
@@ -18,15 +18,33 @@
 </template>
 <script>
 import Myheader from "../base/MHeader.vue";
-import Swiper from "../base/Swiper.vue";
+import Swiper from "../base/Swiper.vue"; //轮播图
+import { getSliders, getHot } from "../api/index.js"; //请求的axios
 export default {
   data() {
     return {
-        sliders:[], //轮播图
+      sliders: [], //轮播图
+      hotBooks: [] //书籍
     };
   },
-  created() {},
-  methods: {},
+  created() {
+    this.slide(); //轮播图
+    this.getHotBook(); //书籍列表
+  },
+  methods: {
+    //轮播图
+    async slide() {
+      //es6+es7起别名，对象的属性名必须和得到的结果名字一致
+      let { data: slidersData } = await getSliders(); //请求数据
+      //获取结果放到sliders
+      this.sliders = slidersData;
+    },
+    //书籍
+    async getHotBook() {
+      let { data } = await getHot();
+      this.hotBooks = data;
+    }
+  },
   computed: {},
   components: {
     Myheader,
