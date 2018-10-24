@@ -1,19 +1,22 @@
 <template>
   <div id="app">
-      
+    <!--把底部的导航抽离一个组件出来；-->
     <Tab></Tab>
-    <router-view/>
+    <!--这个router-view是用来显示components中的页面的组件-->
+
+
+    <router-view></router-view>
   </div>
 </template>
-
 <script>
-  import Tab from "./base/Tab.vue";  //底部按钮
-export default {
-  name: 'App',
-  components:{
+  // App.vue 这个组件不会销毁；
+  import Tab from "./base/Tab.vue";
+  export default {
+    name: 'App',
+    components:{
         Tab
     }
-}
+  }
 </script>
 
 <style>

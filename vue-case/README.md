@@ -17,5 +17,31 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
+### 需要的用的
+```
+npm install less less-loader axios vuex bootstrap 
+```
+- mock模拟数据
+- api 代表的是所有的接口
+- base 基础数据
+- component 页面主件
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### 页面名字
+- 首页 Home
+- 列表页 List
+- 收藏页 Collrct
+- 添加页 Add
+- 删除 Detail
+
+### 轮播图
+```
+下载
+npm install vue-awesome-swiper --save
+
+全局安装
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+Vue.use(VueAwesomeSwiper);
+import  'swiper/dist/css/swiper.css';
+
+
+```
