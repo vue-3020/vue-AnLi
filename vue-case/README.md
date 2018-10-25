@@ -42,6 +42,19 @@ npm install vue-awesome-swiper --save
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 Vue.use(VueAwesomeSwiper);
 import  'swiper/dist/css/swiper.css';
-
-
+```
+### node解决跨域问题
+````
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+  res.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  res.setHeader("X-Powered-By", ' 3.2.1')
+  if (req.method == "OPTIONS") return res.end();
+````
+### vuex的应用
+```
+//拦截器
+axios.interceptors.response.use(function (res) {
+    return  res.data; //拦截返回的结果，给前端的就是data的值
+});
 ```

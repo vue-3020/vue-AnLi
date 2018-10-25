@@ -45,7 +45,7 @@
                 // 后端删除数据
                deleteBook(id);
                // 改变当前的数据；
-               this.allBooks = this.allBooks.filter((item)=>item.bookId !=id);
+              //  this.allBooks = this.allBooks.filter((item)=>item.bookId !=id);
             },
             async collect(data){
                 await collectBook(data);

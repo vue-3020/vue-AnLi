@@ -13,12 +13,25 @@ axios.defaults.baseURL = "http://localhost:4000";
 //     return  res.data; //拦截返回的结果，给前端的就是data的值
 // });
 
-//获取轮播图,返回的是一个promise对象
+//获取轮播图,返回的是一个promise对象 home
 export let getSliders = () =>{
     return axios.get('/sliders')
 }
 
-//热门图书首页
+//热门图书首页 home
 export let getHot = () =>{
     return axios.get('/hot')
+}
+
+// 获取所有的图书；list
+export let  getAll = ()=>{
+  return axios.get("/books")
+}
+
+//删除一本图书 list
+// export let deleteBook = (id) =>{
+//   return axios.get('/delete?id='+id)
+// }
+export  let  deleteBook=(id)=>{
+  return axios.get("/delete?id="+id)
 }

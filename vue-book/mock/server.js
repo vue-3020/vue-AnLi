@@ -10,7 +10,6 @@ http.createServer(function (req, res) {
   res.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
   res.setHeader("X-Powered-By", ' 3.2.1')
   if (req.method == "OPTIONS") return res.end();
-  b
   let {pathname,query} = url.parse(req.url,true);
 
   if (pathname === '/sliders') {
