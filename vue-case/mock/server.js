@@ -52,6 +52,39 @@ http.createServer((req, res) => {
       })
     })
   }
-  //收藏书籍
-  
+  //点击图书跳转详情，获取某一本书的详情 Detail
+  if(pathname ==='/getOne'){
+    var  id = query.id;
+    fs.readFile('./book.json','utf8',function(err,data){
+        res.setHeader('content-type','application/json;charset=utf-8');
+        //JSON.parse() 方法用于将一个 JSON 字符串转换为对象
+        data = JSON.parse(data).filter(item=>item.bookId ==id);
+        //JSON.stringify() 方法用于将 JavaScript 值转换为 JSON 字符串
+        return res.end(JSON.stringify(data[0]))
+    })
+  }
+  //详情修改 提交 Detail
+  if(pathname ==='/update'){
+    let str =''
+    req.on('data',function (chunk) {
+      str+= chunk;
+    });
+    req.on('end',()=>{
+        let newBook = JSON.parse(str);
+        let  newId = newBook.bookId;
+        fs.readFile('./book.json','utf8',function(err,data){
+            data = JSON.parse(data)
+            data = data.map(item=>{
+                if(item.bookId ===newId){  //从book.json找到我们要修改的id
+                    return newBook //返回值替换原数组的某一项
+                }
+                return item
+            })
+            fs.writeFile('./book.json',JSON.stringify(data),function(){
+                return res.end();
+            })
+        })
+
+    })
+  }
 }).listen(4000);

@@ -3,12 +3,14 @@
     <Myheader :back="true">列表页</Myheader>
     <div class="content">
       <ul class="container">
-        <router-link v-for="(book,key) in allBooks" :key="key" tag="li" :to="{name:'detail',params:{id:book.boookId}}">
+          <!-- 通过路由和那么跳转到详情 -->
+        <router-link v-for="(book,key) in allBooks" :key="key" tag="li" :to="{name:'Detail',params:{id:book.bookId}}">
           <img :src="book.bookCover" alt="">
           <div class="right">
             <h3>{{book.bookName}}</h3>
             <p>{{book.bookInfo}}</p>
             <p class="price">{{book.bookPrice}}</p>
+            <!-- stop 解决 跳转页面 删除内容 解决冒泡-->
             <button class="btn" @click.stop="remove(book.bookId)">删除</button>
             <button class="btn" @click.stop="collect(book)">收藏</button>
           </div>

@@ -34,7 +34,7 @@ export default new Router({
       component: resolve => require(["@/components/Collect.vue"], resolve),
     },
     {
-      path: '/detil',
+      path: "/detail/:id",
       name: 'Detail',
       component: resolve => require(["@/components/Detail.vue"], resolve),
     }

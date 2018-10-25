@@ -3,11 +3,9 @@
       <Myheader :back="true">列表页</Myheader>
       <div class="content">
          <ul class="container">
-           <router-link
-             v-for="(book,key) in allBooks"
-             :to="{name:'detail',params:{id:book.bookId}}"
-             tag="li"
-             :key="key">
+           <router-link v-for="(book,key) in allBooks"  :key="key" tag="li"  :to="{name:'detail',params:{id:book.bookId}}">
+
+             <!--   跳转到详情页 :to="{name:'detail',params:{id:book.bookId}}"-->
              <img :src="book.bookCover" alt="">
              <div class="right">
                 <h3>{{book.bookName}}</h3>

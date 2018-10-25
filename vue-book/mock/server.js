@@ -78,7 +78,6 @@ http.createServer(function (req, res) {
     req.on('data',function (chunk) {
       str+= chunk;
     });
-
     req.on('end',function () {
       let  newBook = JSON.parse(str);
       let  newId = newBook.bookId;
