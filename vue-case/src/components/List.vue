@@ -10,7 +10,7 @@
             <p>{{book.bookInfo}}</p>
             <p class="price">{{book.bookPrice}}</p>
             <button class="btn" @click.stop="remove(book.bookId)">删除</button>
-            <!-- <button class="btn" @click.stop="collect(book)">收藏</button> -->
+            <button class="btn" @click.stop="collect(book)">收藏</button>
           </div>
         </router-link>
       </ul>
@@ -19,7 +19,7 @@
 </template>
 <script>
 import Myheader from "../base/MHeader.vue"
-import { getAll,deleteBook } from "../api/index.js";
+import { getAll,deleteBook ,collectBook} from "../api/index.js";
 export default {
   data() {
     return {
@@ -40,12 +40,12 @@ export default {
     remove(id) {
       deleteBook(id)
       //从新调用方法
-      // this.allBooks = this.allBooks.filter((item) => item.bookId != id)
+      this.allBooks = this.allBooks.filter((item) => item.bookId != id)
     },
     //收藏
-    // collect() {
-
-    // }
+    async collect(data) { //将所有文件传给后台
+        await collectBook(data)
+    }
   },
   computed: {
 

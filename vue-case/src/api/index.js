@@ -29,9 +29,11 @@ export let  getAll = ()=>{
 }
 
 //删除一本图书 list
-// export let deleteBook = (id) =>{
-//   return axios.get('/delete?id='+id)
-// }
 export  let  deleteBook=(id)=>{
   return axios.get("/delete?id="+id)
+}
+
+//收藏书籍
+export let collectBook =(data)=>{
+  return axios.post('/collect',data)
 }

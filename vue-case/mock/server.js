@@ -40,18 +40,6 @@ http.createServer((req, res) => {
   }
 
   //删除书籍 list
-  // if(pathname === '/delete'){
-  //   let id= query.id; // 获取要删除的id
-  //   fs.readFile('./book.json','utf8',function (err,data) {
-  //     res.setHeader('content-type','application/json;charset=utf-8');
-  //     let  newData = JSON.parse(data);
-  //     newData = newData.filter(item=>item.bookId !=id);
-
-  //     fs.writeFile('./book.json',JSON.stringify(newData),function () {
-  //       return  res.end();
-  //     })
-  //   })
-  // }
   if(pathname==='/delete'){
     var  id = query.id;
     fs.readFile('./book.json','utf8',function (err,data) {
@@ -64,4 +52,6 @@ http.createServer((req, res) => {
       })
     })
   }
+  //收藏书籍
+  
 }).listen(4000);
