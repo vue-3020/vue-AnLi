@@ -14,13 +14,12 @@
     // 默认导出一个对象
     import { swiper, swiperSlide } from 'vue-awesome-swiper'
     export default {
-        name: 'carrousel',
+        name: 'carousel',
         props:['sliders'],
         data(){
             return {
               swiperOption:{
-                  autoplay: 3000,
-                  
+                  autoplay: 1000,
                   pagination: '.swiper-pagination',
               }
             }

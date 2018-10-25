@@ -5,31 +5,44 @@
     <swiper-slide v-for="(item,key) in  sliders" :key="key">
        <img :src="item" alt="">
     </swiper-slide>
-    <!-- Optional controls -->
+    <!-- 分页器 -->
     <div class="swiper-pagination"  slot="pagination"></div>
   </swiper>
 </template>
+
 <script>
-    // 默认导出一个对象
-    import { swiper, swiperSlide } from 'vue-awesome-swiper'
-    export default {
-        name: 'carrousel',
-        props:['sliders'],
-        data(){
-            return {
-              swiperOption:{
-                  autoplay: 3000,
-                  pagination: '.swiper-pagination',
-              }
-            }
+// 默认导出一个对象
+import { swiper, swiperSlide } from "vue-awesome-swiper";
+export default {
+  name: "carousel",
+  props: ["sliders"],
+  data() {
+    return {
+      swiperOption: {
+        autoplay: {
+          delay: 3000
         },
-        methods: {},
-        components: {swiper,swiperSlide},
-        computed: {}
+        pagination: {
+          el: ".swiper-pagination"
+        }
+      }
+    };
+  },
+  mounted() {
+    //  this.swiper.slideTo(2, 1000, true);
+  },
+  methods: {},
+  components: { swiper, swiperSlide },
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.swiper;
     }
-</script>
-<style scoped>
-  img{
-    width:100%;
   }
+};
+</script>
+
+<style scoped>
+img {
+  width: 100%;
+}
 </style>
