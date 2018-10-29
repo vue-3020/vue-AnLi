@@ -33,9 +33,13 @@ export  let  deleteBook=(id)=>{
   return axios.get("/delete?id="+id)
 }
 
-//收藏书籍 list
+//点击收藏书籍 list
 export let collectBook =(data)=>{
   return axios.post('/collect',data)
+}
+//收藏页面 collect
+export let getCollect = () =>{
+  return axios.get('/books?page=collect')
 }
 
 //点击图书跳转详情页,获取某一本图书的详情 Detail
@@ -48,4 +52,9 @@ export let update =(data)=>{
    // axios : get 传参直接拼到url的后面
   // post  : 作为post的第二个参数；
     return axios.post("/update",data)
+}
+
+//增加数据
+export let addBook =(data)=>{
+  return axios.post("/add",data)
 }

@@ -47,6 +47,7 @@ export default {
     //收藏
     async collect(data) { //将所有文件传给后台
         await collectBook(data)
+        this.$router.push('/collect')
     }
   },
   computed: {
