@@ -9,22 +9,22 @@ export default {
     return {
       tree: [
         {
-          label: "一级菜单",
+          label: "递归组件",
           test: 1,
           path: "/home",
           children: [
             {
-              label: "二级菜单",
+              label: "自身调用自身",
               test: 2,
               path: "/home",
               children: [
                 {
-                  label: "三级菜单",
+                  label: "递归组件",
                   test: 3,
                   path: "/home",
                   children: [
                     {
-                      label: "四级菜单",
+                      label: "自身调用自身",
                       test: 4,
                       path: "/home"
                     }

@@ -208,7 +208,8 @@ ECharts.registerTheme('ovilia-green', theme)
 
 export default {
   data() {
-    let options = qs.parse(location.search, { ignoreQueryPrefix: true })
+    //将qs解析成对象的形式
+    let options = qs.parse(location.search, { ignoreQueryPrefix: true }) //忽略前面的 符号
     return {
       // --------- 初始化 -----------
       options,
