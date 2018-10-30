@@ -44,14 +44,13 @@ import loadDrilldown from 'highcharts/modules/drilldown';
 // some charts like solid gauge require `highcharts-more.js`, you can find it in official demo.
 import loadHighchartsMore from 'highcharts/highcharts-more';
 import loadSolidGauge from 'highcharts/modules/solid-gauge';
-
+import highcharts3d from "highcharts/highcharts-3d";
 loadStock(Highcharts);
 loadMap(Highcharts);
 loadDrilldown(Highcharts);
 loadHighchartsMore(Highcharts);
 loadSolidGauge(Highcharts);
-// import highcharts3d from 'highcharts/highcharts-3d'
-// highcharts3d(highcharts)
+highcharts3d(Highcharts);
 Vue.use(VueHighcharts, { Highcharts });
 
 Vue.config.productionTip = false

@@ -276,3 +276,153 @@ export default {
 };
 </script>
 ```
+## 插件的引入方式
+### 图片预览
+```
+下载
+cnpm install vue-photo-preview 
+
+引入main.js
+import preview from 'vue-photo-preview'
+import 'vue-photo-preview/dist/skin.css'
+Vue.use(preview, options) 
+
+HTML中
+//在img标签添加preview属性 preview值相同即表示为同一组 
+<img src="static/images/head_icon.jpg" preview="2" preview-text="描述文字">
+```
+图片预览网站
+!http://npm.taobao.org/package/vue-photo-preview
+
+### Quill编辑器
+```
+下载
+npm install vue-quill-editor --save
+
+引入
+import vueQuillEditor from 'vue-quill-editor'
+Vue.use(vueQuillEditor)
+
+html 中引入
+<quill-editor class="quill" v-model="progs"  @change="change"> </quill-editor>
+```
+Quill编辑器官网 https://surmon-china.github.io/vue-quill-editor/
+
+遇到的问题 ：上传图片
+
+### tinymce编辑器
+```
+拷贝文件components下Tinymce文件到自己的目录下
+
+在页面以组件的方式引入
+import Tinymce from '@/components/Tinymce'
+components: {
+    Tinymce
+  }
+
+html引入，
+<tinymce :height="300" :readonly=readOnly v-model="newEntity"></tinymce>
+```
+### 百度地图
+```
+下载
+npm install vue-baidu-map --save
+
+引入在 main.js中
+import BaiduMap from 'vue-baidu-map' 
+Vue.use(BaiduMap, {
+  ak: '百度地图钥匙'
+})
+在页面中 引入
+<template>
+  <baidu-map class="bm-view">
+  </baidu-map>
+</template>
+
+css必须设置高度
+.map {
+  width: 100%;
+  height: 300px;
+  background: #ccc;
+}
+```
+### highchart图
+```
+引入
+import VueHighcharts from 'vue-highcharts';
+import Highcharts from 'highcharts';
+
+//按需要加载这些模块
+import loadStock from 'highcharts/modules/stock';
+import loadMap from 'highcharts/modules/map';
+import loadDrilldown from 'highcharts/modules/drilldown';
+//一些像Stand规范这样的图表需要高图表，JS'，你可以在官方演示中找到它。
+import loadHighchartsMore from 'highcharts/highcharts-more';
+import loadSolidGauge from 'highcharts/modules/solid-gauge';
+import highcharts3d from "highcharts/highcharts-3d";
+
+loadStock(Highcharts);
+loadMap(Highcharts);
+loadDrilldown(Highcharts);
+loadHighchartsMore(Highcharts);
+loadSolidGauge(Highcharts);
+highcharts3d(Highcharts);
+Vue.use(VueHighcharts, { Highcharts });
+
+html 的引入
+ <highcharts :options="options"></highcharts>
+
+js的引入
+export default {
+  data() {
+    return {
+      width: 500,
+      height: 500,
+      options: { 
+        chart: {
+          type: 'pie',
+          options3d: { //设置3D
+            enabled: true,
+            alpha: 45,
+            beta: 0
+          }
+        },
+        title: {
+          text: '2014年某网站不同浏览器访问量占比'
+        },
+        tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            depth: 35,
+            dataLabels: {
+              enabled: true,
+              format: '{point.name}'
+            }
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: '浏览器占比',
+          data: [
+            ['Firefox', 45.0],
+            ['IE', 26.8],
+            {
+              name: 'Chrome',
+              y: 12.8,
+              sliced: true,
+              selected: true
+            },
+            ['火狐', 8.5],
+            ['Opera', 6.2],
+            ['Others', 0.7]
+          ]
+        }]
+      }
+    }
+  }
+}
+```

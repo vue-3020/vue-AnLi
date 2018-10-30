@@ -1,11 +1,7 @@
 <template>
 <div>
   <div>
-    <quill-editor 
-      class="quill" 
-      v-model="progs" 
-      @change="change">
-    </quill-editor>
+    <quill-editor class="quill" v-model="progs"  @change="change"> </quill-editor>
    <div v-html="progs"></div>
   </div>
   

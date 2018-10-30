@@ -13,7 +13,7 @@ export default {
       options: {
         chart: {
           type: 'pie',
-          options3d: {
+          options3d: { //设置3d效果
             enabled: true,
             alpha: 45,
             beta: 0
