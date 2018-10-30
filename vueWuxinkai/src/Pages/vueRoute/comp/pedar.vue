@@ -3,10 +3,12 @@
     <div slot="header" class="clearfix">
       <span>哥哥组件</span>
     </div>
-    <div v-for="(item,index) in items" :key="index" class="text item">
-      <router-link :to="item.PATH">{{item.ID}}
-        <i :class="item.ICON"></i> {{item.NAMES}}</router-link>
-    </div>
+    <el-menu :default-active="activeIndex" router class="el-menu-demo" mode="horizontal" @select="menuChange" >
+      <el-menu-item class="p20" :index="item.PATH" v-for="(item,index) in items" :key="index">
+        <i :class="item.ICON"></i> 
+        <a>{{item.ID}}{{item.NAMES}}</a>
+      </el-menu-item>
+    </el-menu>
   </el-card>
 </template>
 <script>
@@ -27,6 +29,7 @@ export default {
           root.$root.items = data.data.data
           this.items = data.data.data
           this.activeIndexClick()
+
         }
       }).catch(function (err) {
         console.log('没有获取到' + err.message)
@@ -41,6 +44,8 @@ export default {
         return item.ROUTER_NAME.toLowerCase().indexOf(index.split('/')[3].toLowerCase()) >= 0; //判断是否大于等于 0  如果大于等于说明。两个字符串相等。
       })
       this.$root.menuItem = obj[0].CHILDREN; //二级菜单内容
+      //第一次加载页面已经渲染完成，用广播过去
+       this.$emit('menuObj',obj[0].CHILDREN)
     },
     activeIndexClick() {
       //this.$route.matched.length - 1 后去最后一级的路由内容，
