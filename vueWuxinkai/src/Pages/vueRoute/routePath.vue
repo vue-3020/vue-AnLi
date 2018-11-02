@@ -24,6 +24,12 @@
     <div>
       <router-view class="view"></router-view>
     </div>
+    <p>实现页面跳转的三种方式</p>
+    <p>$router.push('name')</p>
+    <p>$router.push({path:'name'})</p>
+    <p>传参数 $router.push({path:'name?a=123'})</p>
+    <p>传参数 $router.push({path:'name',query:{a:123}})</p>
+    <p>传参数 $router.go(1)</p>
 </div>
 </template>
 

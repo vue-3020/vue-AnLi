@@ -114,7 +114,7 @@ export default new Router({
           },
           children: [
             {
-              path: "hookSon/:id",
+              path: "hookSon/:id", //动态路由
               name: "hookSon",
               component: resolve =>
                 require(["#/vueRoute/children/hookSon.vue"], resolve),
