@@ -4,7 +4,7 @@
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -18,7 +18,8 @@ npm run build
 npm run build --report
 ```
 
-### vuex的流程线路图
+### vuex 的流程线路图
+
 ```
 # (1)下载
 npm install vuex --save
@@ -43,11 +44,11 @@ new Vue({
 })
 
 # (4)在同级找到store文件夹中的index.js
-import Vue from 'vue'  
+import Vue from 'vue'
 import Vuex from 'vuex'
 
 //4.1 引入自己需要的小的模块
-import affairs from './modules/vueElement/vuexTable' 
+import affairs from './modules/vueElement/vuexTable'
 Vue.use(Vuex)
 
  除了 state 是分模块的，其他 mutations 和 actions 都不分模块，因此规划的时候要注意不要重名！
@@ -88,6 +89,7 @@ return http.ajax({ url: resorve   ('/example/tableData'), method: 'POST' }, para
 ```
 
 ### 子组件获取父组件的内容(加载获取)
+
 ```
 (1)在html上写上自定义属性，用 ":"
 <props-child :qianduan='ParentObj' ></props-child>
@@ -104,19 +106,21 @@ data() {
 
 (3)在子组件中获取值 props接收父组件的值
 export default {
-  props: ["qianduan"], 
+  props: ["qianduan"],
   data(){
       return{
           a:"1"
       }
   },
-};  
+};
 （4）将值绑定到子界面
 <ul>
      <li v-for="a in qianduan " :key="a">{{a.bootstrap}}</li>
 </ul>
 ```
-### 子组件 (通过事件) 获取父组建的 值 通过this.$parent.parentMsg
+
+### 子组件 (通过事件) 获取父组建的 值 通过 this.$parent.parentMsg
+
 ```
 (1)子组件 html引入
 <el-button  type="danger" @click="getParentData"> 获取父组件上的值</el-button>
@@ -127,7 +131,7 @@ getParentData() {
     this.$set(this, 'parentData', this.$parent.parentMsg)
 },
 
-（3）父组件 
+（3）父组件
 export default {
   data() {
     return {
@@ -136,7 +140,9 @@ export default {
   },
 }
 ```
-### 子组件调用父组件事件
+
+###  子组件调用父组件事件
+
 ```
 * vue是单向数据流，子事件无法修改，父组件的值，只能调用父组件方法修改父组件的值
 (1)父组件 自定义事件，用 @
@@ -167,7 +173,9 @@ export default {
   }
 };
 ```
+
 ### 父组件获取 子组件的值 （事件获取），
+
 ```
 （1）父组件 html的引入
 <el-button @click="getChildData">（调用data）获取子组件中的中data里的msg</el-button><span>: {{childMsg}}</span>
@@ -194,7 +202,9 @@ export default {
 };
 },
 ```
+
 ### 父组件 调用子组件里面的事件
+
 ```
 (1)在指令上增加ref
  <props-child ref="parenClick"></props-child>
@@ -215,7 +225,9 @@ fuDiaoZiShiJian() {
         this.text ='子内容被修改';
     },
 ```
+
 ### 兄弟组件的 传送数据
+
 ```
 （1）在vue-AnLi/vueWuxinkai/src/main.js中设置
 new Vue({
@@ -225,7 +237,7 @@ new Vue({
       bus: new Vue(),
     }
   }
-}).$mount('#app') 
+}).$mount('#app')
 
 （2）在vueWuxinkai/src/components/common/bus.js 声明js
 
@@ -233,7 +245,7 @@ new Vue({
 <template>
     <div class="box">
         <div class="hezi" v-show="changingOver"></div>
-        <br>    
+        <br>
         <el-button type="" @click="changingChage">点击事件传递给兄弟组件</el-button>
     </div>
 </template>
@@ -276,3 +288,232 @@ export default {
 };
 </script>
 ```
+
+## 插件的引入方式
+
+### 图片预览
+
+```
+下载
+cnpm install vue-photo-preview
+
+引入main.js
+import preview from 'vue-photo-preview'
+import 'vue-photo-preview/dist/skin.css'
+Vue.use(preview, options)
+
+HTML中
+//在img标签添加preview属性 preview值相同即表示为同一组
+<img src="static/images/head_icon.jpg" preview="2" preview-text="描述文字">
+```
+
+图片预览网站
+!http://npm.taobao.org/package/vue-photo-preview
+
+### Quill 编辑器
+
+```
+下载
+npm install vue-quill-editor --save
+
+引入
+import vueQuillEditor from 'vue-quill-editor'
+Vue.use(vueQuillEditor)
+
+html 中引入
+<quill-editor class="quill" v-model="progs"  @change="change"> </quill-editor>
+```
+
+Quill 编辑器官网 https://surmon-china.github.io/vue-quill-editor/
+
+遇到的问题 ：上传图片
+
+### tinymce 编辑器
+
+```
+拷贝文件components下Tinymce文件到自己的目录下
+
+在页面以组件的方式引入
+import Tinymce from '@/components/Tinymce'
+components: {
+    Tinymce
+  }
+
+html引入，
+<tinymce :height="300" :readonly=readOnly v-model="newEntity"></tinymce>
+```
+
+### 百度地图
+
+```
+下载
+npm install vue-baidu-map --save
+
+引入在 main.js中
+import BaiduMap from 'vue-baidu-map'
+Vue.use(BaiduMap, {
+  ak: '百度地图钥匙'
+})
+在页面中 引入
+<template>
+  <baidu-map class="bm-view">
+  </baidu-map>
+</template>
+
+css必须设置高度
+.map {
+  width: 100%;
+  height: 300px;
+  background: #ccc;
+}
+```
+
+百度地图 https://dafrok.github.io/vue-baidu-map/#/zh/overlay/marker
+
+### highchart 图
+
+```
+下载 vue-highcharts 依赖highcharts ,
+npm install highcharts --save
+npm i vue-highcharts
+
+引入
+import VueHighcharts from 'vue-highcharts';
+import Highcharts from 'highcharts';
+
+//按需要加载这些模块
+import loadStock from 'highcharts/modules/stock';
+import loadMap from 'highcharts/modules/map';
+import loadDrilldown from 'highcharts/modules/drilldown';
+
+import loadHighchartsMore from 'highcharts/highcharts-more';
+import loadSolidGauge from 'highcharts/modules/solid-gauge';
+import highcharts3d from "highcharts/highcharts-3d";
+
+loadStock(Highcharts);
+loadMap(Highcharts);
+loadDrilldown(Highcharts);
+loadHighchartsMore(Highcharts);
+loadSolidGauge(Highcharts);
+highcharts3d(Highcharts);
+Vue.use(VueHighcharts, { Highcharts });
+
+html 的引入
+ <highcharts :options="options"></highcharts>
+
+js的引入
+export default {
+  data() {
+    return {
+      width: 500,
+      height: 500,
+      options: {
+        chart: {
+          type: 'pie',
+          options3d: { //设置3D
+            enabled: true,
+            alpha: 45,
+            beta: 0
+          }
+        },
+        title: {
+          text: '2014年某网站不同浏览器访问量占比'
+        },
+        tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            depth: 35,
+            dataLabels: {
+              enabled: true,
+              format: '{point.name}'
+            }
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: '浏览器占比',
+          data: [
+            ['Firefox', 45.0],
+            ['IE', 26.8],
+            {
+              name: 'Chrome',
+              y: 12.8,
+              sliced: true,
+              selected: true
+            },
+            ['火狐', 8.5],
+            ['Opera', 6.2],
+            ['Others', 0.7]
+          ]
+        }]
+      }
+    }
+  }
+}
+```
+
+highchart 图 https://www.hcharts.cn/demo/highcharts
+
+### echarts 图
+
+```
+(1)下载，不需要引入echarts.js
+npm i vue-echarts
+
+(2)引入, 版本不同需要引入的路径不同
+// import ECharts from 'vue-echarts'  //不好使
+import ECharts from 'vue-echarts/components/ECharts'
+
+(3)引入工具，需要什么引入什么 ，标题 图例 地理坐标系组件 时间轴
+import 'echarts/lib/component/tooltip' //提示框
+require('echarts/lib/component/toolbox'); //工具箱  通过require的引入方式
+
+(4)引入图形
+import 'echarts/lib/chart/pie' // 饼图
+import 'echarts/lib/chart/bar' //2 柱状图
+
+(5)初始化数据存放内容，放在一个页面过内容过多
+import pie from './data/pie' // 饼图
+
+(6)自定义主题渲染
+import theme from './data/theme.json'
+ECharts.registerTheme('ovilia-green', theme)
+
+export default {
+  data() {
+    //(7)初始化配置
+    let options = qs.parse(location.search, { ignoreQueryPrefix: true }) //是否忽略前面的 符号
+    return{
+      //(8)初始化
+      options,
+      initOptions: { //模式svg模式 或 者是canvas模式
+        renderer: options.renderer || 'canvas'
+      },
+      // (9)引入图形
+      pie
+    }
+  },
+    components: {
+    chart: ECharts, //(10)组件 声明
+  },
+}
+
+html 引入
+<chart class="chartHW" :options="pie" :init-options="initOptions" ref="pie" auto-resize />
+
+css 必须设置高度
+.charHW{
+  width:100%;
+  height:200px
+}
+```
+问题：
+- 引入的路径和版本相关，
+- 图形不渲染颜色 和属性相关
+- v-echart 和vue-echarts不一样
+
+echart图 https://www.npmjs.com/package/vue-echarts

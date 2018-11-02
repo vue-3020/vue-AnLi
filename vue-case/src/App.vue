@@ -35,4 +35,7 @@ export default {
     width:100%;
     bottom:50px;
   }
+  .container{
+        padding-bottom: 50px;
+  }
 </style>

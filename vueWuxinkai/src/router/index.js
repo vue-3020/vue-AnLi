@@ -400,6 +400,18 @@ export default new Router({
             keepAlive: false,
             breadcrumbLeft: true //自定义属性
           }
+        },
+        {
+          path: "model",
+          name: "model",
+          component: resolve =>
+            require(["#/vueElement/model.vue"], resolve),
+          meta: {
+            title: "模态框",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
         }
       ]
     },

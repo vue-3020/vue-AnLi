@@ -82,7 +82,7 @@ export default {
       }
     },
     // 案例1 删除input框的内容
-    remove() {
+    remove(i) {
       this.arr3 = this.arr3.filter((item, index) => index !== i)
     },
     //案列2 获取数据

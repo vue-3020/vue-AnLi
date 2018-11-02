@@ -15,7 +15,7 @@
       <p>2,在preview.vue中</p>
     <div class="item2">
 					<img src="static/images/head_icon.jpg" preview="2" preview-text="描述文字">
-					<img src="static/images/head_icon.jpg" preview="2" preview-text="描述文字2">
+					<img src="static/images/秋田犬.jpg" preview="2" preview-text="描述文字2">
 				</div>
     </div>
 </template>

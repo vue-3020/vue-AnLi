@@ -1,11 +1,13 @@
 const tableVisible = {
   state: {
     scores: [
-      {
-        date: "2016-05-02",
-        name: "王小虎",
-        address: "上海市普陀区金沙江路 1518 弄"
-      }
+      {name: '进攻', max: 20, value: 19},
+      {name: '防守', max: 20, value: 9},
+      {name: '速度', max: 20, value: 18},
+      {name: '力量', max: 20, value: 16},
+      {name: '耐力', max: 20, value: 16},
+      {name: '敏捷', max: 20, value: 20}
+      
     ]
   },
   getters: {
