@@ -23,6 +23,12 @@
     <p>（4）计算属性缓存 vs 方法:方法不会自动推送给页面响应 ,计算属性是基于它们的依赖进行缓存的。只在相关依赖发生改变时它们才会重新求值</p>
     <!-- <div class="t5">{{now}}</div> -->
     <div class="t5">{{nowData}}</div>
+    <br>
+    <ul class="list-group">
+        <li class="list-group-item" v-for="(item,index) in reversNews" :key="index">{{item.title}}{{item.date}}</li>
+    </ul>
+    <br>
+    <div>增加修饰符：{{newPrice}}</div>
   </div>
 </template>
 <script>
@@ -32,7 +38,14 @@ export default {
       products: [{ isSelected: true }, { isSelected: true }],
       msg: '',
       b: '', //先声明
-      nowData:''
+      nowData: '',
+       price:100 ,//原始数据
+      newsList: [
+        { title: '香港或就“装甲车被扣”事件追责 起诉涉事运输公司', date: '2017/3/10' },
+        { title: '日本第二大准航母服役 外媒：针对中国潜艇', date: '2017/3/12' },
+        { title: '中国北方将有明显雨雪降温天气 南方阴雨持续', date: '2017/3/13' },
+        { title: '起底“最短命副市长”：不到40天落马，全家被查', date: '2017/3/23' },
+      ]
     };
   },
   computed: {
@@ -65,6 +78,12 @@ export default {
     // now: function () {
     //   return Date.now()
     // }
+    reversNews(){
+      return this.newsList.reverse() //倒序排列
+    },
+    newPrice(){
+      return `￥`+this.price+`元钱`
+    }
   },
 };
 </script >

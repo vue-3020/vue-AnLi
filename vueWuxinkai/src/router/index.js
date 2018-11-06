@@ -537,6 +537,18 @@ export default new Router({
             keepAlive: false,
             breadcrumbLeft: true //自定义属性
           }
+        },
+        {
+          path: "timeElectronic",
+          name: "timeElectronic",
+          component: resolve =>
+            require(["#/vuePublic/timeElectronic.vue"], resolve),
+          meta: {
+            title: "电子时间",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
         }
       ]
     },
@@ -654,6 +666,54 @@ export default new Router({
               isUseCache: false,
               keepAlive: false,
               breadcrumbLeft: true //自定义属性
+            }
+          },
+        ]
+      },
+      {
+        path: "/css3",
+        name: "css3",
+        component: Layout,
+        name: "css3学习",
+        meta: {
+          title: "css3学习",
+          isUseCache: false,
+          keepAlive: false
+        },
+        children: [
+          {
+            path: "css3",
+            name: "css3",
+            component: resolve => require(["#/css3/css3.vue"], resolve),
+            meta: {
+              title: "css3学习",
+              isUseCache: false,
+              keepAlive: false,
+              breadcrumbLeft: true 
+            }
+          },
+        ]
+      },
+      {
+        path: "/css3",
+        name: "css3",
+        component: Layout,
+        name: "css3学习",
+        meta: {
+          title: "css3学习",
+          isUseCache: false,
+          keepAlive: false
+        },
+        children: [
+          {
+            path: "css3",
+            name: "css3",
+            component: resolve => require(["#/css3/css3.vue"], resolve),
+            meta: {
+              title: "css3学习",
+              isUseCache: false,
+              keepAlive: false,
+              breadcrumbLeft: true 
             }
           },
         ]

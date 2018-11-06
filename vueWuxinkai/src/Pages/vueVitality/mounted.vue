@@ -15,8 +15,10 @@
     <br>
     正确的结果{{number1}}
     <div ref="myDiv">
-        <p v-for="a in arr" :key="a" ref="mysss">{{a}}</p>
+        <p class="left" v-for="a in arr" :key="a" ref="mysss">{{a}}</p>
     </div>
+    <br>
+    
   </div>
 </template>
 <script>
@@ -57,4 +59,5 @@ export default {
 .red {
   color: red;
 }
+.left{float: left;margin-left: 10px;}
 </style>

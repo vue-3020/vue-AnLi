@@ -14,6 +14,10 @@
       <span class="red width">v-bing</span>简写</p>
     <p>
       <span class="red width">:class</span> 对象或者数组两种绑定方式，</p>
+    <p>
+      <span class="red width"> v-pre </span> 页面显示花括号
+      <span v-pre>{{msg}}</span>
+    </p>
     <br>
     <div>
       <b style="color:red">v-once</b> :只绑定一次，当数据再次发生变化，也不会导致页面刷新</div>
@@ -122,6 +126,24 @@
         在updated中获取正确结果：{{arrsLength3}}
       </div>
     </el-card>
+    <br>
+    <h3>鼠标划过的效果</h3>
+    <el-card class="box-card">
+      <ul class="list-group">
+        <li class="list-group-item" v-for="(item,index) in fruits" :key="index" @mouseenter.stop="handleMouseIn(index)" @mouseleave.stop="handleMouseOut(index)" :class="rowClasses(index)">
+          {{item.name}}
+        </li>
+      </ul>
+    </el-card>
+     <br>
+    <h3>鼠标划过的效果</h3>
+    <el-card class="box-card">
+      <ul class="list-group">
+        <li class="list-group-item" v-for="(item,index) in fruits" :key="index" :class={'active':node.state} @click='toggle(index)'>
+          {{item.name}}
+        </li>
+      </ul>
+    </el-card>
   </div>
 </template>
 <script>
@@ -205,6 +227,26 @@ export default {
     },
     grandChild() {
       console.log("grandChild")
+    },
+    //给移入移出增加class
+    rowClasses(index) {
+      return [
+        {
+          [`bgColor`]: this.$data.fruits[index] && this.$data.fruits[index]._isHover
+        }
+      ]
+    },
+    //鼠标移入移出效果
+    handleMouseIn(index) {
+      if (this.$data.fruits._isHover) {//如果当前元素有这个属性就不改变
+        return
+      }
+      //当生成vue实例后，当再次给数据赋值时，有时候并不会自动更新到视图上去；
+      //如果在实例创建之后添加新的属性到实例上，它不会触发视图更新,
+      this.$set(this.$data.fruits[index], '_isHover', true) //进入
+    },
+    handleMouseOut(index) {
+      this.$set(this.$data.fruits[index], '_isHover', false) //离开
     }
   },
   updated() {
@@ -220,5 +262,9 @@ export default {
   width: 70px;
   display: inline-block;
   margin-top: 4px;
+}
+.bgColor {
+  background: red;
+  color: #fff;
 }
 </style>

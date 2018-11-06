@@ -19,8 +19,23 @@
           <router-link :to="{name:'routeSon2',params:{dataObj:{name:'邓超',age:18 + o,sex:'男'}}}">命名路由params传参routeSon{{index}}</router-link>
         </div>
       </el-card>
+      <el-card class="box-card">
+        <div slot="header" class="clearfix">
+          <span>$route底下的参数</span>
+        </div>
+        <div> 
+          <p>$route.query.xxx 查询参数</p>
+          <p>$route.params.xxx 接收参数参数</p>
+          <p>$store.state vuex 的方法</p>
+          <p>$store.commit vuex 提交修改内容</p>
+          <br>
+          路由两个表情router-view和
+        </div>
+      </el-card>
+       <br>
     </div>
     <br>
+   
     <div>
       <router-view class="view"></router-view>
     </div>

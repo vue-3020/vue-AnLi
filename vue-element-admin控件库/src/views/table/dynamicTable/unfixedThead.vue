@@ -3,9 +3,9 @@
     <!-- 学习循环绑定数据 -->
     <div class="filter-container">
       <el-checkbox-group v-model="formThead">
-        <el-checkbox label="apple">apple</el-checkbox>
-        <el-checkbox label="banana">banana</el-checkbox>
-        <el-checkbox label="orange">orange</el-checkbox>
+        <el-checkbox label="apple">第一个</el-checkbox>
+        <el-checkbox label="banana">第二个</el-checkbox>
+        <el-checkbox label="orange">第三个</el-checkbox>
       </el-checkbox-group>
     </div>
 
@@ -14,12 +14,10 @@
       </el-table-column>
       <el-table-column :key='fruit' v-for='fruit in formThead' :label="fruit">
         <template slot-scope="scope">
-          <!-- {{scope.row[fruit]}} --- {{fruit}} -->
-          {{scope.row}}
+          {{scope.row[fruit]}} --- {{fruit}}
         </template>
       </el-table-column>
     </el-table>
-
   </div>
 </template>
 
