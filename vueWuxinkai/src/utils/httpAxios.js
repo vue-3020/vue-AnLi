@@ -5,7 +5,6 @@ import Cookies from 'js-cookie'
 import { MessageBox } from 'element-ui';
 
 var cancel = {}
-console.log(cancel)
 // let promiseArr = {}
 const CancelToken = axios.CancelToken
 const AccessToken = Cookies.get('Tescomm_Access_Token')

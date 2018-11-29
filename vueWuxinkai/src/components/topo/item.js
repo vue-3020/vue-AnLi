@@ -45,7 +45,7 @@ class Item {
         this.onDrag = params.onDrag
         this.onClick = params.onClick
         this.onDblclick = params.onDblclick
-        this.onRemove = params.onRemove
+        this.onRemove = params.onRemove //删除
         this.onMouseup = params.onMouseup
         this.onPortMousedown = params.onPortMousedown
         this.onPortMouseup = params.onPortMouseup

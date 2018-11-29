@@ -18,6 +18,91 @@ import Chart from "&/topo/chart";
 import itemList from "&/topo/item-list.vue";
 
 let chart = null;
+
+// let itemdatas = [{
+//   container: {},
+//   data: null,
+//   id: "S6",
+//   inputIds: [],
+//   inputPathIds: [],
+//   itemIcon: "",
+//   name: "Subjects + Studies + Studies",
+//   outputIds: ["S4", "S5"],
+//   outputPathIds: [],
+//   type: "FUNCTION",
+//   x: 1084,
+//   y: 539
+// },
+// {
+//   container: {},
+//   data: null,
+//   id: "S5",
+//   inputIds: ["S5"],
+//   inputPathIds: [],
+//   itemIcon: "",
+//   name: "Studies",
+//   outputIds: [],
+//   outputPathIds: [],
+//   type: "FUNCTION",
+//   x: 884,
+//   y: 639
+// },
+// {
+//   container: {},
+//   data: null,
+//   id: "S4",
+//   inputIds: ["S4"],
+//   inputPathIds: [],
+//   itemIcon: "",
+//   name: "Subjects + Studies",
+//   outputIds: ["S3"],
+//   outputPathIds: [],
+//   type: "FUNCTION",
+//   x: 884,
+//   y: 489
+// },
+// {
+//   container: {},
+//   data: null,
+//   id: "S3",
+//   inputIds: ["S3"],
+//   inputPathIds: [],
+//   itemIcon: "",
+//   name: "Subjects + Studies",
+//   outputIds: ["S1", "S2"],
+//   outputPathIds: [],
+//   type: "FUNCTION",
+//   x: 684,
+//   y: 489
+// },
+// {
+//   container: {},
+//   data: null,
+//   id: "S2",
+//   inputIds: ["S2"],
+//   inputPathIds: [],
+//   itemIcon: "",
+//   name: "Studies",
+//   outputIds: [],
+//   outputPathIds: [],
+//   type: "FUNCTION",
+//   x: 484,
+//   y: 539
+// },
+// {
+//   container: {},
+//   data: null,
+//   id: "S1",
+//   inputIds: ["S1"],
+//   inputPathIds: [],
+//   itemIcon: "",
+//   name: "Subjects",
+//   outputIds: [],
+//   outputPathIds: [],
+//   type: "FUNCTION",
+//   x: 484,
+//   y: 439
+// }]
 export default {
   components: {
     itemList
@@ -58,48 +143,41 @@ export default {
       let count = 1;
       let drag = d3
         .drag()
-        .on("start", function() {
+        .on("start", function () {
           //获取团拽目标的 坐标
           let mousePosition = d3.mouse(this);
 
           dragDeltaX = mousePosition[0];
           dragDeltaY = mousePosition[1];
-         //克隆
+          //克隆
           dragItem = this.cloneNode(true);
           //将克隆的内容插入到尾部
           document.getElementById("app").append(dragItem);
           $dragItem = d3.select(dragItem);
           //设置在画布中的x轴坐标和y轴坐标
-          getItemPosition(
-            $dragItem,
-            d3.event.sourceEvent.x - dragDeltaX,
-            d3.event.sourceEvent.y - dragDeltaY
-          );
+          getItemPosition($dragItem, d3.event.sourceEvent.x - dragDeltaX, d3.event.sourceEvent.y - dragDeltaY);
         })
         //拖拽中的位置
-        .on("drag", function() {
-          getItemPosition(
-            $dragItem,
-            d3.event.sourceEvent.x - dragDeltaX,
-            d3.event.sourceEvent.y - dragDeltaY
+        .on("drag", function () {
+          getItemPosition($dragItem,d3.event.sourceEvent.x - dragDeltaX,d3.event.sourceEvent.y - dragDeltaY - 70
           );
         })
         //放下后的位置
-        .on("end", function() {
+        .on("end", function () {
           var arrItem = [];
           //减去 chart-container 的位置
           let $container = document.getElementById("chart-container");
           //设置偏移量
           let position = {
-            x: d3.event.sourceEvent.x - dragDeltaX - $container.offsetLeft-150,
-            y: d3.event.sourceEvent.y - dragDeltaY - $container.offsetTop-70
+            x: d3.event.sourceEvent.x - dragDeltaX - $container.offsetLeft - 150,
+            y: d3.event.sourceEvent.y - dragDeltaY - $container.offsetTop - 70
           };
           if (position.x > 0) {
             //设置两个按钮的重合
             var ftop = position.x;
             var fleft = position.y;
             var ObgjecItem = chart.getItemsNoid();
-            ObgjecItem.forEach(function(item) {
+            ObgjecItem.forEach(function (item) {
               var btop = item.x;
               var bleft = item.y;
               // console.log(btop);
@@ -134,18 +212,16 @@ export default {
             });
             count++;
             arrItem.push(item1);
-            console.log(arrItem);
             // let line = Chart._addLine(arrItem[0], "output", arrItem[1], "input");
             // line.updatePath();
 
-            console.log(chart.getItems());
           }
           $dragItem.remove();
         });
       items.call(drag); //用call 设置样式
 
       //给拖拽过来的 元素 设置在画布的位置
-      let getItemPosition = function($item, x, y) {
+      let getItemPosition = function ($item, x, y) {
         $item.attr(
           "style",
           `position:fixed;transform:translate(${x}px, ${y}px)`
@@ -157,7 +233,10 @@ export default {
       localStorage.setItem("items", JSON.stringify(chart.getItems()));
     },
     loadData() {
-      chart.setItems(JSON.parse(localStorage.getItem("items")));
+      // chart.setItems(JSON.parse(localStorage.getItem("items")));
+
+
+      chart.setItems(this.itemdatas);
     },
     //双击事件
     onItemDblclick(item) {
@@ -270,6 +349,5 @@ export default {
     overflow: auto;
   }
 }
-
 </style>
 
