@@ -13,11 +13,9 @@
 
 <script>
 import * as d3 from "d3";
-import Chart from "./chart";
-import Line from "./line";
-import itemList from "./item-list.vue";
-
-import "./dialog/_dialog.scss";
+import * as util from "&/topo/util";
+import Chart from "&/topo/chart";
+import itemList from "&/topo/item-list.vue";
 
 let chart = null;
 export default {
@@ -66,10 +64,10 @@ export default {
 
           dragDeltaX = mousePosition[0];
           dragDeltaY = mousePosition[1];
-          //克隆
+         //克隆
           dragItem = this.cloneNode(true);
           //将克隆的内容插入到尾部
-          document.getElementsByTagName("body")[0].append(dragItem);
+          document.getElementById("app").append(dragItem);
           $dragItem = d3.select(dragItem);
           //设置在画布中的x轴坐标和y轴坐标
           getItemPosition(
@@ -93,8 +91,8 @@ export default {
           let $container = document.getElementById("chart-container");
           //设置偏移量
           let position = {
-            x: d3.event.sourceEvent.x - dragDeltaX - $container.offsetLeft,
-            y: d3.event.sourceEvent.y - dragDeltaY - $container.offsetTop
+            x: d3.event.sourceEvent.x - dragDeltaX - $container.offsetLeft-150,
+            y: d3.event.sourceEvent.y - dragDeltaY - $container.offsetTop-70
           };
           if (position.x > 0) {
             //设置两个按钮的重合
@@ -136,7 +134,7 @@ export default {
             });
             count++;
             arrItem.push(item1);
-            console.log(arrItem)
+            console.log(arrItem);
             // let line = Chart._addLine(arrItem[0], "output", arrItem[1], "input");
             // line.updatePath();
 
@@ -150,7 +148,7 @@ export default {
       let getItemPosition = function($item, x, y) {
         $item.attr(
           "style",
-          `position:absolute;transform:translate(${x}px, ${y}px)`
+          `position:fixed;transform:translate(${x}px, ${y}px)`
         );
       };
     },
@@ -245,4 +243,33 @@ export default {
     }
   }
 }
+
+.topo-dialog {
+  .el-dialog__header {
+    border-bottom: 1px solid #eee;
+  }
+
+  .el-dialog__footer {
+    border-top: 1px solid #eee;
+  }
+
+  .el-select {
+    display: block;
+  }
+
+  .el-input-number {
+    width: 100%;
+
+    .el-input__inner {
+      text-align: left;
+    }
+  }
+
+  .el-dialog__body {
+    max-height: 450px;
+    overflow: auto;
+  }
+}
+
 </style>
+

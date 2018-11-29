@@ -3,13 +3,13 @@
     <div class="item-category">
       <div class="item-header">输入</div>
       <div class="item-content">
-        <el-popover ref="DEVICE" placement="right" title="设备数据" width="200" trigger="hover" content="这是一段详细注释"></el-popover>
+        <!-- <el-popover ref="DEVICE" placement="right" title="设备数据" width="200" trigger="hover" content="这是一段详细注释"></el-popover> -->
         <div v-popover:DEVICE class="item item-input" data-type="INPUT" data-name="DEVICE">
           <div class="item-icon"><img :src="icon.DEVICE" /></div>
-          <div class="item-label">设备数据</div>
+          <div class="item-label"></div>
           <div class="item-port item-port-output"></div>
         </div>
-        <el-popover ref="CUSTOM_DATA" placement="right" title="自定义数据" width="200" trigger="hover" content="这是一段详细注释"></el-popover>
+        <!-- <el-popover ref="CUSTOM_DATA" placement="right" title="自定义数据" width="200" trigger="hover" content="这是一段详细注释"></el-popover> -->
         <div v-popover:CUSTOM_DATA class="item item-input" data-type="INPUT" data-name="CUSTOM_DATA">
           <div class="item-icon"><img :src="icon.CUSTOM_DATA" /></div>
           <div class="item-label">自定义数据</div>
@@ -21,14 +21,14 @@
     <div class="item-category">
       <div class="item-header">处理方法</div>
       <div class="item-content">
-        <el-popover ref="LOGIC_RULE" placement="right" title="自定义数据" width="200" trigger="hover" content="这是一段详细注释"></el-popover>
+        <!-- <el-popover ref="LOGIC_RULE" placement="right" title="自定义数据" width="200" trigger="hover" content="这是一段详细注释"></el-popover> -->
         <div v-popover:LOGIC_RULE class="item item-function" data-type="FUNCTION" data-name="LOGIC_RULE">
           <div class="item-icon"><img :src="icon.LOGIC_RULE" /></div>
           <div class="item-label">逻辑规则</div>
           <div class="item-port item-port-input"></div>
           <div class="item-port item-port-output"></div>
         </div>
-        <el-popover ref="ARITHMETIC" placement="right" title="自定义数据" width="200" trigger="hover" content="这是一段详细注释"></el-popover>
+        <!-- <el-popover ref="ARITHMETIC" placement="right" title="自定义数据" width="200" trigger="hover" content="这是一段详细注释"></el-popover> -->
         <div v-popover:ARITHMETIC class="item item-function" data-type="FUNCTION" data-name="ARITHMETIC">
           <div class="item-icon"><img :src="icon.ARITHMETIC" /></div>
           <div class="item-label">四则规范</div>
@@ -41,19 +41,19 @@
     <div class="item-category">
       <div class="item-header">触发动作</div>
       <div class="item-content">
-        <el-popover ref="APP" placement="right" title="APP推送" width="200" trigger="hover" content="这是一段详细注释"></el-popover>
+        <!-- <el-popover ref="APP" placement="right" title="APP推送" width="200" trigger="hover" content="这是一段详细注释"></el-popover> -->
         <div v-popover:APP class="item item-action" data-type="ACTION" data-name="APP">
           <div class="item-icon"><img :src="icon.APP" /></div>
           <div class="item-label">APP推送</div>
           <div class="item-port item-port-input"></div>
         </div>
-        <el-popover ref="HTTP" placement="right" title="HTTP请求" width="200" trigger="hover" content="这是一段详细注释"></el-popover>
+        <!-- <el-popover ref="HTTP" placement="right" title="HTTP请求" width="200" trigger="hover" content="这是一段详细注释"></el-popover> -->
         <div v-popover:HTTP class="item item-action" data-type="ACTION" data-name="HTTP">
           <div class="item-icon"><img :src="icon.HTTP" /></div>
           <div class="item-label">HTTP请求</div>
           <div class="item-port item-port-input"></div>
         </div>
-        <el-popover ref="EMAIL" placement="right" title="邮件" width="200" trigger="hover" content="这是一段详细注释"></el-popover>
+        <!-- <el-popover ref="EMAIL" placement="right" title="邮件" width="200" trigger="hover" content="这是一段详细注释"></el-popover> -->
         <div v-popover:EMAIL class="item item-action" data-type="ACTION" data-name="EMAIL">
           <div class="item-icon"><img :src="icon.EMAIL" /></div>
           <div class="item-label">邮件</div>
