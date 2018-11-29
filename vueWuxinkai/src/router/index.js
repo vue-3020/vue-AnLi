@@ -549,6 +549,18 @@ export default new Router({
             keepAlive: false,
             breadcrumbLeft: true //自定义属性
           }
+        },
+        {
+          path: "canvas",
+          name: "canvas",
+          component: resolve =>
+            require(["#/vuePublic/canvas.vue"], resolve),
+          meta: {
+            title: "拖拽标签",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
         }
       ]
     },
