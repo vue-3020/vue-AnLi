@@ -19,90 +19,90 @@ import itemList from "&/topo/item-list.vue";
 
 let chart = null;
 
-// let itemdatas = [{
-//   container: {},
-//   data: null,
-//   id: "S6",
-//   inputIds: [],
-//   inputPathIds: [],
-//   itemIcon: "",
-//   name: "Subjects + Studies + Studies",
-//   outputIds: ["S4", "S5"],
-//   outputPathIds: [],
-//   type: "FUNCTION",
-//   x: 1084,
-//   y: 539
-// },
-// {
-//   container: {},
-//   data: null,
-//   id: "S5",
-//   inputIds: ["S5"],
-//   inputPathIds: [],
-//   itemIcon: "",
-//   name: "Studies",
-//   outputIds: [],
-//   outputPathIds: [],
-//   type: "FUNCTION",
-//   x: 884,
-//   y: 639
-// },
-// {
-//   container: {},
-//   data: null,
-//   id: "S4",
-//   inputIds: ["S4"],
-//   inputPathIds: [],
-//   itemIcon: "",
-//   name: "Subjects + Studies",
-//   outputIds: ["S3"],
-//   outputPathIds: [],
-//   type: "FUNCTION",
-//   x: 884,
-//   y: 489
-// },
-// {
-//   container: {},
-//   data: null,
-//   id: "S3",
-//   inputIds: ["S3"],
-//   inputPathIds: [],
-//   itemIcon: "",
-//   name: "Subjects + Studies",
-//   outputIds: ["S1", "S2"],
-//   outputPathIds: [],
-//   type: "FUNCTION",
-//   x: 684,
-//   y: 489
-// },
-// {
-//   container: {},
-//   data: null,
-//   id: "S2",
-//   inputIds: ["S2"],
-//   inputPathIds: [],
-//   itemIcon: "",
-//   name: "Studies",
-//   outputIds: [],
-//   outputPathIds: [],
-//   type: "FUNCTION",
-//   x: 484,
-//   y: 539
-// },
-// {
-//   container: {},
-//   data: null,
-//   id: "S1",
-//   inputIds: ["S1"],
-//   inputPathIds: [],
-//   itemIcon: "",
-//   name: "Subjects",
-//   outputIds: [],
-//   outputPathIds: [],
-//   type: "FUNCTION",
-//   x: 484,
-//   y: 439
-// }]
+let itemdatas = [{
+  container: {},
+  data: null,
+  id: "S6",
+  inputIds: [],
+  inputPathIds: [],
+  itemIcon: "",
+  name: "Subjects + Studies + Studies",
+  outputIds: ["S4", "S5"],
+  outputPathIds: [],
+  type: "FUNCTION",
+  x: 1084,
+  y: 539
+},
+{
+  container: {},
+  data: null,
+  id: "S5",
+  inputIds: ["S5"],
+  inputPathIds: [],
+  itemIcon: "",
+  name: "Studies",
+  outputIds: [],
+  outputPathIds: [],
+  type: "FUNCTION",
+  x: 884,
+  y: 639
+},
+{
+  container: {},
+  data: null,
+  id: "S4",
+  inputIds: ["S4"],
+  inputPathIds: [],
+  itemIcon: "",
+  name: "Subjects + Studies",
+  outputIds: ["S3"],
+  outputPathIds: [],
+  type: "FUNCTION",
+  x: 884,
+  y: 489
+},
+{
+  container: {},
+  data: null,
+  id: "S3",
+  inputIds: ["S3"],
+  inputPathIds: [],
+  itemIcon: "",
+  name: "Subjects + Studies",
+  outputIds: ["S1", "S2"],
+  outputPathIds: [],
+  type: "FUNCTION",
+  x: 684,
+  y: 489
+},
+{
+  container: {},
+  data: null,
+  id: "S2",
+  inputIds: ["S2"],
+  inputPathIds: [],
+  itemIcon: "",
+  name: "Studies",
+  outputIds: [],
+  outputPathIds: [],
+  type: "FUNCTION",
+  x: 484,
+  y: 539
+},
+{
+  container: {},
+  data: null,
+  id: "S1",
+  inputIds: ["S1"],
+  inputPathIds: [],
+  itemIcon: "",
+  name: "Subjects",
+  outputIds: [],
+  outputPathIds: [],
+  type: "FUNCTION",
+  x: 484,
+  y: 439
+}]
 export default {
   components: {
     itemList
@@ -234,9 +234,7 @@ export default {
     },
     loadData() {
       // chart.setItems(JSON.parse(localStorage.getItem("items")));
-
-
-      chart.setItems(this.itemdatas);
+      chart.setItems(itemdatas);
     },
     //双击事件
     onItemDblclick(item) {

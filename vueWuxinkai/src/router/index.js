@@ -695,7 +695,17 @@ export default new Router({
           isUseCache: false,
           keepAlive: false,
           breadcrumbLeft: true
-        }
+        },
+      },{
+        path: "dragZone",
+        name: "dragZone",
+        component: resolve => require(["#/tuozhuai/dragZone.vue"], resolve),
+        meta: {
+          title: "拖拽dragZone",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true
+        },
       }]
     }
   ]

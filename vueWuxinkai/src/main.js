@@ -8,7 +8,7 @@ import http from './utils/httpAxios'
 
 import store from './store' //vuex
 
-import ElementUI from 'element-ui'//element 内容
+import ElementUI from 'element-ui' //element 内容
 import 'element-ui/lib/theme-chalk/index.css' // element默认主题
 import './components/common/css/common.css' //
 
@@ -17,7 +17,9 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 Vue.use(vueQuillEditor)
-
+//布局拖拽
+import VueDragZone from 'vue-drag-zone'
+Vue.use(VueDragZone)
 import preview from 'vue-photo-preview' //图片预览
 import 'vue-photo-preview/dist/skin.css'
 var options = {
@@ -25,14 +27,14 @@ var options = {
 }
 Vue.use(preview, options) //图片预览
 
-import i18n from './lang' 
+import i18n from './lang'
 
 import Filters from './filters/filters' //过滤器
 for (let key in Filters) {
   Vue.filter(key, Filters[key])
 }
 
-import BaiduMap from 'vue-baidu-map'  //引入百度地图
+import BaiduMap from 'vue-baidu-map' //引入百度地图
 
 import VueHighcharts from 'vue-highcharts';
 import Highcharts from 'highcharts';
@@ -51,7 +53,9 @@ loadDrilldown(Highcharts);
 loadHighchartsMore(Highcharts);
 loadSolidGauge(Highcharts);
 highcharts3d(Highcharts);
-Vue.use(VueHighcharts, { Highcharts });
+Vue.use(VueHighcharts, {
+  Highcharts
+});
 
 Vue.config.productionTip = false
 
@@ -59,7 +63,9 @@ require('es6-promise').polyfill()
 require('es6-promise/auto')
 
 //(1)引入element-ui
-Vue.use(ElementUI, { size: 'small' })
+Vue.use(ElementUI, {
+  size: 'small'
+})
 
 //http ajax请求的方法
 Vue.prototype.http = http
@@ -84,4 +90,4 @@ new Vue({
       haha: 'hahah'
     }
   }
-}).$mount('#app')  //挂载app，要保证有编译的元素
+}).$mount('#app') //挂载app，要保证有编译的元素

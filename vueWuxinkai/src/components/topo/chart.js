@@ -90,7 +90,7 @@ class Chart {
       fromItem.outputIds.forEach(outputId => {
         let targetItem = this.list[outputId]
         //通过id连线
-        let line = this._addLine(fromItem, 'input', targetItem, 'output')
+        let line = this._addLine(fromItem, 'output', targetItem, 'input')
         line.updatePath()
         line.fromItem['outputPathIds'].add(line.id) //开始的增加id
         line.targetItem['inputPathIds'].add(line.id) //结束 增加id
