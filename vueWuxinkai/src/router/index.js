@@ -515,6 +515,17 @@ export default new Router({
           }
         },
         {
+          path: "scaleZoom",
+          name: "scaleZoom",
+          component: resolve => require(["#/vuePublic/scaleZoom.vue"], resolve),
+          meta: {
+            title: "缩放设置页面高度",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
           path: "parentChild",
           name: "parentChild",
           component: resolve =>

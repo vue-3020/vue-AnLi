@@ -75,6 +75,12 @@ Vue.use(BaiduMap, {
   ak: 'u8n7EbYE9SUmhF7WKOBu8xtbTDNiY9ex'
 })
 
+//设置页面缩放
+import zoom from '#/vuePublic/tool/zoom'
+zoom()
+window.addEventListener('resize', zoom)
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

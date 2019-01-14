@@ -13,7 +13,7 @@ export default {
   props: {
     className: {
       type: String,
-      default: 'chart'
+      default: 'RaddarChart'
     },
     width: {
       type: String,
@@ -26,31 +26,8 @@ export default {
   },
   data() {
     return {
-      chart: null
-    }
-  },
-  mounted() {
-    this.initChart()
-    this.__resizeHanlder = debounce(() => {
-      if (this.chart) {
-        this.chart.resize()
-      }
-    }, 100)
-    window.addEventListener('resize', this.__resizeHanlder)
-  },
-  beforeDestroy() {
-    if (!this.chart) {
-      return
-    }
-    window.removeEventListener('resize', this.__resizeHanlder)
-    this.chart.dispose()
-    this.chart = null
-  },
-  methods: {
-    initChart() {
-      this.chart = echarts.init(this.$el, 'macarons')
-
-      this.chart.setOption({
+      chart: null,
+      option: {
         tooltip: {
           trigger: 'axis',
           axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -102,18 +79,50 @@ export default {
               value: [5000, 7000, 12000, 11000, 15000, 14000],
               name: 'Allocated Budget'
             },
-            {
-              value: [4000, 9000, 15000, 15000, 13000, 11000],
-              name: 'Expected Spending'
-            },
-            {
-              value: [5500, 11000, 12000, 15000, 12000, 12000],
-              name: 'Actual Spending'
-            }
+            // {
+            //   value: [4000, 9000, 15000, 15000, 13000, 11000],
+            //   name: 'Expected Spending'
+            // },
+            // {
+            //   value: [5500, 11000, 12000, 15000, 12000, 12000],
+            //   name: 'Actual Spending'
+            // }
           ],
           animationDuration: animationDuration
         }]
-      })
+      }
+    }
+  },
+  mounted() {
+    this.initChart()
+    this.__resizeHanlder = debounce(() => {
+      if (this.chart) {
+        this.chart.resize()
+      }
+    }, 100)
+    window.addEventListener('resize', this.__resizeHanlder)
+  },
+  beforeDestroy() {
+    if (!this.chart) {
+      return
+    }
+    window.removeEventListener('resize', this.__resizeHanlder)
+    this.chart.dispose()
+    this.chart = null
+  },
+  methods: {
+    initChart() {
+      this.chart = echarts.init(this.$el, 'macarons')
+      this.chart.setOption(this.option)
+
+      var temp = this.option;
+      temp.series[0].data = [
+        {
+          value: [50, 700, 1000, 12100, 13500, 12000],
+          name: 'Allocated Budget22222'
+        }
+      ];
+      this.chart.setOption(temp);
     }
   }
 }

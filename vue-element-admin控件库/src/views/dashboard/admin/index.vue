@@ -94,7 +94,10 @@ export default {
     handleSetLineChartData(type) {
       this.lineChartData = lineChartData[type]
     }
-  }
+  },
+  mounted() {
+    console.log(RaddarChart);
+  },
 }
 </script>
 
