@@ -517,3 +517,13 @@ css 必须设置高度
 - v-echart 和vue-echarts不一样
 
 echart图 https://www.npmjs.com/package/vue-echarts
+
+### 动态设置页面高度；和控制底部表格高度
+
+
+### 监听画布变化，单独控制element表头样式
+
+### 全局设置页面样式
+在windowsHeight.js中 
+
+### 增加组件 配合页面开发

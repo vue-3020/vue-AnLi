@@ -80,7 +80,6 @@
 <style lang="scss" type="text/scss" scoped>
   .item-list {
     box-sizing: border-box;
-    padding-left: 20px;
   }
 
   .item-category {

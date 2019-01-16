@@ -1,12 +1,19 @@
 <template>
   <div id="topo-container">
     <item-list id="item-list-left"></item-list>
-    <div id="chart-container">
-      <div class="toolbar">
-        <el-button size="medium">返回</el-button>
-        <el-button type="primary" size="medium" @click="save()">保存</el-button>
-      </div>
-      <svg id="topo-chart" width="5000" height="5000"></svg>
+    <div class="item-rights">
+      <el-tabs v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit" class="grid-tabs" @tab-click="handleTabsClick">
+        <el-tab-pane :key="item.name" v-for="(item, index) in editableTabs" :label="item.title" :name="item.name">
+          <div id="chart-container">
+            <div class="toolbar">
+              <el-button size="medium">返回</el-button>
+              <el-button type="primary" size="medium" @click="save()">保存</el-button>
+            </div>
+            <svg id="topo-chart" width="5000" height="5000"></svg>
+            <svg id="topo-chart" :id="item.content" :key="item.name" width="5000" height="5000"></svg>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
     </div>
   </div>
 </template>
@@ -119,8 +126,19 @@ export default {
         APP: false,
         HTTP: false,
         EMAIL: false
-      }
-    };
+      },
+      editableTabsValue: '1', //tabs 标签默认选中第二个
+      editableTabs: [{ //tabs 数据
+        title: 'Tab 1',
+        name: '1',
+        content: 'Tab 1 content'
+      }, {
+        title: 'Tab 2',
+        name: '2',
+        content: 'Tab 2 content'
+      }],
+      tabIndex: 2
+    }
   },
   mounted() {
     let container = d3.select("#topo-chart");
@@ -159,7 +177,7 @@ export default {
         })
         //拖拽中的位置
         .on("drag", function () {
-          getItemPosition($dragItem,d3.event.sourceEvent.x - dragDeltaX,d3.event.sourceEvent.y - dragDeltaY - 70
+          getItemPosition($dragItem, d3.event.sourceEvent.x - dragDeltaX, d3.event.sourceEvent.y - dragDeltaY - 70
           );
         })
         //放下后的位置
@@ -236,6 +254,38 @@ export default {
       // chart.setItems(JSON.parse(localStorage.getItem("items")));
       chart.setItems(itemdatas);
     },
+    //切换画布  type:1-新增画布，2-加载已有画布
+    handleTabsClick(canvasId, type) {
+      debugger
+    },
+    // tab 增加新内容
+    handleTabsEdit(targetName, action) {
+      debugger
+      if (action === 'add') {
+        let newTabName = ++this.tabIndex + '';
+        this.editableTabs.push({
+          title: 'New Tab',
+          name: newTabName,
+          content: 'New Tab content'
+        });
+        this.editableTabsValue = newTabName;
+      }
+      if (action === 'remove') {
+        let tabs = this.editableTabs;
+        if (activeName === targetName) {
+          tabs.forEach((tab, index) => {
+            if (tab.name === targetName) {
+              let nextTab = tabs[index + 1] || tabs[index - 1];
+              if (nextTab) {
+                activeName = nextTab.name;
+              }
+            }
+          });
+        }
+        this.editableTabsValue = activeName;
+        this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+      }
+    },
     //双击事件
     onItemDblclick(item) {
       this.editItem = item;
@@ -258,13 +308,13 @@ export default {
 }
 
 #item-list-left {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
   width: 160px;
+  padding-left: 20px;
   border-right: 1px solid #ccc;
-  background: #f3f3f3;
+  box-shadow: 5px 5px 15px #666;
+  float: left;
+  background: #3d545c;
+  float: left;
 }
 
 #chart-container {
@@ -275,7 +325,17 @@ export default {
   right: 0;
   overflow: hidden;
 }
-
+.item-rights {
+  float: left;
+  left: 190px;
+  width: 86%;
+  position: absolute;
+  .grid-tabs {
+    background: #fff;
+    height: 600px;
+    width: 100%;
+  }
+}
 #topo-chart {
   cursor: crosshair;
 
