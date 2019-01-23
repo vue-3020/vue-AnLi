@@ -29,10 +29,9 @@ exports.cssLoaders = function (options) {
     }
   }
 
-  // generate loader string to be used with extract text plugin
+  //生成要与提取文本插件一起使用的加载程序字符串
   function generateLoaders (loader, loaderOptions) {
     const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
-
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
@@ -42,8 +41,8 @@ exports.cssLoaders = function (options) {
       })
     }
 
-    // Extract CSS when that option is specified
-    // (which is the case during production build)
+    //指定该选项时提取CSS
+    //（在生产构建期间就是这样）
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,

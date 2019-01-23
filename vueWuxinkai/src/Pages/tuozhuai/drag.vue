@@ -1,16 +1,22 @@
 <template>
   <div id="topo-container">
-    <item-list id="item-list-left"></item-list>
-    <div class="item-rights">
+    <!-- 左侧列表 -->
+    <item-list id="item-list-left" :GroupDataSource="getGroupData_C"></item-list>
+    <!-- 右侧信息 -->
+    <div class="item-rights" id="centerRight">
       <el-tabs v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit" class="grid-tabs" @tab-click="handleTabsClick">
-        <el-tab-pane :key="item.name" v-for="(item, index) in editableTabs" :label="item.title" :name="item.name">
-          <div id="chart-container">
+        <el-tab-pane :key="item.name" v-for="(item, index) in editableTabs" :label="item.isEditChange?item.title+' *':item.title" :name="item.name">
+          <!-- 自己加进来的title 用插槽替换element的组件内容  slot="label" -->
+          <span slot="label" :title="item.title">
+            <i style="color:red;font-size:16px" v-show="item.isEditChange">*</i>
+            {{item.title}}
+          </span>
+          <div>
             <div class="toolbar">
               <el-button size="medium">返回</el-button>
               <el-button type="primary" size="medium" @click="save()">保存</el-button>
             </div>
-            <svg id="topo-chart" width="5000" height="5000"></svg>
-            <svg id="topo-chart" :id="item.content" :key="item.name" width="5000" height="5000"></svg>
+            <svg class="topo-chart" :id="item.content" :key="item.name" width="5000" height="5000"></svg>
           </div>
         </el-tab-pane>
       </el-tabs>
@@ -25,91 +31,6 @@ import Chart from "&/topo/chart";
 import itemList from "&/topo/item-list.vue";
 
 let chart = null;
-
-let itemdatas = [{
-  container: {},
-  data: null,
-  id: "S6",
-  inputIds: [],
-  inputPathIds: [],
-  itemIcon: "",
-  name: "Subjects + Studies + Studies",
-  outputIds: ["S4", "S5"],
-  outputPathIds: [],
-  type: "FUNCTION",
-  x: 1084,
-  y: 539
-},
-{
-  container: {},
-  data: null,
-  id: "S5",
-  inputIds: ["S5"],
-  inputPathIds: [],
-  itemIcon: "",
-  name: "Studies",
-  outputIds: [],
-  outputPathIds: [],
-  type: "FUNCTION",
-  x: 884,
-  y: 639
-},
-{
-  container: {},
-  data: null,
-  id: "S4",
-  inputIds: ["S4"],
-  inputPathIds: [],
-  itemIcon: "",
-  name: "Subjects + Studies",
-  outputIds: ["S3"],
-  outputPathIds: [],
-  type: "FUNCTION",
-  x: 884,
-  y: 489
-},
-{
-  container: {},
-  data: null,
-  id: "S3",
-  inputIds: ["S3"],
-  inputPathIds: [],
-  itemIcon: "",
-  name: "Subjects + Studies",
-  outputIds: ["S1", "S2"],
-  outputPathIds: [],
-  type: "FUNCTION",
-  x: 684,
-  y: 489
-},
-{
-  container: {},
-  data: null,
-  id: "S2",
-  inputIds: ["S2"],
-  inputPathIds: [],
-  itemIcon: "",
-  name: "Studies",
-  outputIds: [],
-  outputPathIds: [],
-  type: "FUNCTION",
-  x: 484,
-  y: 539
-},
-{
-  container: {},
-  data: null,
-  id: "S1",
-  inputIds: ["S1"],
-  inputPathIds: [],
-  itemIcon: "",
-  name: "Subjects",
-  outputIds: [],
-  outputPathIds: [],
-  type: "FUNCTION",
-  x: 484,
-  y: 439
-}]
 export default {
   components: {
     itemList
@@ -128,43 +49,59 @@ export default {
         EMAIL: false
       },
       editableTabsValue: '1', //tabs 标签默认选中第二个
-      editableTabs: [{ //tabs 数据
-        title: 'Tab 1',
-        name: '1',
-        content: 'Tab 1 content'
-      }, {
-        title: 'Tab 2',
-        name: '2',
-        content: 'Tab 2 content'
-      }],
-      tabIndex: 2
+      editableTabs: [],
+      tabIndex: 1,
+      getGroupData_C: null, //保存子组件数据源
+      isEditChange: false, //tab切换栏 上的（*）星号是否显示
     }
   },
   mounted() {
-    let container = d3.select("#topo-chart");
+    var container = d3.select(`#svg${this.editableTabsValue}`);
     //创建一个实例
     chart = new Chart({
       container: container,
-      onItemDblclick: this.onItemDblclick //双击
+      data: this
     });
 
+    this.handleTabsEdit(null, 'add');
     this.loadData();
-    this.bindDragEvent();
+    //请求左侧列表数据
+    this.getLeftListData().then(() => {
+      this.bindDragEvent();
+    })
+    //页面监听星号是否显示
+    this.watchEvent();
+  },
+  created() {
+
   },
   methods: {
     onConfirm() {
       alert();
     },
     bindDragEvent() {
+      let makeId = util.makeId(); //创建item的id
       let dragDeltaX, dragDeltaY, dragItem, $dragItem;
       let items = d3.selectAll(".item-list .item");
+      let $centerRight = document.getElementById("centerRight"); //减去 chart-container 的位置
+      //通过dom获取每个item的信息
+      let DataSourceInfo = {
+        id: "", //数据源ID
+        name: "", //数据源名称
+        imgUrl: "", //数据源图标
+        paletteGroup: "" //数据源分组信息
+      };
       let count = 1;
       let drag = d3
         .drag()
         .on("start", function () {
+          // 获取当前选中数据源item图标的信息的信息
+          DataSourceInfo.id = this.firstElementChild.attributes.id.nodeValue;
+          DataSourceInfo.name = this.firstElementChild.attributes.name.nodeValue;
+          DataSourceInfo.imgUrl = this.firstElementChild.attributes.iconType.nodeValue;
+          DataSourceInfo.paletteGroup = this.firstElementChild.attributes.palettegroup.nodeValue;
           //获取团拽目标的 坐标
           let mousePosition = d3.mouse(this);
-
           dragDeltaX = mousePosition[0];
           dragDeltaY = mousePosition[1];
           //克隆
@@ -173,7 +110,7 @@ export default {
           document.getElementById("app").append(dragItem);
           $dragItem = d3.select(dragItem);
           //设置在画布中的x轴坐标和y轴坐标
-          getItemPosition($dragItem, d3.event.sourceEvent.x - dragDeltaX, d3.event.sourceEvent.y - dragDeltaY);
+          getItemPosition($dragItem, d3.event.sourceEvent.x - dragDeltaX, d3.event.sourceEvent.y - dragDeltaY - 70);
         })
         //拖拽中的位置
         .on("drag", function () {
@@ -183,37 +120,32 @@ export default {
         //放下后的位置
         .on("end", function () {
           var arrItem = [];
-          //减去 chart-container 的位置
-          let $container = document.getElementById("chart-container");
           //设置偏移量
           let position = {
-            x: d3.event.sourceEvent.x - dragDeltaX - $container.offsetLeft - 150,
-            y: d3.event.sourceEvent.y - dragDeltaY - $container.offsetTop - 70
+            x: d3.event.sourceEvent.x - dragDeltaX - $centerRight.offsetLeft - 200,
+            y: d3.event.sourceEvent.y - dragDeltaY - $centerRight.offsetTop - 156
           };
           if (position.x > 0) {
             //设置两个按钮的重合
             var ftop = position.x;
             var fleft = position.y;
             var ObgjecItem = chart.getItemsNoid();
+            console.log(ObgjecItem);
             ObgjecItem.forEach(function (item) {
               var btop = item.x;
               var bleft = item.y;
-              // console.log(btop);
-              if (
-                ftop + 50 < btop ||
-                ftop > btop + 50 ||
-                fleft + 50 < bleft ||
-                fleft > bleft + 50
-              ) {
+              if (ftop + 50 < btop || ftop > btop + 50 || fleft + 50 < bleft || fleft > bleft + 50) {
                 console.log("和所有兄弟都不相交");
               } else {
                 //新增一个图标
                 var item2 = chart.addItem({
                   x: position.x + 200,
-                  y: position.y + 30,
-                  id: "22222",
-                  name: $dragItem.attr("data-name"),
-                  type: $dragItem.attr("data-type")
+                  y: position.y,
+                  uId: makeId,
+                  text: '头部类型' + makeId,
+                  type: 3,
+                  itemIcon: 'static/images/list4.png',
+                  data: null,
                 });
                 arrItem.push(item2);
                 console.log("和某个兄弟相交:", item.id);
@@ -224,15 +156,13 @@ export default {
             var item1 = chart.addItem({
               x: position.x,
               y: position.y,
-              id: count,
-              name: $dragItem.attr("data-name"),
-              type: $dragItem.attr("data-type")
+              uId: makeId,
+              text: '头部类型' + makeId,
+              type: 1,
+              itemIcon: 'static/images/list4.png',
+              data: null,
             });
-            count++;
             arrItem.push(item1);
-            // let line = Chart._addLine(arrItem[0], "output", arrItem[1], "input");
-            // line.updatePath();
-
           }
           $dragItem.remove();
         });
@@ -252,23 +182,32 @@ export default {
     },
     loadData() {
       // chart.setItems(JSON.parse(localStorage.getItem("items")));
-      chart.setItems(itemdatas);
     },
     //切换画布  type:1-新增画布，2-加载已有画布
     handleTabsClick(canvasId, type) {
-      debugger
     },
     // tab 增加新内容
     handleTabsEdit(targetName, action) {
-      debugger
+      let newTabName = util.makeId();
       if (action === 'add') {
-        let newTabName = ++this.tabIndex + '';
+        //监听画布信息
+        this.watchEvent();
         this.editableTabs.push({
-          title: 'New Tab',
+          title: '画布' + `${newTabName}`,
           name: newTabName,
-          content: 'New Tab content'
+          content: `svg${newTabName}`,
+          isEditChange: false, //是否显示星号
         });
         this.editableTabsValue = newTabName;
+
+        /*********** （2）知识点在这里不添加this.$nextTick 就获取不到dom **************************/
+        //从新创造实例
+        this.$nextTick(() => {
+          var container = d3.select(`#svg${this.editableTabsValue}`);
+          chart = new Chart({
+            container: container,
+          });
+        })
       }
       if (action === 'remove') {
         let tabs = this.editableTabs;
@@ -295,6 +234,45 @@ export default {
     onCloseDialog(item) {
       // console.log(item);
       this.dialog[item.name] = false;
+    },
+    //请求左侧列表数据
+    getLeftListData() {
+      /*********（1）知识点Promise 解决dom加载完成的方法 ********** */
+      return new Promise((resolve, reject) => {
+        this.http.get('https://www.easy-mock.com/mock/5c468fcd3ea95957a403a95c/KRYL/queryGroupData').then((data) => {
+          if (data.status == 200) {
+            this.getGroupData_C = data.data.data
+            resolve()
+          }
+        }).catch(function (err) {
+          reject()
+          console.log('获取内容失败')
+        })
+      })
+      // 老办法 用定时器解决
+      // setTimeout(() => {
+      //   this.bindDragEvent();
+      // }, 1000);
+    },
+    //监听画布上的内容是否被修改过。修改过就会出现星号
+    watchEvent() {
+      setTimeout(() => {
+        var _this = this;
+        //获取的是当前画布
+        document.querySelectorAll('.el-tabs__content .topo-chart').forEach(item => {
+          //dom被修改的的时候被触发
+          item.addEventListener('DOMSubtreeModified', () => {
+            _this.editableTabs.forEach((el, index) => {
+              console.log(el.name == this.editableTabsValue);
+              if (el.name == this.editableTabsValue) {
+                el.isEditChange = true
+                //从新渲染element ui
+                _this.$set(_this.editableTabs, index, el)
+              }
+            })
+          })
+        })
+      }, 1000)
     }
   }
 };
@@ -317,14 +295,6 @@ export default {
   float: left;
 }
 
-#chart-container {
-  position: absolute;
-  top: 0;
-  left: 160px;
-  bottom: 0;
-  right: 0;
-  overflow: hidden;
-}
 .item-rights {
   float: left;
   left: 190px;
@@ -336,7 +306,7 @@ export default {
     width: 100%;
   }
 }
-#topo-chart {
+.topo-chart {
   cursor: crosshair;
 
   /deep/ .item {

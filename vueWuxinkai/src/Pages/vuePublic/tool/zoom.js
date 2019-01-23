@@ -10,5 +10,5 @@ export default () => {
   const x = window.innerWidth / pageWidth
   const y = window.innerHeight / pageHeight
   body.style.transform = `scale(${x},${y})`
-  console.log(window.innerWidth,window.innerHeight);
+  // console.log(window.innerWidth,window.innerHeight);
 }

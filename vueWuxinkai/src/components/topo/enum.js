@@ -18,13 +18,7 @@ let bgColor = {
 }
 
 let icon = {
-  DEVICE: require('./images/report.png'),
-  CUSTOM_DATA: require('./images/online.png'),
-  LOGIC_RULE: require('./images/condition.png'),
-  ARITHMETIC: require('./images/caculator.png'),
-  APP: require('./images/post.png'),
-  HTTP: require('./images/http.png'),
-  EMAIL: require('./images/email.png')
+  DEVICE: require('./images/list5.png'),
 }
 
 let name = {

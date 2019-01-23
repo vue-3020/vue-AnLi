@@ -471,17 +471,6 @@ export default new Router({
           }
         },
         {
-          path: "echartsIn",
-          name: "echartsIn",
-          component: resolve => require(["#/vuePublic/echartsIn.vue"], resolve),
-          meta: {
-            title: "echarts图",
-            isUseCache: false,
-            keepAlive: false,
-            breadcrumbLeft: true //自定义属性
-          }
-        },
-        {
           path: "translate",
           name: "translate",
           component: resolve => require(["#/vuePublic/translate.vue"], resolve),
@@ -707,7 +696,7 @@ export default new Router({
           keepAlive: false,
           breadcrumbLeft: true
         },
-      },{
+      }, {
         path: "dragZone",
         name: "dragZone",
         component: resolve => require(["#/tuozhuai/dragZone.vue"], resolve),
@@ -717,6 +706,38 @@ export default new Router({
           keepAlive: false,
           breadcrumbLeft: true
         },
+      }]
+    },
+    {
+      path: "/map",
+      name: "map",
+      component: Layout,
+      name: "echarts地图的应用学习",
+      meta: {
+        title: "echarts的应用",
+        isUseCache: false,
+        keepAlive: false
+      },
+      children: [{
+        path: "echartsIn",
+        name: "echartsIn",
+        component: resolve => require(["#/map/echartsIn.vue"], resolve),
+        meta: {
+          title: "v-echarts图学习",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true //自定义属性
+        }
+      }, {
+        path: "echartsXiaZuan",
+        name: "echartsXiaZuan",
+        component: resolve => require(["#/map/echartsXiaZuan.vue"], resolve),
+        meta: {
+          title: "地图下钻到县级",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true //自定义属性
+        }
       }]
     }
   ]

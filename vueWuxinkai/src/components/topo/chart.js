@@ -26,7 +26,6 @@ class Chart {
     this.drawingLine = false
     this.currentLine = null
     this.selectedLine = null
-
     this._bindEvent()
   }
 
@@ -38,23 +37,24 @@ class Chart {
     let item = new Item({
       container: this.container,
       id: params.id,
+      uId: params.uId,
       x: params.x,
       y: params.y,
       name: params.name,
       text: params.text,
       type: params.type,
+      itemIcon: params.itemIcon,
       inputIds: params.inputIds,
       outputIds: params.outputIds,
       data: params.data,
       onDrag: this._onItemDrag.bind(this), //拖拽追随事件
       onClick: this._onItemClick.bind(this),
-      // onDblclick: this._onItemDblclick.bind(this),
       onMouseup: this._onItemMouseup.bind(this),
       onRemove: this._onItemRemove.bind(this),
       onPortMousedown: this._onPortMousedown.bind(this),
       onPortMouseup: this._onPortMouseup.bind(this)
     })
-    this.list[item.id] = item
+    this.list[item.id] = item;
     this.listNoid.push(item)
     return item
   }
@@ -67,6 +67,7 @@ class Chart {
    * 获取所有元素
    */
   getItems() {
+    console.log(this.list);
     return this.list
   }
   //自定义的方法 获取元素

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import logger from 'vuex/dist/logger' //导出日志
 import Vuex from 'vuex'
-
+import user from './modules/login/user'
 import example from './example/vuexExample'
 import tableVisible from './modules/vueElement/vuexTable'
 import vuexTestIndex from './modules/vueElement/vuexTest'
@@ -19,6 +19,7 @@ const store = new Vuex.Store({
     vuexTestIndex, //获取表格数据和分页
     echartRadar, //echar数据
     screen, //电子表时间
+    user, //获取登录的信息
   },
   // plugins: [vuexLocal.plugin]
 })
