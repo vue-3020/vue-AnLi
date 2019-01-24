@@ -9,7 +9,7 @@
 <script>
 import Echarts from "echarts";
 import Axios from "axios";
-//引入echarts-gl
+//引入echarts-gl w
 require('echarts-gl');
 //读取json数据
 import StarsDta from "./json/StarsDta";
