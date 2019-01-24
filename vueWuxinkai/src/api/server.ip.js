@@ -7,3 +7,4 @@ if (nodeEnv === 'development') {
 export const baseHref = IP
 
 export default {}
+export const LocalbaseHref = 'http://localhost:1989'

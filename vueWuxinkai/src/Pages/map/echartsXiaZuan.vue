@@ -15,8 +15,23 @@ export default {
   data() {
     return {
       option: {
+        //设置背景渐变色
+        backgroundColor: {
+          type: 'linear',
+          x: 0,
+          y: 0,
+          x2: 1,
+          y2: 1,
+          colorStops: [{
+            offset: 0, color: '#0f2c70' // 0% 处的颜色
+          }, {
+            offset: 1, color: '#091732' // 100% 处的颜色
+          }],
+          globalCoord: false // 缺省为 false
+        },
         geo: {
           map: 'china',
+          zoom: 1,
           itemStyle: {
             normal: {
               borderColor: 'rgba(147, 235, 248, 1)',
@@ -28,18 +43,24 @@ export default {
                 r: 0.8,
                 colorStops: [{
                   offset: 0,
-                  color: 'rgba(175,238,238, 0)'
+                  color: 'rgba(147, 235, 248, 0)' // 0% 处的颜色
                 }, {
                   offset: 1,
-                  color: 'rgba(47,79,79, .1)'
+                  color: 'rgba(147, 235, 248, .2)' // 100% 处的颜色
                 }],
+                globalCoord: false // 缺省为 false
               },
               shadowColor: 'rgba(128, 217, 248, 1)',
+              // shadowColor: 'rgba(255, 255, 255, 1)',
               shadowOffsetX: -2,
               shadowOffsetY: 2,
               shadowBlur: 10
             },
-          }
+            emphasis: {
+              areaColor: '#389BB7',
+              borderWidth: 0
+            }
+          },
         },
         title: {
           x: '20px',
@@ -60,6 +81,20 @@ export default {
             selectedMode: "single",
             symbolSize: function (val) {
               return 104;
+            },
+            //设置颜色
+            label: {
+              normal: {
+                show: true,
+                textStyle: {
+                  color: '#fff'
+                }
+              },
+              emphasis: {
+                textStyle: {
+                  color: '#fff'
+                }
+              }
             },
             itemStyle: {
               normal: {
@@ -83,8 +118,8 @@ export default {
   mounted() {
     //获取元素
     this.chart = Echarts.init(this.$refs.map);
-    // 页面加载 没有数据的遮罩层
-    this.chart.showLoading();
+    // 页面加载 没有数据的遮罩层 气泡状态
+    this.chart.showLoading({ effect: 'bubble' });
     //请求的全国地图
     let DataJson = require('./mapData/china.json')
     //加载json数据

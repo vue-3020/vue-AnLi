@@ -719,26 +719,38 @@ export default new Router({
         keepAlive: false
       },
       children: [{
-        path: "echartsIn",
-        name: "echartsIn",
-        component: resolve => require(["#/map/echartsIn.vue"], resolve),
-        meta: {
-          title: "v-echarts图学习",
-          isUseCache: false,
-          keepAlive: false,
-          breadcrumbLeft: true //自定义属性
+          path: "echartsIn",
+          name: "echartsIn",
+          component: resolve => require(["#/map/echartsIn.vue"], resolve),
+          meta: {
+            title: "v-echarts图学习",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
+          path: "echartsXiaZuan",
+          name: "echartsXiaZuan",
+          component: resolve => require(["#/map/echartsXiaZuan.vue"], resolve),
+          meta: {
+            title: "地图下钻到县级",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        }, {
+          path: "echartsStars",
+          name: "echartsStars",
+          component: resolve => require(["#/map/echartsStars.vue"], resolve),
+          meta: {
+            title: "新浪星星信息图",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
         }
-      }, {
-        path: "echartsXiaZuan",
-        name: "echartsXiaZuan",
-        component: resolve => require(["#/map/echartsXiaZuan.vue"], resolve),
-        meta: {
-          title: "地图下钻到县级",
-          isUseCache: false,
-          keepAlive: false,
-          breadcrumbLeft: true //自定义属性
-        }
-      }]
+      ]
     }
   ]
 });

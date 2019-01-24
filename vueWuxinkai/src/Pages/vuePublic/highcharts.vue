@@ -1,6 +1,6 @@
 <template>
   <div>
-    <highcharts :options="options"></highcharts>
+    <highcharts :options="options" ref="circular"></highcharts>
   </div>
 </template>
 <script>
@@ -55,6 +55,22 @@ export default {
         }]
       }
     }
-  }
+  },
+  mounted() {
+    let _this = this
+    var resizeTicket = ''
+    //刷新地图
+    // clearTimeout(resizeTicket); //清空定时器
+    resizeTicket = setTimeout(() => {
+      _this.$refs.circular.chart.reflow();
+    }, 1000)
+    //加载数据
+    _this.getCoverageList();
+  },
+  methods: {
+    getCoverageList() {
+
+    }
+  },
 }
 </script>

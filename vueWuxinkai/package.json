@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "d3": "^5.1.0",
+    "echarts-gl": "^1.1.1",
     "element-ui": "2.3.3",
     "es6-promise": "^4.2.5",
     "highcharts": "^6.2.0",
