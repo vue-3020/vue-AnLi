@@ -390,18 +390,18 @@ export default new Router({
             breadcrumbLeft: true //自定义属性
           }
         },
-        {
-          path: "model",
-          name: "model",
-          component: resolve =>
-            require(["#/vueElement/model.vue"], resolve),
-          meta: {
-            title: "模态框",
-            isUseCache: false,
-            keepAlive: false,
-            breadcrumbLeft: true //自定义属性
-          }
-        }
+        // {
+        //   path: "model",
+        //   name: "model",
+        //   component: resolve =>
+        //     require(["#/vueElement/model.vue"], resolve),
+        //   meta: {
+        //     title: "模态框",
+        //     isUseCache: false,
+        //     keepAlive: false,
+        //     breadcrumbLeft: true //自定义属性
+        //   }
+        // }
       ]
     },
     {
@@ -751,6 +751,39 @@ export default new Router({
           }
         }
       ]
+    },
+    {
+      path: "/elementUi",
+      name: "elementUi",
+      component: Layout,
+      name: "element知识点",
+      meta: {
+        title: "element知识点",
+        isUseCache: false,
+        keepAlive: false
+      },
+      children: [{
+        path: "model",
+        name: "model",
+        component: resolve => require(["#/elementUi/model.vue"], resolve),
+        meta: {
+          title: "学习",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true //自定义属性
+        }
+      },
+      {
+        path: "wenTi",
+        name: "wenTi",
+        component: resolve => require(["#/elementUi/wenTi.vue"], resolve),
+        meta: {
+          title: "学习",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true //自定义属性
+        }
+      }]
     }
   ]
 });

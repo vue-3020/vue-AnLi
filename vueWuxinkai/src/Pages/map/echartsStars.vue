@@ -54,6 +54,7 @@ export default {
         },
         geo: {
           name: '强',
+          roam: true,
           type: 'scatter',
           map: 'china',
           label: {
