@@ -706,6 +706,16 @@ export default new Router({
           keepAlive: false,
           breadcrumbLeft: true
         },
+      }, {
+        path: "drop",
+        name: "drop",
+        component: resolve => require(["#/tuozhuai/drop.vue"], resolve),
+        meta: {
+          title: "自定义拖拽",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true
+        },
       }]
     },
     {
