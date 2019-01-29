@@ -79,7 +79,7 @@ export default {
       this.mouseObj.startDrag = true;
       this.mouseObj.startEvent = event;
     },
-    //拖动
+    //拖动   
     mousemove(event) {
       if (this.mouseObj.startDrag) {
         this.mouseObj.moveValue = this.mouseObj.startEvent.clientY - event.clientY;
