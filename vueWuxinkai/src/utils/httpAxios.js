@@ -158,6 +158,7 @@ export default {
     return new Promise((resolve, reject) => {
       let msd = baseMsg['method'] ? baseMsg['method'] : 'GET'
       let url = baseMsg['url']
+      debugger
       if (msd === 'get' || msd === 'GET') {
         axios({
           method: msd,
@@ -180,10 +181,10 @@ export default {
           method: msd,
           url,
           data: param,
-          cancelToken: new CancelToken(c => {
-            cancel = c
-          }),
-          headers: { "Tescomm_Access_Token": Cookies.get('Tescomm_Access_Token') }
+          // cancelToken: new CancelToken(c => {
+          //   cancel = c
+          // }),
+          //headers: { "Tescomm_Access_Token": Cookies.get('Tescomm_Access_Token') }
         }
         ).then(res => {
           resolve(res)

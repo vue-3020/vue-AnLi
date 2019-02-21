@@ -1,5 +1,7 @@
 // import Cookies from 'js-cookie'
-import {  loginByUsername } from '@/api/login'
+import {
+  loginByUsername
+} from '@/api/login'
 
 const vuesAccount = {
   namespaced: true,
@@ -19,14 +21,12 @@ const vuesAccount = {
 
   },
   actions: {
-    login({
-      commit
-    }, userInfo) {
+    login({ commit}, userInfo) {
+      debugger
       const username = userInfo.username.trim() //trim浏览器版本限制：JavaScript Version 1.8
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password, userInfo.code).then(response => {
-          debugger
-          const data = response.data
+          const data = response
         })
       })
     }

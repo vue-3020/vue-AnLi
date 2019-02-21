@@ -32,43 +32,38 @@
 
 <script>
 /*利用vuex 实现数据存储*/
-// import {mapGetters, mapActions, mapMutations} from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 export default {
-  // computed: {
-  //   ...mapGetters('user', ['getUserID', 'getUserName', 'getAccessToken', 'getRoles'])
-  // },
   data: function () {
     return {
       loading: false, //页面加载的 按钮加载
       isShow: false, //点击眼睛显示密码
       userInfo: {
-        username: 'admin',
-        password: 'admin',
+        username: 'user1',
+        password: 'user1',
         ACTIVE_CODE: ' '
       },
       rules: {
         username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
-        // ACTIVE_CODE: [{ required: true, message: "请输入激活码", trigger: "blur" }]
       }
     }
   },
   methods: {
-    ...mapActions('app', ['login']),
+    ...mapActions('user', ['login']),
     //登陆
     submitForm(formName) {
+      let _this = this
+      console.log(formName);
       this.$refs[formName].validate(valid => { // 验证elementUi 表单
         if (valid) {
           this.loading = true
+          this.$router.push("/");
           localStorage.removeItem("localMenus") //清楚routeStorage.vue的缓存菜单
-          // this.$router.push("/");
-          // this.login(this.userInfo).then((response) =>{
+          // _this.login(_this.userInfo).then((data) => {
           //   this.$router.push("/");
-          // }).catch(error =>{
-          //   this.$message({ // 验证提示
-          //     message:error != null ? error : '登陆失败',
-          //     center:true
-          //   })
+          // }).catch(error => {
+          //   // this.$message.error(error);
           // })
           this.loading = false
         } else {
@@ -79,7 +74,6 @@ export default {
           this.loading = false
           return false
         }
-
       })
     },
     //切换是否显示密码
