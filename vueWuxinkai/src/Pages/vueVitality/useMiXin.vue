@@ -20,7 +20,6 @@ export default {
       return num1 + num2
     }
   },
-  props: [],
   data() {
     return {
       a: '1'
