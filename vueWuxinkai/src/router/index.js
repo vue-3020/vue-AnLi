@@ -87,8 +87,7 @@ export default new Router({
             {
               path: "routeSon2",
               name: "routeSon2",
-              component: resolve =>
-                require(["#/vueRoute/children/routeSon2.vue"], resolve),
+              component: resolve => require(["#/vueRoute/children/routeSon2.vue"], resolve),
               meta: {
                 title: "params接收路由参数",
                 isUseCache: false,
@@ -100,8 +99,7 @@ export default new Router({
         {
           path: "routeHook",
           name: "routeHook",
-          component: () =>
-            import("#/vueRoute/routeHook"), //第二种引入方式
+          component: () => import("#/vueRoute/routeHook"), //第二种引入方式
           meta: {
             title: "路由钩子函数",
             isUseCache: false,

@@ -5,6 +5,12 @@
   </div>
 </template>
 <script>
+
+//案例中给的方法是这样写的，但是到了vue脚手架里就的下面这种写法
+// Vue.directive('drag', function (el, binding, vnode) {
+//   el.style = 'color:' + binding.value;
+// });
+
 export default {
   data() {
     return {
