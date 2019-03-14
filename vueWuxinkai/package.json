@@ -16,6 +16,7 @@
     "element-ui": "2.3.3",
     "es6-promise": "^4.2.5",
     "highcharts": "^6.2.0",
+    "highlight.js": "^9.15.6",
     "js-cookie": "^2.2.0",
     "loadsh": "0.0.3",
     "lodash": "^4.17.11",

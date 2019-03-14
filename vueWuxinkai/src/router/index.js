@@ -663,16 +663,28 @@ export default new Router({
         keepAlive: false
       },
       children: [{
-        path: "css3",
-        name: "css3",
-        component: resolve => require(["#/css3/css3.vue"], resolve),
-        meta: {
-          title: "css3学习",
-          isUseCache: false,
-          keepAlive: false,
-          breadcrumbLeft: true
+          path: "css3",
+          name: "css3",
+          component: resolve => require(["#/css3/css3.vue"], resolve),
+          meta: {
+            title: "css3学习",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true
+          }
+        },
+        {
+          path: "cssMethod",
+          name: "cssMethod",
+          component: resolve => require(["#/css3/cssMethod.vue"], resolve),
+          meta: {
+            title: "css常用方法",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true
+          }
         }
-      }, ]
+      ]
     },
     {
       path: "/tuozhuai",
@@ -771,27 +783,28 @@ export default new Router({
         keepAlive: false
       },
       children: [{
-        path: "model",
-        name: "model",
-        component: resolve => require(["#/elementUi/model.vue"], resolve),
-        meta: {
-          title: "学习",
-          isUseCache: false,
-          keepAlive: false,
-          breadcrumbLeft: true //自定义属性
+          path: "model",
+          name: "model",
+          component: resolve => require(["#/elementUi/model.vue"], resolve),
+          meta: {
+            title: "学习",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
+          path: "wenTi",
+          name: "wenTi",
+          component: resolve => require(["#/elementUi/wenTi.vue"], resolve),
+          meta: {
+            title: "学习",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
         }
-      },
-      {
-        path: "wenTi",
-        name: "wenTi",
-        component: resolve => require(["#/elementUi/wenTi.vue"], resolve),
-        meta: {
-          title: "学习",
-          isUseCache: false,
-          keepAlive: false,
-          breadcrumbLeft: true //自定义属性
-        }
-      }]
+      ]
     }
   ]
 });
