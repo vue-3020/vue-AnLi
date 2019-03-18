@@ -805,6 +805,29 @@ export default new Router({
           }
         }
       ]
+    },
+    {
+      path: "/potting",
+      name: "potting",
+      component: Layout,
+      name: "potting封装",
+      meta: {
+        title: "potting",
+        isUseCache: false,
+        keepAlive: false
+      },
+      children: [{
+          path: "encapsulation",
+          name: "encapsulation",
+          component: resolve => require(["#/potting/encapsulation.vue"], resolve),
+          meta: {
+            title: "学习",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true
+          }
+        }
+      ]
     }
   ]
 });

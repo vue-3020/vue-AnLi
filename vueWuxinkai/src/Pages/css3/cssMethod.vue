@@ -240,4 +240,4 @@ export default {
   background: red;
 }
 </style>
-script
+
