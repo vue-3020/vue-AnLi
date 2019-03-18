@@ -58,6 +58,16 @@ export default {
     delay: {
       type: Number,
       default: 0
+    },
+    //前缀
+    prefix: {
+      type: String,
+      default: ''
+    },
+    //后缀
+    suffix: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -77,7 +87,9 @@ export default {
         useEasing: this.useEasing,
         useGrouping: this.useGrouping,
         separator: this.separator,
-        decimal: this.decimal
+        decimal: this.decimal,
+        prefix: this.prefix,
+        suffix: this.suffix,
       })
       setTimeout(() => {
         this.counter.start()
