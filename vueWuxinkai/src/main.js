@@ -95,7 +95,8 @@ new Vue({
   data() {
     return {
       bus: new Vue(), //创建一个实例，
-      haha: 'hahah'
+      haha: 'hahah',
+      windowHeight: document.documentElement.clientHeight - 400, //设置子页面表格的高度
     }
   }
 }).$mount('#app') //挂载app，要保证有编译的元素
