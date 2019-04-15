@@ -2,7 +2,10 @@
   <div>
     <div class="hello" ref="homePage">//设置最外层div的ref属性
       <br>
-      <div class="top-row"></div>
+      <div class="top-row" style="float:left"></div>
+      <div :style="'width:200px;background:pink;float:left;height:'+this.$root.$data.windowHeight+'px'">
+
+      </div>
     </div>
   </div>
 </template>
@@ -14,6 +17,9 @@ export default {
     }
   },
   mounted() { //页面初始化完成执行的事件
+    //从main.js中获取高度
+    console.log(this.$root.$data.windowHeight);
+
     // this.initHeight() //页面加载的时候执行一次
 
     //---------------------第二种办法---------注释的是第一种办法-----------------------
