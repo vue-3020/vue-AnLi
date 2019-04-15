@@ -6,18 +6,18 @@
      <p>不支持缓存，数据变，直接会触发相应的操作</p>
      <p>当一个属性发生变化时，需要执行对应的操作；一对多</p>
     <br>
-     <p>支持异步方法，可以进行表单校验, 延迟一秒执行</p>
+     <h1>支持异步方法，可以进行表单校验, 延迟一秒执行</h1>
    <input class="text" type="text" v-model="a">
    {{msg}}
    <br>
    <br>
-   <p>watch写法：实现的结果应该是  wuxinkai - vals - wangxiaogou</p>
+   <h1>watch写法：在左右两侧添加内容</h1>
    <input type="text" v-model="vals">
-   {{fullName}}
+  <span style="font-size: 30px;"> {{fullName}}</span>
    <br>
    <br>
    <br>
-   <p>key的用于：相同的结构被复用，这是错误的input 值没有变化，在input框输入内容</p>
+   <h1>key的用于：相同的代码结构会被复用</h1>
    <button @click="cut=!cut">点击切换</button>
    <template v-if='cut'>
        <label >登陆</label>
@@ -27,7 +27,8 @@
        <label >注册</label>
        <input type="text">
    </template>
-   <p>正确的写法</p>
+<br>
+   <h3>被改变的代码 正确的写法</h3>
    <button @click="end=!end">点击切换</button>
    <template v-if='end'>
        <label >正确登陆</label>
@@ -47,8 +48,8 @@ export default {
      end:true,
       a: "", //观察人
       msg: "",
-      firstName:'wuxinkai', //
-      lastName:'wangxiaogou',
+      firstName:'在左侧', //
+      lastName:'在右侧',
       vals:'',
       fullName:'' //存储的
     };
@@ -68,7 +69,7 @@ export default {
       }, 500);
     },
     vals(newVal, oldVal){
-        this.fullName = this.firstName + this.vals +this.lastName
+        this.fullName = `${this.firstName} ` + this.vals +` ${this.lastName}`
     }
   },
   computed:{
