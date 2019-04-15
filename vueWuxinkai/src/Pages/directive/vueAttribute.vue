@@ -135,11 +135,11 @@
         </li>
       </ul>
     </el-card>
-     <br>
+    <br>
     <h3>鼠标划过的效果</h3>
     <el-card class="box-card">
       <ul class="list-group">
-        <li class="list-group-item" v-for="(item,index) in fruits" :key="index" :class={'active':node.state} @click='toggle(index)'>
+        <li class="list-group-item" v-for="(item,index) in activityCopy" :key="index" :class="{active:index == toggleIndex}" @click='toggle(index)'>
           {{item.name}}
         </li>
       </ul>
@@ -153,6 +153,7 @@ export default {
     return {
       arr3: [],
       val: '',
+      toggleIndex:0,
       msg: '这是默认数据v-once',
       arrs: [1, 2, 3, 4, 5],
       arrsLength3: 0,
@@ -164,7 +165,8 @@ export default {
         { name: '苹果', color: ['green', 'red'] },
         { name: '鸭梨', color: ['green', 'blue', 'pink'] },
       ],
-      products: [] //created 初始化
+      products: [], //created 初始化
+      activityCopy: {}, //赋值相同的内容
     }
   },
   filters: { //过滤器
@@ -183,13 +185,13 @@ export default {
     }
   },
   mounted() {
-    this.arrs = [1, 2, 3, 4, 5, 6, 7],
+    // this.arrs = [1, 2, 3, 4, 5, 6, 7],
+    this.arrs.push('6')
       this.arrsLength = this.$refs.wrap.length;//错误结果
     this.$nextTick(() => {
       // 这个回调函数会等待DOM异步渲染完成执行；
       this.arrsLength2 = this.$refs.wrap.length
     });
-
   },
   //专门发送ajax用
   created() { //数据被初始化后被调用，调用数据的地方 (也叫钩子函数)
@@ -201,6 +203,9 @@ export default {
         console.log(error);
       })
     console.log(this.products)
+
+    //赋值一份数据
+    this.activityCopy = JSON.parse(JSON.stringify(this.fruits));
   },
   //把事件都写到methods上
   methods: { // ， methods 和data数据都放到 vue的实例上 而且名字不能冲突，冲突会报错，methods的this指向的都是实例
@@ -247,9 +252,14 @@ export default {
     },
     handleMouseOut(index) {
       this.$set(this.$data.fruits[index], '_isHover', false) //离开
+    },
+    toggle(index){
+      this.toggleIndex =index
+      console.log(index);
     }
   },
   updated() {
+    //只有事先设置好的data变量如下arrData改变并且要在页面重新渲染{{ arrData }}完成之后,才会进updated方法，光改变arrData但不渲染页面是不会进的.
     this.arrsLength3 = this.$refs.wrap.length
   }
 }
@@ -266,5 +276,8 @@ export default {
 .bgColor {
   background: red;
   color: #fff;
+}
+.list-group-item.active{
+  background: green;color: #fff
 }
 </style>

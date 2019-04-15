@@ -63,21 +63,79 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+// （1 ）定义变量
+$red:red;
+$border:2;
+//被继承
+.fff{background: #fff;}
+
+//mixin 
+@mixin bandf($b,$f){
+  font-size: #{$f}px;
+  color: $b;
+};
+
+// 引入其他 sass
+// @import “t2.sass”
+
+//判断语句 宽度5就是蓝色背景，
+@mixin bandf2($f){
+  @if($f==5){
+  background: blue;
+  }@else{
+  background: pink ;
+  }
+};
+
+// 循环 来源于哪里去哪里
+// @for $i from 1 to 5{
+//   .a#{$i}{
+//     background: url('img/#{$i}.png')
+//   }
+// }
+
+// @while $d > 5{
+//   .a#{$d}{
+//     background: url('img/#{$d}.png')
+//   }
+//   $i: $i + 1 
+// }
+
+// @each $i in 1,2,3,4,5{
+//   .a#{$i}{
+//     background: url('img/#{$i}.png')
+//   }
+//   $i: $i + 1 
+// }
+
+//函数 设置颜色
+@function fontColor($r,$g,$b,$a){
+  @return rgba($r,$g,$b,$a)
+}
+
 .panel-group {
   margin-top: 18px;
   .card-panel-col{
     margin-bottom: 32px;
   }
   .card-panel {
-    height: 108px;
+    //（2）  如果是组合的方式需要加 #{}
+    border: #{$border}px solid $red;
+    //（3） 计算功能,
+    height: 50px + 58px;
+    // 注意变量之间不能相加计算 ，想乘可以
+    // height: #{$border} + #{$border}; height: 2 + 2
     cursor: pointer;
-    font-size: 12px;
+    //（5）重复利用的代码
+    @include bandf(#fff,12);
     position: relative;
     overflow: hidden;
-    color: #666;
-    background: #fff;
-    box-shadow: 4px 4px 40px rgba(0, 0, 0, .05);
-    border-color: rgba(0, 0, 0, .05);
+    //（4）继承
+    @extend .fff;
+    // 不能继承嵌套选择器
+    // @extend .a .b;
+    box-shadow: 4px  4px 40px rgba(0, 0, 0, .05);
+    // border-color: rgba(0, 0, 0, .05);
     &:hover {
       .card-panel-icon-wrapper {
         color: #fff;
@@ -125,12 +183,16 @@ export default {
       margin-left: 0px;
       .card-panel-text {
         line-height: 18px;
-        color: rgba(0, 0, 0, 0.45);
+        color: $red;
         font-size: 16px;
         margin-bottom: 12px;
       }
       .card-panel-num {
         font-size: 20px;
+        //if判断
+         @include bandf2(12);
+         //函数
+         color: fontColor(12,74,214,1);
       }
     }
   }

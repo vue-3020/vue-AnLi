@@ -17,6 +17,8 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 Vue.use(vueQuillEditor)
+
+
 //布局拖拽
 import VueDragZone from 'vue-drag-zone'
 Vue.use(VueDragZone)

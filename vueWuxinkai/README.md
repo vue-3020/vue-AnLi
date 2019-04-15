@@ -527,3 +527,6 @@ echart图 https://www.npmjs.com/package/vue-echarts
 在windowsHeight.js中 
 
 ### 增加组件 配合页面开发
+
+
+/Users/wuxinkai/Documents/mongoDB/bin/mongod --dbpath /Users/wuxinkai/Documents/mongoDB/data/db

@@ -1,6 +1,6 @@
  <template>
   <div>
-    <h1>methods</h1>
+    <h1>methods，</h1>
     <p>按钮的点击事件</p>
     <p>鼠标移动事件</p>
     <p>事件的相应方法</p>

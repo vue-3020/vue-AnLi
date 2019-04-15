@@ -21,7 +21,7 @@ export default {
       jsonEditor: false
     }
   },
-  props: ['value'],
+  props: ['value'], //
   watch: {
     value(value) {
       const editor_value = this.jsonEditor.getValue()

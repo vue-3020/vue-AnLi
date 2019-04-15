@@ -87,8 +87,7 @@ export default new Router({
                         {
                             path: "routeSon2",
                             name: "routeSon2",
-                            component: resolve =>
-                                require(["#/vueRoute/children/routeSon2.vue"], resolve),
+                            component: resolve => require(["#/vueRoute/children/routeSon2.vue"], resolve),
                             meta: {
                                 title: "params接收路由参数",
                                 isUseCache: false,
@@ -233,6 +232,17 @@ export default new Router({
                     }
                 },
                 {
+                    path: "methods",
+                    name: "methods",
+                    component: resolve => require(["#/vueVitality/methods.vue"], resolve),
+                    meta: {
+                        title: "methods生命周期",
+                        isUseCache: false,
+                        keepAlive: false,
+                        breadcrumbLeft: true
+                    }
+                },
+                {
                     path: "filter",
                     name: "filter",
                     component: resolve => require(["#/vueVitality/filter.vue"], resolve),
@@ -249,16 +259,6 @@ export default new Router({
                     component: resolve => require(["#/vueVitality/mounted.vue"], resolve),
                     meta: {
                         title: "mounted操作dom",
-                        isUseCache: false,
-                        keepAlive: false,
-                        breadcrumbLeft: true
-                    }
-                }, {
-                    path: "methods",
-                    name: "methods",
-                    component: resolve => require(["#/vueVitality/methods.vue"], resolve),
-                    meta: {
-                        title: "methods方法操作",
                         isUseCache: false,
                         keepAlive: false,
                         breadcrumbLeft: true
@@ -675,16 +675,28 @@ export default new Router({
                 keepAlive: false
             },
             children: [{
-                path: "css3",
-                name: "css3",
-                component: resolve => require(["#/css3/css3.vue"], resolve),
-                meta: {
-                    title: "css3学习",
-                    isUseCache: false,
-                    keepAlive: false,
-                    breadcrumbLeft: true
+                    path: "css3",
+                    name: "css3",
+                    component: resolve => require(["#/css3/css3.vue"], resolve),
+                    meta: {
+                        title: "css3学习",
+                        isUseCache: false,
+                        keepAlive: false,
+                        breadcrumbLeft: true
+                    }
+                },
+                {
+                    path: "cssMethod",
+                    name: "cssMethod",
+                    component: resolve => require(["#/css3/cssMethod.vue"], resolve),
+                    meta: {
+                        title: "css常用方法",
+                        isUseCache: false,
+                        keepAlive: false,
+                        breadcrumbLeft: true
+                    }
                 }
-            }, ]
+            ]
         },
         {
             path: "/tuozhuai",
@@ -805,6 +817,38 @@ export default new Router({
                     }
                 }
             ]
+        },
+        {
+            path: "/potting",
+            name: "potting",
+            component: Layout,
+            name: "potting封装",
+            meta: {
+                title: "potting",
+                isUseCache: false,
+                keepAlive: false
+            },
+            children: [{
+                path: "encapsulation",
+                name: "encapsulation",
+                component: resolve => require(["#/potting/encapsulation.vue"], resolve),
+                meta: {
+                    title: "学习",
+                    isUseCache: false,
+                    keepAlive: false,
+                    breadcrumbLeft: true
+                }
+            }, {
+                path: "toduList",
+                name: "toduList",
+                component: resolve => require(["#/potting/toduList.vue"], resolve),
+                meta: {
+                    title: "学习",
+                    isUseCache: false,
+                    keepAlive: false,
+                    breadcrumbLeft: true
+                }
+            }]
         }
     ]
 });

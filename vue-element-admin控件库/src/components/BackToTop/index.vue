@@ -14,7 +14,7 @@
 <script>
 export default {
   name: 'BackToTop',
-  props: {
+  props: { //
     visibilityHeight: {
       type: Number,
       default: 400

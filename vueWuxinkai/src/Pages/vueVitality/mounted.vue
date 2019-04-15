@@ -1,5 +1,6 @@
  <template>
   <div>
+    <h1>页面刷新就执行这个事件，dom还没有加载</h1>
     <p>{{a}}</p>
     <p>this.$data 这是vm上的数据</p>
     <p>this.$watch 监控</p>
@@ -18,10 +19,10 @@
         <p class="left" v-for="a in arr" :key="a" ref="mysss">{{a}}</p>
     </div>
     <br>
-    
   </div>
 </template>
 <script>
+
 export default {
   wuxinkai:'用$options实现自定义属性',
   data() {
