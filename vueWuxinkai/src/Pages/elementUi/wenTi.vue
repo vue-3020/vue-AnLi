@@ -29,9 +29,17 @@
         </el-carousel-item>
       </el-carousel>
     </div>
+    <br>
+    <br>
+    <br>
+    <h2>在没有数据的情况下elLoading页面加载</h2>
+    <div>
+        <el-button type="success" @click="upload">elLoading页面加载</el-button>
+    </div>
   </div>
 </template>
 <script>
+import { elLoading } from '@/utils/loading'
 export default {
   data() {
     return {
@@ -98,6 +106,16 @@ export default {
         name: `新增的额${this.indexNum}`
       }
       this.entity.push(entity)
+    },
+
+    //页面加载
+    upload(){
+       elLoading.show('拼命上传中','loadingClass','el-icon-loading','rgba(255, 255, 255, 0.7)')
+      //  elLoading.show('拼命上传中')
+      setTimeout(() => {
+         elLoading.close();
+      }, 3000);
+     
     }
   }
 }
@@ -128,6 +146,13 @@ h3 {
   height: 13px;
   border-radius: 100%;
   background: red;
+}
+.loadingClass .el-icon-picture {
+ font-size: 30px;
+}
+.loadingClass .el-loading-text{
+  font-size: 30px;
+  color: blue
 }
 </style>
 

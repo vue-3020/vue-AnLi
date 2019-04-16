@@ -3,13 +3,13 @@
     <div class="hello" ref="homePage">//设置最外层div的ref属性
       <br>
       <div class="top-row" style="float:left"></div>
-      <div :style="'width:200px;background:pink;float:left;height:'+this.$root.$data.windowHeight+'px'">
-
-      </div>
+      <div :style="'width:200px;background:pink;float:left;height:'+this.$root.$data.windowHeight+'px'"> </div>
+      <div style="width:200px;background:green;float:left" class="top-row"></div>
     </div>
   </div>
 </template>
 <script>
+import { clientHeight2 } from "@/utils/windowsHeight";
 export default {
   data() {
     return {
@@ -17,6 +17,10 @@ export default {
     }
   },
   mounted() { //页面初始化完成执行的事件
+    //从外部引入
+    let topRow = document.querySelector(".top-row")
+     clientHeight2(topRow, 382)
+
     //从main.js中获取高度
     console.log(this.$root.$data.windowHeight);
 
