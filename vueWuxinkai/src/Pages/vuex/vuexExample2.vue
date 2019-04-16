@@ -14,20 +14,27 @@ export default {
     };
   },
   created() {
-
-    //存到vuex里实现资源共享
+    // let list = this.$store.state.listData
+    //  this.$store.commit("example/addList", this.items);
+    //   if(list.length>0){
+    //     alert()
+    //   }
+    //存到vuex里实现资源共享，防止页面重复调用
       this.http.get('https://www.easy-mock.com/mock/5bbab3f329a4d80bbccbcb81/example/menuData').then((data) => {
       if (data.status == 200) {
-        this.items = data.data.data
+        this.items = data.data.data;
         //将值传到vuex里的listdata中，保存起来
-       
+        //example在src\store\index.js里注册,addList是src\store\example\vuexExample.js里的方法，this.items是参数
+      this.$store.commit("example/addList", this.items);
       }
     }).catch(function (err) {
       console.log('获取菜单失败' + err.message)
     })
   },
   computed: {
+    //example在src\store\index.js
     ...mapState("example", ["count"]), //获取表格数据 和总条数
+    ...mapState("example", ["listData"]), //获取表格数据 和总条数
   },
 
 };

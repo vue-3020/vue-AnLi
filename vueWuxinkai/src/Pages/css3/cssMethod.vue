@@ -78,47 +78,60 @@
               data-line="1"
             >
          .box {
-  list-style: none;
-  background: #fff;
-}
+              list-style: none;
+              background: #fff;
+            }
 
-.box li {
-  position: relative;
-  height: 25px;
-  padding: 20px 0;
-  border-bottom: 1px solid #e9eaed;
-}
+            .box li {
+              position: relative;
+              height: 25px;
+              padding: 20px 0;
+              border-bottom: 1px solid #e9eaed;
+            }
 
-.box li:after {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: #9466ff;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
+            .box li:after {
+              content: "";
+              position: absolute;
+              bottom: -1px;
+              left: 0;
+              width: 0;
+              height: 1px;
+              background: #9466ff;
+              -webkit-transition: 0.4s;
+              transition: 0.4s;
+            }
 
-.box li:hover .thumbnail {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
+            .box li:hover .thumbnail {
+              -webkit-transform: scale(1.1);
+              transform: scale(1.1);
+            }
 
-.box li:hover:after {
-  width: 100%;
-}
-.thumbnail {
-  width: 130px;
-  height: 30px;
-  background: red;
-}
+            .box li:hover:after {
+              width: 100%;
+            }
+            .thumbnail {
+              width: 130px;
+              height: 30px;
+              background: red;
+            }
             </span>
           </li>
         </ul>
       </code>
       <br>
+      <br>
+    </div>
+
+
+    <!-- 荧光边框写法 -->
+        <div>
+      <h3><a
+          id="toc-07e"
+          class="anchor"
+        ></a>荧光边框写法</h3>
+      <div class="outerColor" style="height:200px">
+      
+      </div>
       <br>
     </div>
   </div>
@@ -238,6 +251,15 @@ export default {
   width: 130px;
   height: 30px;
   background: red;
+}
+
+
+// 荧光边框
+.outerColor {
+  background: linear-gradient(#10153f, #233068);
+  border: 1px solid #0997dd;
+  -webkit-box-shadow: #0997dd 0 0 10px;
+  border-radius: 4px;
 }
 </style>
 

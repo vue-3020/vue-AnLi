@@ -12,6 +12,12 @@
         </div>
         <div>计数器 <el-button @click="addCounts">+</el-button></div>
         {{msg}}
+        <br>
+        <br>
+        <br>
+        <ul>
+          <li v-for="(item, index) in listData" :key="index">{{item.title}}</li>
+        </ul>
     </div>
 </template>
 <script>
@@ -22,9 +28,12 @@ export default {
       msg: "1234"
     };
   },
-  created() {},
+  created() {
+  },
   computed: {
-    ...mapState("example", ["count"]) //获取表格数据 和总条数
+    //count获取表格数据 和总条数
+    //list 获取vuexExample2中的内容，
+    ...mapState("example", ["count","listData"]),
   },
   methods: {
     ...mapMutations("example", ["addCounts","minus"])

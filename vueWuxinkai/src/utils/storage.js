@@ -1,5 +1,5 @@
 //封装操作localstorage本地存储 封装方法
-
+//在toduList.vue 应用到
 let storage = {
     set(key, value) {
         localStorage.setItem(key, JSON.stringify(value))

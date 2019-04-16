@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" background-color="#324157"
+    <el-menu class="sidebar-el-menu" :default-active="$route.path" :collapse="collapse" background-color="#324157"
       text-color="#bfcbd9" active-text-color="#20a0ff" unique-opened router>
         <template v-for="item in items">
           <template v-if="item.subs">
@@ -8,13 +8,13 @@
               <template slot="title">
                 <i :class="item.icon"></i><span slot="title">{{item.title}}</span>
               </template>
-              <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">
+              <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index"  ref="el-menu-item" @click="change(subItem.index)">
                 {{ subItem.title }}
               </el-menu-item>
             </el-submenu>
           </template>
           <template v-else>
-            <el-menu-item :index="item.index" :key="item.index">
+            <el-menu-item :index="item.index" :key="item.index"  ref="el-menu-item">
               <i :class="item.icon"></i><span slot="title">{{item.title}}</span>
             </el-menu-item>
           </template>
@@ -30,9 +30,18 @@ export default {
       items: []
     }
   },
-  computed: {
-    onRoutes() { //设置默认样式
-      return this.$route.path.replace('/', '')
+  //自定义事件
+  methods: {
+    change(index) {
+       var _this = this;
+      console.log(index);
+        _this.$refs["el-menu-item"].forEach((item) => {
+        if (item.index == index) {
+          item.$el.style.backgroundColor = "red";
+        } else {
+          item.$el.style.backgroundColor = "#324157";
+        }
+      });
     },
   },
   created() {
@@ -49,7 +58,13 @@ export default {
     }).catch(function (err) {
       console.log('获取菜单失败' + err.message)
     })
-  }
+  },
+   watch: {
+      '$route': function (x) { // 监听路由变化
+     
+      //  this.change(this.$route.path)
+      }
+   }
 }
 </script>
 
@@ -69,4 +84,5 @@ export default {
 .sidebar > ul {
   height: 100%;
 }
+
 </style>

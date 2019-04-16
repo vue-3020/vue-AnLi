@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Storage from '@/storage/storage'  //存储
+import Storage from '@/utils/storage'  //存储
 console.log(Storage);
 export default {
   components: {
