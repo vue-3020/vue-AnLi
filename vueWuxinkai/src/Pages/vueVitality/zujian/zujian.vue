@@ -6,6 +6,7 @@
 <script>
 export default {
     data(){
+        
         return {
             msg:'组件创建成功'
         }

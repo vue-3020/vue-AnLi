@@ -530,3 +530,5 @@ echart图 https://www.npmjs.com/package/vue-echarts
 
 
 /Users/wuxinkai/Documents/mongoDB/bin/mongod --dbpath /Users/wuxinkai/Documents/mongoDB/data/db
+
+# 利用vue-reource请求数据

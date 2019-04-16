@@ -662,6 +662,16 @@ export default new Router({
                     keepAlive: false,
                     breadcrumbLeft: true //自定义属性
                 }
+            }, {
+                path: "vuexExample2",
+                name: "vuexExample2",
+                component: resolve => require(["#/vuex/vuexExample2.vue"], resolve),
+                meta: {
+                    title: "数据持久化",
+                    isUseCache: false,
+                    keepAlive: false,
+                    breadcrumbLeft: true //自定义属性
+                }
             }, ]
         },
         {
