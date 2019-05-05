@@ -2,9 +2,10 @@
   <div>
     <div class="hello" ref="homePage">//设置最外层div的ref属性
       <br>
-      <div class="top-row" style="float:left"></div>
+      <div class="top-row" style="float:left"> </div>
       <div :style="'width:200px;background:pink;float:left;height:'+this.$root.$data.windowHeight+'px'"> </div>
-      <div style="width:200px;background:green;float:left" class="top-row"></div>
+      <div style="width:200px;background:green;float:left" class="top-row2"></div>
+      <div style="width:200px;background:blue;float:left;height:50%" ref="boxHeightDiv">设置页面高度50%，监听他的高度</div>
     </div>
   </div>
 </template>
@@ -13,7 +14,10 @@ import { clientHeight2 } from "@/utils/windowsHeight";
 export default {
   data() {
     return {
-      clientHeight: '',
+      wendangHeight: '',
+      //监听页面高度的变化
+      boxheight:'',
+      minheight2:''
     }
   },
   mounted() { //页面初始化完成执行的事件
@@ -24,26 +28,29 @@ export default {
     //从main.js中获取高度
     console.log(this.$root.$data.windowHeight);
 
+
     // this.initHeight() //页面加载的时候执行一次
 
     //---------------------第二种办法---------注释的是第一种办法-----------------------
     let _this = this
-    // 获取浏览器可视区域高度
-    this.clientHeight = document.documentElement.clientHeight;
+    // （1）获取浏览器可视区域高度
+    this.wendangHeight = document.documentElement.clientHeight;
     window.onresize = function () {
-      // debugger
-      //this是vue组件 VueComponent
-      _this.clientHeight = document.documentElement.clientHeight;
-      _this.changeFixed(_this.clientHeight);
+      //（2）页面大小改变就会出发watch的wendangHeight监听数据，
+      _this.wendangHeight = document.documentElement.clientHeight;
+      _this.changeFixed(_this.wendangHeight);
     }
+
+    // console.log(this.$refs.boxHeightDiv.style.height);
   },
   watch: {//检测值的变化
     // clientHeight() {
     //   this.changgeFixed(this.clientHeight)
     // }
     //---------------------第二种办法--------------------------------
-    clientHeight: function () {
-      this.changeFixed(this.clientHeight);
+    //（3）数值变化就调用methods里的changeFixed方法
+    wendangHeight: function () {
+      this.changeFixed(this.wendangHeight);
     }
   },
   methods: { //绑定的事件
@@ -62,9 +69,10 @@ export default {
     // }
 
     //---------------------第二种办法--------------------------------
+    //（4）从新给元素赋值
     changeFixed(clientHeight) {
       this.$refs.homePage.style.height = clientHeight - 200 + 'px'
-      document.querySelector(".top-row").style.height = clientHeight - 360 + "px";
+      document.querySelector(".top-row2").style.height = clientHeight - 360 + "px";
     },
   }
 }
