@@ -705,7 +705,18 @@ export default new Router({
                         keepAlive: false,
                         breadcrumbLeft: true
                     }
+              },
+              {
+                path: "responsive",
+                name: "responsive",
+                component: resolve => require(["#/css3/responsive.vue"], resolve),
+                meta: {
+                    title: "css响应式设计",
+                    isUseCache: false,
+                    keepAlive: false,
+                    breadcrumbLeft: true
                 }
+            }
             ]
         },
         {

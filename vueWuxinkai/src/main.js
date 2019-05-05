@@ -78,9 +78,9 @@ Vue.use(BaiduMap, {
 })
 
 //设置页面缩放
-import zoom from '#/vuePublic/tool/zoom'
-zoom()
-window.addEventListener('resize', zoom)
+// import zoom from '#/vuePublic/tool/zoom'
+// zoom()
+// window.addEventListener('resize', zoom)
 
 
 /* eslint-disable no-new */

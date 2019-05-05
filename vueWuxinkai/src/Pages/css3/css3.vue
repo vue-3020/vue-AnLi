@@ -180,4 +180,4 @@ export default {
   background: linear-gradient(to right, transparent, #fff 55%);
 }
 </style>
-script
+

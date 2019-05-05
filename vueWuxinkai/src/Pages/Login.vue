@@ -58,13 +58,13 @@ export default {
       this.$refs[formName].validate(valid => { // 验证elementUi 表单
         if (valid) {
           this.loading = true
-          this.$router.push("/");
+          // this.$router.push("/");
           localStorage.removeItem("localMenus") //清楚routeStorage.vue的缓存菜单
-          // _this.login(_this.userInfo).then((data) => {
-          //   this.$router.push("/");
-          // }).catch(error => {
-          //   // this.$message.error(error);
-          // })
+          _this.login(_this.userInfo).then((data) => {
+            this.$router.push("/");
+          }).catch(error => {
+            // this.$message.error(error);
+          })
           this.loading = false
         } else {
           this.$message({
