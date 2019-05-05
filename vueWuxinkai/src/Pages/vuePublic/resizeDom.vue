@@ -16,8 +16,7 @@ export default {
     return {
       wendangHeight: '',
       //监听页面高度的变化
-      boxheight:'',
-      minheight2:''
+
     }
   },
   mounted() { //页面初始化完成执行的事件

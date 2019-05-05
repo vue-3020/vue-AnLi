@@ -843,7 +843,6 @@ export default new Router({
             path: "/potting",
             name: "potting",
             component: Layout,
-            name: "potting封装",
             meta: {
                 title: "potting",
                 isUseCache: false,
@@ -870,6 +869,27 @@ export default new Router({
                     breadcrumbLeft: true
                 }
             }]
-        }
+        },
+        {
+          path: "/threeFolder",
+          name: "threeFolder",
+          component: Layout,
+          meta: {
+              title: "three学习",
+              isUseCache: false,
+              keepAlive: false
+          },
+          children: [{
+              path: "threedome1",
+              name: "threedome1",
+              component: resolve => require(["#/threeFolder/threedome1.vue"], resolve),
+              meta: {
+                  title: "学习",
+                  isUseCache: false,
+                  keepAlive: false,
+                  breadcrumbLeft: true
+              }
+          }]
+      }
     ]
 });
