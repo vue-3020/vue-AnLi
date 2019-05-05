@@ -47,17 +47,17 @@ export default {
     //(5)纹理或者颜色加到场景里面
     scene.add(cube)
 
-    // 设置相机，把物体 推到 5米的距离
-    camera.position.z = 5;
+    // 设置相机，把物体 推到 3米的距离
+    camera.position.z = 3;
 
     //
     function render() {
       // 自己调用自己这个函数
       requestAnimationFrame(render);
       //x轴不断旋转
-      cube.rotation.x += 0.1;
+      cube.rotation.x += 0.01;
       //y轴不断旋转
-      cube.rotation.y += 0.1;
+      cube.rotation.y += 0.01;
       renderer.render(scene, camera);
     }
     render();
