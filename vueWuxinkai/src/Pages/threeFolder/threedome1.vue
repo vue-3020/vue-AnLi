@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div id="canvas-frame"></div>
   </div>
 </template>
@@ -30,6 +31,8 @@ export default {
     var renderer = new THREE.WebGLRenderer();
     //设置 画布的颜色 ，默认是黑色
     renderer.setClearColor('#FFFFFF');
+    //版本不同用的 用的属性不一样
+    // renderer.setClearColorHex('#FFFFFF');
     //渲染器的大小
     renderer.setSize(window.innerWidth, window.innerHeight);
     //把这个元素插入到 canvasBox中
@@ -41,7 +44,7 @@ export default {
 
     // 材质赋颜色 或者赋纹理
     var material = new THREE.MeshBasicMaterial({ color: 0xff6600 });
-    //（4）讲内容添加到纹理中
+    //（4）将内容添加到纹理中
     var cube = new THREE.Mesh(geometry, material); scene.add(cube);
 
     //(5)纹理或者颜色加到场景里面
@@ -62,10 +65,7 @@ export default {
     }
     render();
   },
-  created() {
 
-
-  },
 
 };
 </script>

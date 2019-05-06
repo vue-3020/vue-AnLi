@@ -884,12 +884,22 @@ export default new Router({
               name: "threedome1",
               component: resolve => require(["#/threeFolder/threedome1.vue"], resolve),
               meta: {
-                  title: "学习",
+                  title: "基础学习",
                   isUseCache: false,
                   keepAlive: false,
                   breadcrumbLeft: true
               }
-          }]
+          },{
+            path: "threedome2",
+            name: "threedome2",
+            component: resolve => require(["#/threeFolder/threedome2.vue"], resolve),
+            meta: {
+                title: "three的封装",
+                isUseCache: false,
+                keepAlive: false,
+                breadcrumbLeft: true
+            }
+        }]
       }
     ]
 });
