@@ -22,7 +22,7 @@ export default {
     this.threeStart()
   },
   methods: {
-    //（1）初始化
+    //（1）初始化 画布
     initThree() {
       this.width = document.getElementById("canvas-frame").clientWidth;
       this.height = document.getElementById("canvas-frame").clientHeight;
@@ -63,20 +63,28 @@ export default {
     //（5）初始化我们的物体
     initObject() {
       let geometry = new THREE.Geometry()
-      //材质 是线性的LineBasicMaterial
+      //材质 是线性的LineBasicMaterial ，
       let material = new THREE.LineBasicMaterial({
-        vertexColors: true
+        vertexColors: true, //是否使用顶点颜色，
+        // color:0x00FF00
       })
       var color1 = new THREE.Color(0x444444),
-        color2 = new THREE.Color(0xFF0000);
+        color2 = new THREE.Color(0xFF0000),
+        color3 = new THREE.Color(0x00FF00)
 
-      // 线的材质可以由2点的颜色决定
+      // 线的材质可以由2点的颜色决定  Vector3 就是创造点
       var p1 = new THREE.Vector3(-100, 0, 100);
       var p2 = new THREE.Vector3(100, 0, -100);
+      var p3 = new THREE.Vector3(0, -100, 0)
       geometry.vertices.push(p1);
       geometry.vertices.push(p2);
-      geometry.colors.push(color1, color2);
-
+      geometry.vertices.push(p3);
+      geometry.vertices.push(p1);
+      //每个点对应的 两个颜色 , 四个点画了一个三角形
+      geometry.colors.push(color1, color2, color3,color1);
+      //LineSegments 两点项链
+      //  LineStrip  
+      //  LinePieces  四个点连成两条线
       var line = new THREE.Line(geometry, material, THREE.LineSegments);
       this.scene.add(line);
 

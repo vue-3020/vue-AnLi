@@ -899,7 +899,37 @@ export default new Router({
                 keepAlive: false,
                 breadcrumbLeft: true
             }
-        }]
+        },{
+          path: "zuobiaoxi",
+          name: "zuobiaoxi",
+          component: resolve => require(["#/threeFolder/zuobiaoxi.vue"], resolve),
+          meta: {
+              title: "坐标系",
+              isUseCache: false,
+              keepAlive: false,
+              breadcrumbLeft: true
+          }
+      },{
+        path: "zuobiaozhouxuanzhuan",
+        name: "zuobiaozhouxuanzhuan",
+        component: resolve => require(["#/threeFolder/zuobiaozhouxuanzhuan.vue"], resolve),
+        meta: {
+            title: "坐标系旋转",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true
+        }
+    },{
+      path: "tweenAndStats",
+      name: "tweenAndStats",
+      component: resolve => require(["#/threeFolder/tweenAndStats.vue"], resolve),
+      meta: {
+          title: "动画和监控",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true
+      }
+  }]
       }
     ]
 });
