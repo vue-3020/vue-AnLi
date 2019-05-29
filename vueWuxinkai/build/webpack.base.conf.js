@@ -29,6 +29,7 @@ module.exports = {
       '@': resolve('src'),
       '&': resolve('src/components'),
       '#': resolve('src/Pages'),
+      '$': resolve('static'),
     }
   },
   module: {

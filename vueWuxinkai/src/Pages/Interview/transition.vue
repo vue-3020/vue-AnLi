@@ -13,6 +13,17 @@
       <h3>分组</h3>
       <p>transition 一个动画用</p>
       <p>transition-group 多个动画用</p>
+      <h3>钩子函数</h3>
+      <p>@before-enter="benter" </p>
+      <p>@enter="enter"
+      </p>
+      <p> @after-enter="afterEnter"
+      </p>
+      <p> @before-leave="beforeLeave"
+      </p>
+      <p> @leave="leave"
+      </p>
+      <p>@after-leave="afterLeave" </p>
     </div>
     <div id="div1">
       <input
@@ -38,15 +49,34 @@
         :value="'显示隐藏'+index"
         @click="fn2(index)"
       >
-      <transition-group name="slide2" @before-enter="benter">
+      <transition-group
+        name="slide2"
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @after-enter="afterEnter"
+        @before-leave="beforeLeave"
+        @leave="leave"
+        @after-leave="afterLeave"
+      >
         <div
           v-for="(json,index) in arr2"
-          :key="index"
+          :key="json.id"
           class="box2"
           v-if="json.show"
         >{{index}}</div>
       </transition-group>
     </div>
+
+
+      <br>
+      <br>
+      <br>
+      <h1>vue2-animate 动画</h1>
+      <input v-for="(json,index) in arr2" :key="index" type="button" :value="'显示隐藏'+index"  @click="fn2(index)">
+    <transition-group name="bounce">
+      <div class="box2" v-for="(json,index) in arr2" :key="json.id" v-if="json.show">{{index}}</div>
+    </transition-group>
+
   </div>
 </template>
 <script>
@@ -55,10 +85,10 @@ export default {
     return {
       show: true,
       arr2: [
-        { show: true },
-        { show: true },
-        { show: true },
-        { show: true },
+        { id:1,show: true },
+        { id:2,show: true },
+        { id:3,show: true },
+        { id:4,show: true },
       ]
     }
   },
@@ -75,8 +105,27 @@ export default {
     fn2(index) {
       this.arr2[index].show = !this.arr2[index].show;
     },
-    benter() {
-      console.log('即将开始显示');
+    //进入动画 钩子
+    beforeEnter(el) {
+      console.log('1动画enter之前');
+    },
+    enter(el) {
+      console.log('2动画enter进入');
+    },
+    afterEnter(el) {
+      console.log('3动画进入之后');
+      el.style.background = "blue";
+    },
+    // 离开动画 钩子
+    beforeLeave(el) {
+      console.log('4动画leave之前');
+    },
+    leave(el) {
+      console.log('5动画leave');
+    },
+    afterLeave(el) {
+      console.log('6动画leave之后');
+      el.style.background = "red";
     }
   },
 }
@@ -119,7 +168,7 @@ export default {
 }
 
 /* ------------------------- */
-.box2 {
+.box2{
   width: 300px;
   height: 100px;
   background: #ccc;
@@ -148,5 +197,11 @@ export default {
 .slide2-leave-to {
   height: 0;
   opacity: 0;
+}
+
+.animated{
+  width: 200px;
+  height: 200px;
+  background: pink
 }
 </style>

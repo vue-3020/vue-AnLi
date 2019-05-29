@@ -11,6 +11,8 @@ import store from './store' //vuex
 import ElementUI from 'element-ui' //element 内容
 import 'element-ui/lib/theme-chalk/index.css' // element默认主题
 import './components/common/css/common.css' //
+//动画
+import 'vue2-animate/dist/vue2-animate.min.css'
 
 import vueQuillEditor from 'vue-quill-editor' // 引入富文本工具
 import 'quill/dist/quill.core.css'
