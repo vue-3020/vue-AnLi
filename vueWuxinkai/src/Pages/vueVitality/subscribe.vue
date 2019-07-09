@@ -60,7 +60,7 @@ export default {
     },
       //获取子元素上的内容
         //for...of 语句创建一个循环来迭代可迭代的对象。
-        getChildData(){
+      getChildData(){
           for (let child of this.$children) {
             // child 就相当于子组件
             // child.$options.name 获取的是当前子组件的  name: "refsChild_in"

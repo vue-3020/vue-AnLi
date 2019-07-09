@@ -6,7 +6,10 @@
           <template v-if="item.subs">
             <el-submenu :index="item.index" :key="item.index">
               <template slot="title">
-                <i :class="item.icon"></i><span slot="title">{{item.title}}</span>
+                <img :src="getImgUrl(item.icon)" class="my-icon my-icon-a" alt="">
+                <img :src="getImgUrl2(item.icon)" class="my-icon my-icon-b" alt="">
+               
+                <span slot="title">{{item.title}}</span>
               </template>
               <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index"  ref="el-menu-item" @click="change(subItem.index)">
                 {{ subItem.title }}
@@ -43,6 +46,14 @@ export default {
         }
       });
     },
+    getImgUrl(icon){
+      //字符串拼接不成功用require（）实现
+      // return require("static/images/A_command.png")
+      return `static/images/A_${icon}`
+    },
+    getImgUrl2(icon){
+      return `static/images/B_${icon}`
+    }
   },
   created() {
     // 通过 Event Bus 进行组件间通信，来折叠侧边栏
@@ -84,5 +95,19 @@ export default {
 .sidebar > ul {
   height: 100%;
 }
-
+.my-icon{
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin: 2px 5px 0 0;
+}
+.my-icon-b{
+  display: none
+}
+.el-menu li:hover .my-icon-b{
+ display: inline-block
+}
+.el-menu li:hover .my-icon-a{
+ display: none
+}
 </style>

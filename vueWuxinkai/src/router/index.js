@@ -660,7 +660,7 @@ export default new Router({
                     title: "vuex学习",
                     isUseCache: false,
                     keepAlive: false,
-                    breadcrumbLeft: true //自定义属性
+                    breadcrumbLeft: true //自定义属性   获取属性的方法$route.meta.breadcrumbLeft
                 }
             }, {
                 path: "vuexExample2",
@@ -705,18 +705,18 @@ export default new Router({
                         keepAlive: false,
                         breadcrumbLeft: true
                     }
-              },
-              {
-                path: "responsive",
-                name: "responsive",
-                component: resolve => require(["#/css3/responsive.vue"], resolve),
-                meta: {
-                    title: "css响应式设计",
-                    isUseCache: false,
-                    keepAlive: false,
-                    breadcrumbLeft: true
+                },
+                {
+                    path: "responsive",
+                    name: "responsive",
+                    component: resolve => require(["#/css3/responsive.vue"], resolve),
+                    meta: {
+                        title: "css响应式设计",
+                        isUseCache: false,
+                        keepAlive: false,
+                        breadcrumbLeft: true
+                    }
                 }
-            }
             ]
         },
         {
@@ -871,65 +871,65 @@ export default new Router({
             }]
         },
         {
-          path: "/threeFolder",
-          name: "threeFolder",
-          component: Layout,
-          meta: {
-              title: "three学习",
-              isUseCache: false,
-              keepAlive: false
-          },
-          children: [{
-              path: "threedome1",
-              name: "threedome1",
-              component: resolve => require(["#/threeFolder/threedome1.vue"], resolve),
-              meta: {
-                  title: "基础学习",
-                  isUseCache: false,
-                  keepAlive: false,
-                  breadcrumbLeft: true
-              }
-          },{
-            path: "threedome2",
-            name: "threedome2",
-            component: resolve => require(["#/threeFolder/threedome2.vue"], resolve),
+            path: "/threeFolder",
+            name: "threeFolder",
+            component: Layout,
             meta: {
-                title: "three的封装",
+                title: "three学习",
                 isUseCache: false,
-                keepAlive: false,
-                breadcrumbLeft: true
-            }
-        },{
-          path: "zuobiaoxi",
-          name: "zuobiaoxi",
-          component: resolve => require(["#/threeFolder/zuobiaoxi.vue"], resolve),
-          meta: {
-              title: "坐标系",
-              isUseCache: false,
-              keepAlive: false,
-              breadcrumbLeft: true
-          }
-      },{
-        path: "zuobiaozhouxuanzhuan",
-        name: "zuobiaozhouxuanzhuan",
-        component: resolve => require(["#/threeFolder/zuobiaozhouxuanzhuan.vue"], resolve),
-        meta: {
-            title: "坐标系旋转",
-            isUseCache: false,
-            keepAlive: false,
-            breadcrumbLeft: true
+                keepAlive: false
+            },
+            children: [{
+                path: "threedome1",
+                name: "threedome1",
+                component: resolve => require(["#/threeFolder/threedome1.vue"], resolve),
+                meta: {
+                    title: "基础学习",
+                    isUseCache: false,
+                    keepAlive: false,
+                    breadcrumbLeft: true
+                }
+            }, {
+                path: "threedome2",
+                name: "threedome2",
+                component: resolve => require(["#/threeFolder/threedome2.vue"], resolve),
+                meta: {
+                    title: "three的封装",
+                    isUseCache: false,
+                    keepAlive: false,
+                    breadcrumbLeft: true
+                }
+            }, {
+                path: "zuobiaoxi",
+                name: "zuobiaoxi",
+                component: resolve => require(["#/threeFolder/zuobiaoxi.vue"], resolve),
+                meta: {
+                    title: "坐标系",
+                    isUseCache: false,
+                    keepAlive: false,
+                    breadcrumbLeft: true
+                }
+            }, {
+                path: "zuobiaozhouxuanzhuan",
+                name: "zuobiaozhouxuanzhuan",
+                component: resolve => require(["#/threeFolder/zuobiaozhouxuanzhuan.vue"], resolve),
+                meta: {
+                    title: "坐标系旋转",
+                    isUseCache: false,
+                    keepAlive: false,
+                    breadcrumbLeft: true
+                }
+            }, {
+                path: "tweenAndStats",
+                name: "tweenAndStats",
+                component: resolve => require(["#/threeFolder/tweenAndStats.vue"], resolve),
+                meta: {
+                    title: "动画和监控",
+                    isUseCache: false,
+                    keepAlive: false,
+                    breadcrumbLeft: true
+                }
+            }]
         }
-    },{
-      path: "tweenAndStats",
-      name: "tweenAndStats",
-      component: resolve => require(["#/threeFolder/tweenAndStats.vue"], resolve),
-      meta: {
-          title: "动画和监控",
-          isUseCache: false,
-          keepAlive: false,
-          breadcrumbLeft: true
-      }
-  }]
-      }
     ]
 });

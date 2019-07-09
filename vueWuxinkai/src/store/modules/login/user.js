@@ -1,36 +1,37 @@
 // import Cookies from 'js-cookie'
 import {
-  loginByUsername
+    loginByUsername
 } from '@/api/login'
 
 const vuesAccount = {
-  namespaced: true,
-  state: {
-    timeObj: {}
-  },
-  getters: {
-    getTimeObj: state => {
-      return state.timeObj
+    namespaced: true,
+    state: {
+        timeObj: {}
     },
-  },
-  mutations: {
-    set_time_data: (state, newData) => {
-      //timeElectronic.vue 传过来的参数  赋值给state.timeObj 
-      state.timeObj = newData
+    getters: {
+        getTimeObj: state => {
+            return state.timeObj
+        },
     },
+    mutations: {
+        set_time_data: (state, newData) => {
+            debugger
+            //timeElectronic.vue 传过来的参数  赋值给state.timeObj 
+            state.timeObj = newData
+        },
 
-  },
-  actions: {
-    login({ commit}, userInfo) {
-      debugger
-      const username = userInfo.username.trim() //trim浏览器版本限制：JavaScript Version 1.8
-      return new Promise((resolve, reject) => {
-        loginByUsername(username, userInfo.password, userInfo.code).then(response => {
-          const data = response
-        })
-      })
+    },
+    actions: {
+        login({ commit }, userInfo) {
+            debugger
+            const username = userInfo.username.trim() //trim浏览器版本限制：JavaScript Version 1.8
+            return new Promise((resolve, reject) => {
+                loginByUsername(username, userInfo.password, userInfo.code).then(response => {
+                    const data = response
+                })
+            })
+        }
     }
-  }
 }
 
 export default vuesAccount
