@@ -532,3 +532,50 @@ echart图 https://www.npmjs.com/package/vue-echarts
 /Users/wuxinkai/Documents/mongoDB/bin/mongod --dbpath /Users/wuxinkai/Documents/mongoDB/data/db
 
 # 利用vue-reource请求数据
+
+# cli3.0 加载图标必须用require（）
+```
+ <img :src="getImgUrl(item.icon)" class="my-icon my-icon-a" alt="">
+
+getImgUrl(icon){
+  //字符串拼接不成功用require（）实现
+  // return require("static/images/A_command.png")
+  return `static/images/A_${icon}`
+},
+```
+
+# axios 解决跨域
+vueWuxinkai/config/index.js
+```
+proxyTable: {
+    "/api": {
+        target: "https://zhuanlan.zhihu.com", //要跨域的网址
+        changeOrigin: true, //是否跨域
+        // secure: false, //如果是https接口，需要配置这个参数
+        pathRewrite: {
+            "^/api": "/"
+        }
+    }
+},
+```
+vueWuxinkai/config/dev.env.js
+```
+module.exports = merge(prodEnv, {
+    NODE_ENV: '"development"',
+    API_HOST: "/api/"  //开发环境
+})
+```
+vueWuxinkai/config/prod.env.js
+```
+module.exports = {
+    NODE_ENV: '"production"',
+    API_HOST: '"https://zhuanlan.zhihu.com"'//生产环境
+}
+```
+vue-AnLi/vueWuxinkai/src/main.js
+```
+import axios from 'axios'
+Vue.prototype.$axios = axios
+axios.defaults.baseURL = '/api' //关键代码
+Vue.config.productionTip = false
+```

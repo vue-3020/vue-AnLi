@@ -7,16 +7,25 @@ import router from './router'
 import http from './utils/httpAxios'
 
 import store from './store' //vuex
+import axios from 'axios'
 
 import ElementUI from 'element-ui' //element 内容
 import 'element-ui/lib/theme-chalk/index.css' // element默认主题
 import './components/common/css/common.css' //
+//动画
+import 'vue2-animate/dist/vue2-animate.min.css'
 
 import vueQuillEditor from 'vue-quill-editor' // 引入富文本工具
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 Vue.use(vueQuillEditor)
+
+// 解决跨域问题
+
+Vue.prototype.$axios = axios
+axios.defaults.baseURL = '/api' //关键代码
+Vue.config.productionTip = false
 
 
 //布局拖拽
@@ -25,7 +34,7 @@ Vue.use(VueDragZone)
 import preview from 'vue-photo-preview' //图片预览
 import 'vue-photo-preview/dist/skin.css'
 var options = {
-  fullscreenEl: false //关闭全屏按钮
+    fullscreenEl: false //关闭全屏按钮
 }
 Vue.use(preview, options) //图片预览
 
@@ -33,7 +42,7 @@ import i18n from './lang'
 
 import Filters from './filters/filters' //过滤器
 for (let key in Filters) {
-  Vue.filter(key, Filters[key])
+    Vue.filter(key, Filters[key])
 }
 
 import BaiduMap from 'vue-baidu-map' //引入百度地图
@@ -49,6 +58,7 @@ import loadDrilldown from 'highcharts/modules/drilldown';
 import loadHighchartsMore from 'highcharts/highcharts-more';
 import loadSolidGauge from 'highcharts/modules/solid-gauge';
 import highcharts3d from "highcharts/highcharts-3d";
+import Axios from 'axios';
 loadStock(Highcharts);
 loadMap(Highcharts);
 loadDrilldown(Highcharts);
@@ -56,7 +66,7 @@ loadHighchartsMore(Highcharts);
 loadSolidGauge(Highcharts);
 highcharts3d(Highcharts);
 Vue.use(VueHighcharts, {
-  Highcharts
+    Highcharts
 });
 
 Vue.config.productionTip = false
@@ -66,7 +76,7 @@ require('es6-promise/auto')
 
 //(1)引入element-ui
 Vue.use(ElementUI, {
-  size: 'small'
+    size: 'small'
 })
 
 //http ajax请求的方法
@@ -74,7 +84,7 @@ Vue.prototype.http = http
 
 //引入百度地图
 Vue.use(BaiduMap, {
-  ak: 'u8n7EbYE9SUmhF7WKOBu8xtbTDNiY9ex'
+    ak: 'u8n7EbYE9SUmhF7WKOBu8xtbTDNiY9ex'
 })
 
 //设置页面缩放
@@ -85,18 +95,18 @@ Vue.use(BaiduMap, {
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router, //引入路由
-  store, //引入 vuex
-  i18n, //切换语言
-  // components: { App },
-  // template: '<App/>',
-  render: h => h(App),
-  data() {
-    return {
-      bus: new Vue(), //创建一个实例，
-      haha: 'hahah',
-      windowHeight: document.documentElement.clientHeight - 400, //设置子页面表格的高度
-    }
-  }
-}).$mount('#app') //挂载app，要保证有编译的元素
+        el: '#app',
+        router, //引入路由
+        store, //引入 vuex
+        i18n, //切换语言
+        // components: { App },
+        // template: '<App/>',
+        render: h => h(App),
+        data() {
+            return {
+                bus: new Vue(), //创建一个实例，
+                haha: 'hahah',
+                windowHeight: document.documentElement.clientHeight - 400, //设置子页面表格的高度
+            }
+        },
+    }).$mount('#app') //挂载app，要保证有编译的元素

@@ -353,6 +353,16 @@ export default new Router({
                     keepAlive: false,
                     breadcrumbLeft: true //自定义属性
                 }
+            }, {
+                path: "transition",
+                name: "transition",
+                component: resolve => require(["#/Interview/transition.vue"], resolve),
+                meta: {
+                    title: "vue面试题",
+                    isUseCache: false,
+                    keepAlive: false,
+                    breadcrumbLeft: true //自定义属性
+                }
             }]
         },
         {
@@ -660,7 +670,7 @@ export default new Router({
                     title: "vuex学习",
                     isUseCache: false,
                     keepAlive: false,
-                    breadcrumbLeft: true //自定义属性   获取属性的方法$route.meta.breadcrumbLeft
+                    breadcrumbLeft: true //自定义属性
                 }
             }, {
                 path: "vuexExample2",
@@ -929,7 +939,46 @@ export default new Router({
                     keepAlive: false,
                     breadcrumbLeft: true
                 }
+            }, {
+                path: "zoom",
+                name: "zoom",
+                component: resolve => require(["#/threeFolder/zoom.vue"], resolve),
+                meta: {
+                    title: "动画和监控",
+                    isUseCache: false,
+                    keepAlive: false,
+                    breadcrumbLeft: true
+                }
             }]
-        }
+        },
+        {
+            path: "/es6",
+            name: "es6",
+            component: Layout,
+            meta: {
+                title: "se6",
+                isUseCache: false,
+                keepAlive: false
+            },
+            children: [{
+                path: "es01",
+                name: "es01",
+                component: resolve => require(["#/es6/es01.vue"], resolve),
+                meta: {
+                    title: "01",
+                    isUseCache: false,
+                    keepAlive: false
+                },
+                path: "async_await",
+                name: "async_await",
+                component: resolve => require(["#/es6/async_await.vue"], resolve),
+                meta: {
+                    title: "async_await",
+                    isUseCache: false,
+                    keepAlive: false
+                }
+            }]
+
+        },
     ]
 });

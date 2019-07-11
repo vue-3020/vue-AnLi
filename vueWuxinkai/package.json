@@ -13,6 +13,7 @@
     "axios": "^0.15.3",
     "countup": "^1.8.2",
     "d3": "^5.1.0",
+    "dat.gui": "^0.7.6",
     "echarts-gl": "^1.1.1",
     "element-ui": "2.3.3",
     "es6-promise": "^4.2.5",
@@ -35,7 +36,8 @@
     "vue-photo-preview": "^1.0.9",
     "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vue2-animate": "^2.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -46,6 +46,10 @@
       >在浊世之中，心灵留出一方净土，让纯纯的柏拉图式爱情扎根，多一些简单，多一些幻想，便会多一些美好！如果你愿意，不妨泡上一杯咖啡，在阳光下继续写柏拉图式爱情的文字！</p>
       <br />
     </div>
+    <br>
+    <br>
+    <br>
+    <h1><a href="javascript:" class="flow-wave">hover我（移动端按下）</a></h1>
   </div>
 </template>
 
@@ -179,5 +183,23 @@ export default {
   background: -moz-linear-gradient(right, transparent, #fff 55%);
   background: linear-gradient(to right, transparent, #fff 55%);
 }
+
+/* 波浪线 */
+.flow-wave {
+    padding: 5px 0;
+}
+.flow-wave:hover,
+.flow-wave:focus {
+    background: radial-gradient(circle at 10px -7px, transparent 8px, currentColor 8px, currentColor 9px, transparent 9px) repeat-x,
+        radial-gradient(circle at 10px 27px, transparent 8px, currentColor 8px, currentColor 9px, transparent 9px) repeat-x;
+    background-size: 20px 20px;
+    background-position: -10px calc(100% + 16px), 0 calc(100% - 4px);
+    animation: waveFlow 1s infinite linear;
+}
+@keyframes waveFlow {
+    from { background-position-x: -10px, 0; }
+    to { background-position-x: -30px, -20px; }
+}
+
 </style>
 

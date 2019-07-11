@@ -11,7 +11,27 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      beforeUnload_time:0,
+      gap_time:0 
+    }
+  },
+  mounted() {
+    //利用时间差关闭浏览器
+    let beginTime = 0;//开始时间
+    let differTime = 0;//时间差
+    window.onunload = function (){
+      differTime = new Date().getTime() - beginTime;
+      if(differTime <= 5){
+         Cookies.remove('CommData')
+      };
+    };
+    window.onbeforeunload = function (){
+      beginTime = new Date().getTime();
+    };
+  },
 }
 </script>
 
