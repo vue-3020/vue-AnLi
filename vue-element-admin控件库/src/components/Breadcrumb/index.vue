@@ -9,7 +9,7 @@
     </transition-group>
   </el-breadcrumb>
 </template>
-
+ 
 <script>
 import { generateTitle } from '@/utils/i18n'
 

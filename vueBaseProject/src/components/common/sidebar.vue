@@ -36,6 +36,11 @@ export default {
         },
         {
           icon: 'el-icon-setting',
+          index: 'iframeSun',
+          title: 'iframe嵌套传递参数'
+        },
+        {
+          icon: 'el-icon-setting',
           index: 'todoList',
           title: 'todoList'
         },

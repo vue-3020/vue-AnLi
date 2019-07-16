@@ -5,100 +5,100 @@
 const path = require('path')
 
 module.exports = {
-  dev: {
+    dev: {
 
-    // Paths
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    proxyTable: {
-      '/api/': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api/': ''
-        }
-      },
-      '/Base_area/': {
-        target: 'http://10.4.0.37:1338',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/Base_area/': '/Base_area/'
-        }
-      },
-      // 导出excel彦珍本地服务接口
-      '/WorkDetailInfo/': {
-        target: 'http://10.4.0.77:1335',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/WorkDetailInfo/': '/WorkDetailInfo/'
-        }
-      }
+        // Paths
+        assetsSubDirectory: 'static',
+        assetsPublicPath: '/',
+        proxyTable: {
+            '/api/': {
+                target: 'http://localhost:3000',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api/': ''
+                }
+            },
+            '/Base_area/': {
+                target: 'http://10.4.0.37:1338',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/Base_area/': '/Base_area/'
+                }
+            },
+            // 导出excel彦珍本地服务接口
+            '/WorkDetailInfo/': {
+                target: 'http://10.4.0.77:1335',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/WorkDetailInfo/': '/WorkDetailInfo/'
+                }
+            }
+        },
+
+        // Various Dev Server settings
+        host: 'localhost', // can be overwritten by process.env.HOST
+        port: 9090, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+        autoOpenBrowser: false,
+        errorOverlay: true,
+        notifyOnErrors: true,
+        poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
+
+        // Use Eslint Loader?
+        // If true, your code will be linted during bundling and
+        // linting errors and warnings will be shown in the console.
+        useEslint: false,
+        // If true, eslint errors and warnings will also be shown in the error overlay
+        // in the browser.
+        showEslintErrorsInOverlay: false,
+
+        /**
+         * Source Maps
+         */
+
+        // 将下面devtool换成eval-source-map 或者 source-map 方便开发调试
+        // https://webpack.js.org/configuration/devtool/#development
+        // devtool: 'cheap-module-eval-source-map',
+        // devtool: 'eval-source-map',
+        devtool: 'source-map',
+
+        // If you have problems debugging vue-files in devtools,
+        // set this to false - it *may* help
+        // https://vue-loader.vuejs.org/en/options.html#cachebusting
+
+        // 设置为false
+        cacheBusting: false,
+
+        cssSourceMap: false
     },
 
-    // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
-    port: 9090, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
-    errorOverlay: true,
-    notifyOnErrors: true,
-    poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
+    build: {
+        // Template for index.html
+        index: path.resolve(__dirname, '../dist/index.html'),
 
-    // Use Eslint Loader?
-    // If true, your code will be linted during bundling and
-    // linting errors and warnings will be shown in the console.
-    useEslint: true,
-    // If true, eslint errors and warnings will also be shown in the error overlay
-    // in the browser.
-    showEslintErrorsInOverlay: false,
+        // Paths
+        assetsRoot: path.resolve(__dirname, '../dist'),
+        assetsSubDirectory: 'static',
+        assetsPublicPath: '/',
 
-    /**
-     * Source Maps
-     */
+        /**
+         * Source Maps
+         */
 
-    // 将下面devtool换成eval-source-map 或者 source-map 方便开发调试
-    // https://webpack.js.org/configuration/devtool/#development
-    // devtool: 'cheap-module-eval-source-map',
-    // devtool: 'eval-source-map',
-    devtool: 'source-map',
+        productionSourceMap: false,
+        // https://webpack.js.org/configuration/devtool/#production
+        devtool: '#source-map',
 
-    // If you have problems debugging vue-files in devtools,
-    // set this to false - it *may* help
-    // https://vue-loader.vuejs.org/en/options.html#cachebusting
+        // Gzip off by default as many popular static hosts such as
+        // Surge or Netlify already gzip all static assets for you.
+        // Before setting to `true`, make sure to:
+        // npm install --save-dev compression-webpack-plugin
+        productionGzip: false,
+        productionGzipExtensions: ['js', 'css'],
 
-    // 设置为false
-    cacheBusting: false,
-
-    cssSourceMap: false
-  },
-
-  build: {
-    // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
-
-    // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-
-    /**
-     * Source Maps
-     */
-
-    productionSourceMap: false,
-    // https://webpack.js.org/configuration/devtool/#production
-    devtool: '#source-map',
-
-    // Gzip off by default as many popular static hosts such as
-    // Surge or Netlify already gzip all static assets for you.
-    // Before setting to `true`, make sure to:
-    // npm install --save-dev compression-webpack-plugin
-    productionGzip: false,
-    productionGzipExtensions: ['js', 'css'],
-
-    // Run the build command with an extra argument to
-    // View the bundle analyzer report after build finishes:
-    // `npm run build --report`
-    // Set to `true` or `false` to always turn it on or off
-    bundleAnalyzerReport: process.env.npm_config_report
-  }
+        // Run the build command with an extra argument to
+        // View the bundle analyzer report after build finishes:
+        // `npm run build --report`
+        // Set to `true` or `false` to always turn it on or off
+        bundleAnalyzerReport: process.env.npm_config_report
+    }
 }

@@ -37,6 +37,7 @@ export default {
     renderer.setSize(window.innerWidth, window.innerHeight);
     //把这个元素插入到 canvasBox中
     var canvasBox = document.querySelector("#canvas-frame")
+    //插入
     canvasBox.appendChild(renderer.domElement);
 
     //（3）几何体 CubeGeometry(长度,宽度,高度);
@@ -45,13 +46,14 @@ export default {
     // 材质赋颜色 或者赋纹理
     var material = new THREE.MeshBasicMaterial({ color: 0xff6600 });
     //（4）将内容添加到纹理中
-    var cube = new THREE.Mesh(geometry, material); scene.add(cube);
+    var cube = new THREE.Mesh(geometry, material); 
+    // scene.add(cube);
 
     //(5)纹理或者颜色加到场景里面
     scene.add(cube)
 
     // 设置相机，把物体 推到 3米的距离
-    camera.position.z = 3;
+    camera.position.z = 2;
 
     //
     function render() {

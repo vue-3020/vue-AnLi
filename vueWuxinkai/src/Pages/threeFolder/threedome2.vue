@@ -33,16 +33,16 @@ export default {
       this.renderer.setSize(this.width, this.height);
       //把画布加入到，div#canvas-frame 中呈现出来
       document.getElementById("canvas-frame").appendChild(this.renderer.domElement);
-      //从新设置画布背景色，
+      //从新设置画布背景色，setClearColor(背景色, 透明度)
       this.renderer.setClearColor(0xFFFFFF, 1.0);
     },
 
     //（2）初始化相机
     initCamera() {
       this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 1, 10000);
-      this.camera.position.x = 0;
-      this.camera.position.y = 0;
-      this.camera.position.z = 1000;
+      this.camera.position.x = 0; //左右
+      this.camera.position.y = 0; // 上下
+      this.camera.position.z = 1000; //
     },
 
     // （3）初始化 场景
@@ -68,11 +68,12 @@ export default {
         vertexColors: true, //是否使用顶点颜色，
         // color:0x00FF00
       })
+      //设置颜色
       var color1 = new THREE.Color(0x444444),
         color2 = new THREE.Color(0xFF0000),
         color3 = new THREE.Color(0x00FF00)
 
-      // 线的材质可以由2点的颜色决定  Vector3 就是创造点
+      //设置点的位置， 线的材质可以由2点的颜色决定  Vector3 就是创造点
       var p1 = new THREE.Vector3(-100, 0, 100);
       var p2 = new THREE.Vector3(100, 0, -100);
       var p3 = new THREE.Vector3(0, -100, 0)

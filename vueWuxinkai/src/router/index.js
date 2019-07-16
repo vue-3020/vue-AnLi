@@ -557,6 +557,18 @@ export default new Router({
                         keepAlive: false,
                         breadcrumbLeft: true //自定义属性
                     }
+                },
+                {
+                    path: "iframe",
+                    name: "iframe",
+                    component: resolve =>
+                        require(["#/vuePublic/iframe.vue"], resolve),
+                    meta: {
+                        title: "iframe嵌套和跨域",
+                        isUseCache: false,
+                        keepAlive: false,
+                        breadcrumbLeft: true //自定义属性
+                    }
                 }
             ]
         },
