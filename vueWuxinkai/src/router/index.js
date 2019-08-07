@@ -890,7 +890,17 @@ export default new Router({
                     keepAlive: false,
                     breadcrumbLeft: true
                 }
-            }]
+            }, {
+              path: "vueFind",
+              name: "vueFind",
+              component: resolve => require(["#/potting/vueFind.vue"], resolve),
+              meta: {
+                  title: "将两个数组联系一起",
+                  isUseCache: false,
+                  keepAlive: false,
+                  breadcrumbLeft: true
+              }
+          }]
         },
         {
             path: "/threeFolder",
