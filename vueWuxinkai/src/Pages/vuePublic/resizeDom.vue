@@ -4,7 +4,7 @@
       <br>
       <div class="top-row" style="float:left"> </div>
       <div :style="'width:200px;background:pink;float:left;height:'+this.$root.$data.windowHeight+'px'"> </div>
-      <div style="width:200px;background:green;float:left" class="top-row2"></div>
+      <div style="width:200px;background:green;float:left" class="top-row2">1111111111111</div>
       <div style="width:200px;background:blue;float:left;height:50%" ref="boxHeightDiv">设置页面高度50%，监听他的高度</div>
     </div>
   </div>

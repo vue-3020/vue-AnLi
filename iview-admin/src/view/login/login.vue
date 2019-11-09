@@ -27,6 +27,7 @@ export default {
       'handleLogin',
       'getUserInfo'
     ]),
+    // 点击事件   11111111111111111111111
     handleSubmit ({ userName, password }) {
       this.handleLogin({ userName, password }).then(res => {
         this.getUserInfo().then(res => {

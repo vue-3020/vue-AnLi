@@ -59,6 +59,7 @@ export default {
         content: `点击了《${data.label}》节点的'${menuDic[key]}'菜单`
       })
     },
+    // 获取数据
     getDepartmentData () {
       getOrgData().then(res => {
         const { data } = res

@@ -30,6 +30,7 @@
     "tween.js": "^16.6.0",
     "vue": "^2.5.2",
     "vue-baidu-map": "^0.21.11",
+    "vue-codemirror": "^4.0.6",
     "vue-drag-zone": "^2.0.0-rc1",
     "vue-echarts": "^3.1.2",
     "vue-highcharts": "^0.0.10",

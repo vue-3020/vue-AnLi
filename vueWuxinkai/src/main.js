@@ -21,6 +21,16 @@ import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 Vue.use(vueQuillEditor)
 
+import VueCodemirror from 'vue-codemirror'
+import 'codemirror/lib/codemirror.css'
+
+// require more codemirror resource...
+
+// you can set default global options and events when use
+Vue.use(VueCodemirror, /* {
+  options: { theme: 'base16-dark', ... },
+  events: ['scroll', ...]
+} */)
 // 解决跨域问题
 
 Vue.prototype.$axios = axios

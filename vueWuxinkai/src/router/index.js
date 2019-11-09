@@ -569,7 +569,19 @@ export default new Router({
                         keepAlive: false,
                         breadcrumbLeft: true //自定义属性
                     }
-                }
+                },
+                {
+                  path: "vueCodemirror",
+                  name: "vueCodemirror",
+                  component: resolve =>
+                      require(["#/vuePublic/vueCodemirror.vue"], resolve),
+                  meta: {
+                      title: "vueCodemirror插件学习",
+                      isUseCache: false,
+                      keepAlive: false,
+                      breadcrumbLeft: true //自定义属性
+                  }
+              }
             ]
         },
         {

@@ -13,7 +13,7 @@
     </div>
     <p>native 给组件绑定构造器里的原生事件。</p>
     <p>
-      <btn @click.native="add(3)"></btn>
+      <btns @click.native="add(3)"></btns>
     </p>
   </div>
 </template>
@@ -21,7 +21,7 @@
 
 
 var btn={
-    template:`<button>组件Add</button>`     
+    template:`<button>组件Add</button>`
 }
 export default {
   data() {
@@ -31,7 +31,7 @@ export default {
   },
   //在构造器里声明
   components: {
-    btn: btn
+    btns: btn
   },
   methods: {
     add(a, event) {

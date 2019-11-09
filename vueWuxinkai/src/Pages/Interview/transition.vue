@@ -114,7 +114,9 @@ export default {
     },
     afterEnter(el) {
       console.log('3动画进入之后');
+
       el.style.background = "blue";
+     
     },
     // 离开动画 钩子
     beforeLeave(el) {

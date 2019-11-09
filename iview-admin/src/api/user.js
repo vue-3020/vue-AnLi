@@ -1,10 +1,12 @@
 import axios from '@/libs/api.request'
 
 export const login = ({ userName, password }) => {
+  debugger
   const data = {
     userName,
     password
   }
+  // 333333333333333333333333333333333
   return axios.request({
     url: 'login',
     data,
@@ -21,7 +23,7 @@ export const getUserInfo = (token) => {
     method: 'get'
   })
 }
-
+// 获取登录
 export const logout = (token) => {
   return axios.request({
     url: 'logout',

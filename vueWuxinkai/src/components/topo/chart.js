@@ -1,13 +1,13 @@
 /**
  * 拓扑关系图
  * 画板类
- * @author: Zhulinghao
+ * @author: Zhulinghao 2018-5-8
  * @date: 2018-5-8
- * 
+ *
  * FUNCTION 左右两边都能链
  * INPUT 左边链接
  * ACTION 右边能链接
- * 
+ *
  */
 
 import Item from './item'

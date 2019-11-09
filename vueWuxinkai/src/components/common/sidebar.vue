@@ -8,7 +8,6 @@
               <template slot="title">
                 <img :src="getImgUrl(item.icon)" class="my-icon my-icon-a" alt="">
                 <img :src="getImgUrl2(item.icon)" class="my-icon my-icon-b" alt="">
-               
                 <span slot="title">{{item.title}}</span>
               </template>
               <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index"  ref="el-menu-item" @click="change(subItem.index)">
@@ -72,7 +71,7 @@ export default {
   },
    watch: {
       '$route': function (x) { // 监听路由变化
-     
+     debugger
       //  this.change(this.$route.path)
       }
    }

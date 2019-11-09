@@ -8,7 +8,7 @@ Mock.setup({
   timeout: 1000
 })
 
-// 登录相关和获取用户信息
+// 登录相关和获取用户信息 4444444444444444444444444
 Mock.mock(/\/login/, login)
 Mock.mock(/\/get_info/, getUserInfo)
 Mock.mock(/\/logout/, logout)

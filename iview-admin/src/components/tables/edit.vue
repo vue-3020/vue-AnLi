@@ -29,6 +29,7 @@ export default {
   methods: {
     handleInput (val) {
       this.$emit('input', val)
+
     },
     startEdit () {
       this.$emit('on-start-edit', this.params)

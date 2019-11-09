@@ -6,12 +6,15 @@ const { title, cookieExpires, useI18n } = config
 
 export const TOKEN_KEY = 'token'
 
+// 将token存到cookie
 export const setToken = (token) => {
   Cookies.set(TOKEN_KEY, token, { expires: cookieExpires || 1 })
 }
 
+// 从cookies中获取
 export const getToken = () => {
   const token = Cookies.get(TOKEN_KEY)
+  // 有token就返回token，没有就返回 false
   if (token) return token
   else return false
 }

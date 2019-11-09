@@ -9,6 +9,7 @@ import {
   restoreTrash,
   getUnreadCount
 } from '@/api/user'
+// 这种cookie
 import { setToken, getToken } from '@/libs/util'
 
 export default {
@@ -16,7 +17,7 @@ export default {
     userName: '',
     userId: '',
     avatarImgPath: '',
-    token: getToken(),
+    token: getToken(), // 修改token属性
     access: '',
     hasGetInfo: false,
     unreadCount: 0,
@@ -40,6 +41,7 @@ export default {
     },
     setToken (state, token) {
       state.token = token
+      // setToken 调用 '@/libs/util 方法
       setToken(token)
     },
     setHasGetInfo (state, status) {
@@ -74,14 +76,15 @@ export default {
   },
   actions: {
     // 登录
+    // vuex的属性 commit 修改state的
     handleLogin ({ commit }, { userName, password }) {
-      userName = userName.trim()
+      debugger
+      userName = userName.trim() // 输出空格
       return new Promise((resolve, reject) => {
-        login({
-          userName,
-          password
-        }).then(res => {
+        // 调用登录 2222222222222222222222222222222222222
+        login({ userName, password }).then(res => {
           const data = res.data
+          // commit 推送一个mutation
           commit('setToken', data.token)
           resolve()
         }).catch(err => {
