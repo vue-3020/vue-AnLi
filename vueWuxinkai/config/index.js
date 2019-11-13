@@ -11,9 +11,9 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             "/api": {
-                target: "https://zhuanlan.zhihu.com", //要跨域的网址
+                target: "https://free-api.heweather.net/s6/weather/now", //要跨域的网址
                 changeOrigin: true, //是否跨域
-                // secure: false, //如果是https接口，需要配置这个参数
+                secure: false, //如果是https接口，需要配置这个参数
                 pathRewrite: {
                     "^/api": "/"
                 }

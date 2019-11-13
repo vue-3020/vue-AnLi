@@ -9,6 +9,10 @@ import http from './utils/httpAxios'
 import store from './store' //vuex
 import axios from 'axios'
 
+Vue.prototype.$axios = axios
+axios.defaults.baseURL = '/api'
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 import ElementUI from 'element-ui' //element 内容
 import 'element-ui/lib/theme-chalk/index.css' // element默认主题
 import './components/common/css/common.css' //

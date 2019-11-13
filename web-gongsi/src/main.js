@@ -13,8 +13,6 @@ import "./assets/iconfont/iconfont.css";
 //初始化样式
 import "@/assets/style/reset.css";
 
-import echarts from "echarts";
-Vue.prototype.$echarts = echarts;
 
 Vue.use(iView);
 Vue.use(TaskNode);

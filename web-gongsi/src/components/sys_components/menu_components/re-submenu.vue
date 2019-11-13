@@ -23,7 +23,7 @@
       </template>
     </div>
     <div v-if="parent.meun_bean_list">
-      <template v-for="item in parent.meun_bean_list">
+      <template v-for="item in parent.meun_bean_list" >
         <re-submenu v-if="item.tabs" :key="`menu_${item.rs_code}`" :name="item.frame" :parent="item">
         </re-submenu>
         <menu-item v-else :key="`menu_${item.rs_code}`" :name="`${item.frame}`">

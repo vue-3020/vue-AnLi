@@ -25,6 +25,7 @@
   </div>
 </template>
 <script>
+import dataJson from '@/utils/menuData.json'
 export default {
   data() {
     return {
@@ -61,13 +62,18 @@ export default {
       this.collapse = msg
     })
     //请求菜单数据
-    this.http.get('https://www.easy-mock.com/mock/5bbab3f329a4d80bbccbcb81/example/menuData').then((data) => {
-      if (data.status == 200) {
-        this.items = data.data.data
-      }
-    }).catch(function (err) {
-      console.log('获取菜单失败' + err.message)
-    })
+    // this.http.get('https://www.easy-mock.com/mock/5bbab3f329a4d80bbccbcb81/example/menuData').then((data) => {
+    //   if (data.status == 200) {
+    //     debugger
+    //     this.items = data.data.data?data.data.data:dataJson.data
+    //   }
+    // }).catch(function (err) {
+    //   console.log('获取菜单失败' + err.message)
+    // })
+  },
+  mounted(){
+    // console.log(dataJson.data)
+    this.items =dataJson.data
   },
    watch: {
       '$route': function (x) { // 监听路由变化

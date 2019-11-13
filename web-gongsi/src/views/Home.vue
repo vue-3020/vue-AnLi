@@ -48,7 +48,8 @@ export default {
   name: "home",
   data() {
     return {
-      loginUserName: "远舢科技"
+      loginUserName: "远舢科技",
+      getMenuList: []
     }
   },
   components: { SideMenu },
@@ -64,12 +65,33 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getMenuList', 'getCommData'])
+    ...mapGetters([, 'getCommData'])
   },
   mounted() {
     // 获取当前登录人名称
-    this.loginUserName = JSON.parse(this.getCommData).orguser_cn_name;
-    console.log(this.getMenuList);
+    // this.loginUserName = JSON.parse(this.getCommData).orguser_cn_name;
+
+
+    // console.log( this.$router.options.routes);
+
+
+    for (let i = 0; i < this.$router.options.routes.length; i++) {
+      var obj = {};
+      obj.meun_bean_list = [];
+      let element = this.$router.options.routes[i]
+      obj.menu_name = element.meta.title
+      if (element.children) {
+        for (let j = 0; j < element.children.length; j++) {
+          var obj2 = {}
+          let curData = element.children[j]
+          obj2.box1 = curData.path;
+          obj2.box2 = curData.name;
+          obj2.box3 = curData.meta.title;
+          obj.meun_bean_list.push(obj2)
+        }
+      }
+      this.getMenuList.push(obj)
+    }
   }
 };
 </script>

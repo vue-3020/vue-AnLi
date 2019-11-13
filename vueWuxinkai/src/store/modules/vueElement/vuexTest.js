@@ -1,4 +1,5 @@
-import { getTableList } from "@/api/vueElement/vuexTestApi";
+import {getTableList,} from "@/api/vueElement/vuexTestApi";
+import {getWeather,} from "@/api/weather/weather";
 const vuexTest = {
   namespaced: true,
   state: {
@@ -9,12 +10,12 @@ const vuexTest = {
     getCount: state => { //2.4获取总条数
       return state.countData
     },
-    getTableList:state=>{ //1.4 获取数据
+    getTableList: state => { //1.4 获取数据
       return state.tableData.data
     }
   },
   mutations: {
-    set_table_data:(state,newData) =>{ //1.2获取数据
+    set_table_data: (state, newData) => { //1.2获取数据
       state.tableData = newData
     },
     set_count_data: (state, newData) => { //2.2获取总条数
@@ -22,20 +23,34 @@ const vuexTest = {
     },
   },
   actions: {
-    getTableData({commit},params){ //请求数据
+    getTableData({
+      commit
+    }, params) { //请求数据
       debugger
-      return new Promise((resolve,reject)=>{ 
-        getTableList(params).then(response=>{ //获取
+      return new Promise((resolve, reject) => {
+        getTableList(params).then(response => { //获取
           debugger
           const data = response.data //1.1从新赋值
           const dataCount = response.data.CountData //2.1从新赋值
-          commit('set_table_data',data)
+          commit('set_table_data', data)
           commit('set_count_data', dataCount)
           resolve(data)
-        }).catch(error=>{
+        }).catch(error => {
           reject(error)
         })
       })
+    },
+    //获取天气
+    async getWeatherData({
+      commit
+    }, params) {
+      try {
+        let result = await getWeather(params);
+        debugger
+        return result;
+      } catch (error) {
+        return error;
+      }
     }
   }
 }
