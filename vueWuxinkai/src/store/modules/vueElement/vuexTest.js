@@ -26,10 +26,10 @@ const vuexTest = {
     getTableData({
       commit
     }, params) { //请求数据
-      debugger
+
       return new Promise((resolve, reject) => {
         getTableList(params).then(response => { //获取
-          debugger
+          
           const data = response.data //1.1从新赋值
           const dataCount = response.data.CountData //2.1从新赋值
           commit('set_table_data', data)

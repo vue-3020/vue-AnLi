@@ -21,6 +21,10 @@
           "title": "路由缓存localstorage"
         },
         {
+          "index": "/vueRoute/keepAlives",
+          "title": "keepAlives缓存和params 传参缓存"
+        },
+        {
           "index": "/vueRoute/routeComp",
           "title": "分配菜单"
         }

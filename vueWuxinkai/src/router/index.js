@@ -141,6 +141,17 @@ export default new Router({
           }
         },
         {
+          path: "keepAlives",
+          name: "keepAlives",
+          component: resolve => require(["#/vueRoute/keepAlives.vue"], resolve),
+          meta: {
+            title: "keepAlive的应用",
+            isUseCache: false,
+            keepAlive: true,
+            breadcrumbLeft: true
+          }
+        },
+        {
           path: "routeComp",
           name: "routeComp",
           component: resolve => require(["#/vueRoute/routeComp.vue"], resolve),
@@ -242,6 +253,7 @@ export default new Router({
             breadcrumbLeft: true
           }
         },
+
         {
           path: "filter",
           name: "filter",

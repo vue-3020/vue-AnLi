@@ -77,7 +77,7 @@ export default {
   },
    watch: {
       '$route': function (x) { // 监听路由变化
-     debugger
+    //  debugger
       //  this.change(this.$route.path)
       }
    }
