@@ -605,6 +605,30 @@ export default new Router({
             keepAlive: false,
             breadcrumbLeft: true //自定义属性
           }
+        },
+        {
+          path: "vueBanner",
+          name: "vueBanner",
+          component: resolve =>
+            require(["#/vuePublic/vueBanner.vue"], resolve),
+          meta: {
+            title: "轮播图",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
+          path: "vueBanner2",
+          name: "vueBanner2",
+          component: resolve =>
+            require(["#/vuePublic/vueBanner2.vue"], resolve),
+          meta: {
+            title: "轮播图",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
         }
       ]
     },
