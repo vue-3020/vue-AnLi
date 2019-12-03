@@ -21,78 +21,103 @@ export default {
   },
   methods: {
     //(1)编写第一个 async/await 函数 , 调用菜单获取异步内容
-    async menuList() {
-      const response = await this.http.get(
-        "https://www.easy-mock.com/mock/5bbab3f329a4d80bbccbcb81/example/menuData"
-      );
-      const column = await response.data.data;
-      console.log(`1`, column);
+
+    step1(timeout) {
+      return new Promise(resolve => {
+        setTimeout(function () {
+          resolve('async await 需要配合Promise，ajax请求时候不用')
+        }, timeout);
+      });
+
+
+
+    },
+    async menuList1() {
+      const response = await this.step1(2000)
+      console.log(`111111111111`, response);
     },
 
-    //(2) 将 async 函数用在 Promise 链中
-    async getColumn() {
-      const response = await this.http.get(
-        "https://www.easy-mock.com/mock/5bbab3f329a4d80bbccbcb81/example/menuData"
-      );
-      return await response.data.data;
-    },
+
 
     //（3.1）箭头函数
-    async person(uid) {
-      this.$axios.get("/api/columns/" + uid).then(res => {
-        console.log(3,res);
-      });
-    },
-    //4 处理 async 函数中的错误
-    async getColumn3(id) {
-      // debugger
-      const response = await this.$axios.get("/api/columns/" + id);
-      // debugger
-      if (response.status !== 200) {
-        throw new Error(response.statusText, "请求错误");
-      }
-      return await response;
-    },
-    async showColumnInfo(id) {
-      try {
-        const column = await this.getColumn3(id);
-        console.log(4,column);
-      } catch (err) {
-        console.error(err, "错误");
-      }
-    },
+    // async person(uid) {
+    //   this.$axios.get("/api/columns/" + uid).then(res => {
+    //     console.log(3, res);
+    //   });
+    // },
+    // //4 处理 async 函数中的错误
+    // async getColumn3(id) {
+    //   // debugger
+    //   const response = await this.$axios.get("/api/columns/" + id);
+    //   // debugger
+    //   if (response.status !== 200) {
+    //     throw new Error(response.statusText, "请求错误");
+    //   }
+    //   return await response;
+    // },
+    // async showColumnInfo(id) {
+    //   try {
+    //     const column = await this.getColumn3(id);
+    //     console.log(4, column);
+    //   } catch (err) {
+    //     console.error(err, "错误");
+    //   }
+    // },
 
-    //5 正确处理多个 await 操作的并行串行
-    sleep(timeout = 2000) {
+
+
+    // 串行和并行的区别为  数据传送方式不同:
+    // 串行: 口传输方式为数据排成一行、一位一位送出接收也一样,
+    //  并行: 口传输8位数据一次送出.
+
+    // 5 正确处理多个 await 操作的并行串行
+    sleep4(timeout = 2000) {
       return new Promise(resolve => {
-        setTimeout(resolve, timeout);
+        setTimeout(function () {
+          resolve('成功')
+        }, timeout);
       });
     },
-    async getColumn5(id) {
-      await this.sleep(3000); // 等待3秒后获取到内容，
-      const response = await this.$axios.get("/api/columns/" + id);
-      return await response;
+    sleep3(timeout = 3000) {
+      return new Promise(resolve => {
+        setTimeout(function () {
+          resolve('成功2')
+        }, timeout);
+      });
     },
     async showColumn5() {
-      const feweekly = await this.getColumn5("feweekly");
-      const toolingtips = await this.getColumn5("toolingtips");
-      console.log(5, feweekly);
-      console.log(5, toolingtips);
+      console.time()
+      const sleep4 = await this.sleep4(5000);
+      const sleep3 = await this.sleep3(6000);
+      console.timeEnd()
+      console.log(4, sleep4); //两个所用时间相加
+      console.log(3, sleep3);
     },
 
+
+
+
     //6 使用 Promise.all() 让多个 await 操作并行
-    async getColumn6(id) {
-      const response = await this.$axios.get("/api/columns/" + id);
-      return await response;
+    async getColumn6(timeout = 1000) {
+      const response = await new Promise(resolve => {
+        setTimeout(function () {
+          resolve('成功00')
+        }, timeout);
+      });
+      return response
     },
     async showColumn6() {
+      console.time()
       const [feweekly, toolingtips] = await Promise.all([
-        this.getColumn6("feweekly"),
-        this.getColumn6("toolingtips")
+        this.getColumn6(3000),
+        this.getColumn6(4000)
       ]);
-      console.log(6,feweekly);
-      console.log(6,toolingtips);
+      console.timeEnd()
+      console.log(6, feweekly); //用时四秒用的是最短的时间
+      console.log(6, toolingtips);
     },
+
+
     // 7 结合 await 和任意兼容 .then() 的代码
     // async main(){
     //   console.log('waiting...');
@@ -101,18 +126,18 @@ export default {
     // }
 
     //8 在 for 循环中正确的使用 await
-    async getColumn8(id){
+    async getColumn8(id) {
       await bluebird.delay(1000);
       const response = await this.$axios.get("/api/columns/" + id);
       return await response
     },
-    async showColumn8(){
+    async showColumn8() {
       const names = ['feweekly', 'toolingtips']; //加入到 getColumn8循环
-      const promises = names.map(x=>this.getColumn8(x))
+      const promises = names.map(x => this.getColumn8(x))
       // for of 循环 
       for (const promise of promises) {
         const column = await promise;
-        console.log(8,column);
+        console.log(8, column);
       }
     }
   },
@@ -121,28 +146,31 @@ export default {
     //this.menuList()
 
     //2 链式调用
-    this.getColumn().then(column => {
-      console.log(2,column);
-    });
+    // this.getColumn().then(column => {
+    //   console.log(2, column);
+    // });
 
-    //3 把任意类型的函数转成 async 风格
-    this.person("feweekly");
+    // //3 把任意类型的函数转成 async 风格
+    // this.person("feweekly");
 
-    //4 捕获错误用 try cathc
-    this.showColumnInfo("feweekly");
+    // //4 捕获错误用 try cathc
+    // this.showColumnInfo("feweekly");
 
-    //5 正确处理多个 await 操作的并行串行
-    this.showColumn5();
+    // //5 正确处理多个 await 操作的并行串行
+    // this.showColumn5();
 
     //6 使用 Promise.all() 让多个 await 操作并行
     this.showColumn6()
 
-    //7 结合 await 和任意兼容 .then() 的代码
-    // this.main()
+    // //7 结合 await 和任意兼容 .then() 的代码
+    // // this.main()
 
-    //8 在 for 循环中正确的使用 await
-    this.showColumn8()
+    // //8 在 for 循环中正确的使用 await
+    // this.showColumn8()
 
+
+    this.menuList1()
+    // this.menuList2()
   }
 };
 </script>
