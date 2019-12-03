@@ -12,14 +12,14 @@
     <br>
     <el-button type="primary" @click="goBack">返回上一页查询是否有缓存</el-button>
     <ul>
-      <!-- <li>{{testData.name}}</li>
+      <li>{{testData.name}}</li>
       <li>{{testData.region}}</li>
       <li>{{testData.date1}}</li>
       <li>{{testData.date2}}</li>
       <li>{{testData.delivery}}</li>
       <li>{{testData.type[0]}}</li>
       <li>{{testData.resource}}</li>
-      <li>{{testData.desc}}</li> -->
+      <li>{{testData.desc}}</li>
     </ul>
   </div>
 </template>
