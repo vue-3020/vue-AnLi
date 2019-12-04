@@ -29,7 +29,21 @@ export default {
                     {
                       label: "四级菜单",
                       test: 4,
-                      path: "/home"
+                      path: "/home",
+                      children: [
+                        {
+                          label: "五级菜单",
+                          test: 5,
+                          path: "/home",
+                          children: [
+                            {
+                              label: "六级菜单",
+                              test: 6,
+                              path: "/home"
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }

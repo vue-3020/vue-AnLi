@@ -1,13 +1,9 @@
 <template>
   <div>
-    <h3>(1) async/await 等待另一个函数的执行结构</h3>
-    <h3>(2) 将 async 函数用在 Promise 链中</h3>
-    <h3>(3) 把任意类型的函数转成 async 风格</h3>
-    <h3>(4) 处理 async 函数中的错误</h3>
-    <h3>(5) 正确处理多个 await 操作的并行串行</h3>
-    <h3>(6) 使用 Promise.all() 让多个 await 操作并行</h3>
-    <!-- <h3>(7) 结合 await 和任意兼容 .then() 的代码</h3> -->
-    <h3>(8) 在 for 循环中正确的使用 await</h3>
+    <h3>(1) 处理 async 函数中的错误</h3>
+    <h3>(2) 正确处理多个 await 操作的并行  串行</h3>
+    <h3>(3) 使用 Promise.all() 让多个 await 操作并行</h3>
+    <h3>(4) 在 for 循环中正确的使用 await</h3>
   </div>
 </template>
 <script>
@@ -23,14 +19,12 @@ export default {
     //(1)编写第一个 async/await 函数 , 调用菜单获取异步内容
 
     step1(timeout) {
-      return new Promise(resolve => {
+      return new Promise((resolve, reject) => {
         setTimeout(function () {
           resolve('async await 需要配合Promise，ajax请求时候不用')
+          // reject('失败')
         }, timeout);
       });
-
-
-
     },
     async menuList1() {
       const response = await this.step1(2000)
@@ -46,15 +40,17 @@ export default {
     //   });
     // },
     // //4 处理 async 函数中的错误
+  
     // async getColumn3(id) {
     //   // debugger
-    //   const response = await this.$axios.get("/api/columns/" + id);
-    //   // debugger
+    //   const response = await this.step7(200);
+    //   debugger
     //   if (response.status !== 200) {
     //     throw new Error(response.statusText, "请求错误");
     //   }
     //   return await response;
     // },
+
     // async showColumnInfo(id) {
     //   try {
     //     const column = await this.getColumn3(id);
@@ -170,6 +166,9 @@ export default {
 
 
     this.menuList1()
+
+    //解决报错问题
+    this.getColumn3()
     // this.menuList2()
   }
 };

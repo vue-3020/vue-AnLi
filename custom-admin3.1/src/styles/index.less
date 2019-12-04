@@ -1,0 +1,119 @@
+
+/**编译规则
+ * 如果路径是绝对路径，会原样保留。
+ * 如果路径以 . 开头，将会被看作相对的模块依赖，并按照你的本地文件系统上的目录结构进行解析。
+ * 如果路径以 ~ 开头，其后的部分将会被看作模块依赖。这意味着你可以用该特性来引用一个 node 依赖中的资源：
+ */
+@import '~iview/src/styles/index.less';
+
+@menu-dark-title: #001529;
+@menu-dark-active-bg: #000c17;
+@layout-sider-background: #001529;
+.search-con{
+    padding: 10px 0;
+    .search{
+      &-col{
+        display: inline-block;
+        width: 200px;
+        margin-left: 4px;
+        margin-bottom:10px;
+      }
+      &-input{
+        display: inline-block;
+        width: 200px;
+        margin-left: 4px;
+        margin-bottom:10px;
+      }
+      &-btn{
+        margin-left: 4px;
+        margin-bottom:10px;
+      }
+      &-action{
+        float:right;
+      }
+    }
+  }
+  .form-item-required:before {
+    content: "*";
+    color: #f56c6c;
+    margin-right: 4px;
+  }
+  .form-action-btn{
+    margin-left: 8px;   
+  }
+  .form-right-group{
+    text-align: right !important;
+  }
+  .pages{
+    margin-top:10px;
+  }
+  .tables-row-btn{
+    margin-left: 2px;   
+  }
+  .tables-bar {
+    padding: 6px 2px 6px 2px;
+    border-top: 1px solid #dcdee2;
+    border-left: 1px solid #dcdee2;
+    border-right: 1px solid #dcdee2;
+    background-color: #f8f8f9;
+    position: relative;
+    height: 46px;
+    line-height: 46px;
+  }
+  .tables-btn {
+    float: left;
+    margin-right: 8px;
+  }
+// .dynamic-rows-label{
+//   text-align: right;
+//   min-width: 120px;
+//   margin-right: 10px;
+// }
+
+// .dynamic-rows{
+//     &-container{
+//       margin-bottom: 20px;
+//     }
+//     &-header{
+//       border-bottom-color: #e8eaec;
+//       margin-bottom: 20px;
+//       border-bottom: solid 1px #e8eaec;
+//       padding: 10px;
+//       font-weight: 600;
+//       background: #f7f7f7;
+//       white-space: nowrap;
+//       color: #5c6b77;
+//     }
+//   &-body{
+//     padding-left:8px;
+//     padding-right:8px;
+//   }
+  
+//   &-btns{
+//     height: 32px;
+//     line-height: 32px;
+//     font-size: 26px;        
+//   }
+// }
+.dynamic-rows-container{
+ margin-bottom: 20px;
+}
+.dynamic-rows-body{
+  padding-left:8px;
+  padding-right:8px;
+}
+.dynamick-rows-header {
+  border-bottom-color: #e8eaec;
+  margin-bottom: 20px;
+  border-bottom: solid 1px #e8eaec;
+  padding: 10px;
+  font-weight: 600;
+  background: #f7f7f7;
+  white-space: nowrap;
+  color: #5c6b77;
+}
+.dynamick-rows-btns{
+  height: 32px;
+  line-height: 32px;
+  font-size: 26px;
+}
