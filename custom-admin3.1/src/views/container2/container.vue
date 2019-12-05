@@ -109,7 +109,6 @@ export default {
         this.startMove();
       }, totalDuration)
     },
-
     //获取选中样式
     getItem(item, index) {
       item.chosen = !item.chosen;

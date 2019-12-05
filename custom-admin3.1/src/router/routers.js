@@ -88,6 +88,15 @@ export default [
         component: () => import('@/views/container2/desk')
       },
       {
+        path: 'somedelete',
+        name: 'somedelete',
+        meta: {
+          icon: 'ios-bug',
+          title: 'some删除功能'
+        },
+        component: () => import('@/views/container2/somedelete')
+      },
+      {
         path: 'list',
         name: 'list',
         meta: {
@@ -191,13 +200,13 @@ export default [
         component: () => import('@/views/components-example/transfer')
       },
       {
-        path: 'transfer_tree',
-        name: 'transfer_tree',
+        path: 'transferTree',
+        name: 'transferTree',
         meta: {
           title: '手写树结构穿梭框',
           icon: 'md-list'
         },
-        component: () => import('@/views/components-example/transfer-tree')
+        component: () => import('@/views/components-example/transferTree')
       },
       {
         path: 'icons_example',
