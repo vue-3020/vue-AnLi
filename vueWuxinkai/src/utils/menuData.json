@@ -65,6 +65,10 @@
       "index": "6",
       "title": "常用组件",
       "subs": [{
+          "index": "/vuePublic/vueLazyload",
+          "title": "图片懒加载"
+        },
+        {
           "index": "/vuePublic/preview",
           "title": "图片预览"
         },

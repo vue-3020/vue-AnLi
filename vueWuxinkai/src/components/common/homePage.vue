@@ -42,6 +42,7 @@ export default {
     // Breadcrumb
   },
   created() { //,接收 header.vue 的内容
+
     this.$root.bus.$on('collapse', msg => {
       this.collapse = msg
     })

@@ -492,6 +492,17 @@ export default new Router({
           }
         },
         {
+          path: "vueLazyload",
+          name: "vueLazyload",
+          component: resolve => require(["#/vuePublic/vueLazyload.vue"], resolve),
+          meta: {
+            title: "图片懒加载",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
           path: "preview",
           name: "preview",
           component: resolve => require(["#/vuePublic/preview.vue"], resolve),

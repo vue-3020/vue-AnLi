@@ -239,9 +239,7 @@ export default {
       this.cityList = list
     },
     //删除功能
-    deleteRelation(item) {
-
-    }
+    deleteRelation() {}
   },
   mounted() {
     this.source_data = tree_data

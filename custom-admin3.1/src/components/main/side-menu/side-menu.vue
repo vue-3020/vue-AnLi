@@ -6,6 +6,7 @@
       v-show="!collapsed"
       :active-name="activeName"
       :open-names="openedNames"
+      
       :accordion="accordion"
       :theme="theme"
       width="auto"
