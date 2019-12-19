@@ -25,6 +25,7 @@ export default {
     }
   },
   mounted () {
+    // 通知页面更新 数据生成就立即执行。
     this.$nextTick(() => {
       let xAxisData = Object.keys(this.value)
       let seriesData = Object.values(this.value)

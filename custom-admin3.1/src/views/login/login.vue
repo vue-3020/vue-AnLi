@@ -2,9 +2,17 @@
   <div class="login">
     <div class="login-con">
       <Card icon="log-in" title="欢迎登录" :bordered="false">
-        <div class="form-con">
+        <div class="form-tab">
+          <Button :class="{'on':loginWay}" @click="loginWay=true">密码登录</Button>
+          <Button :class="{'on': !loginWay}" @click="loginWay=false">手机登录</Button>
+        </div>
+        <div class="form-con" v-if="loginWay">
           <login-form @on-success-valid="handleSubmit"></login-form>
           <p class="login-tip">输入任意用户名和密码即可</p>
+        </div>
+        <div class="form-con" v-else>
+          <login-iphone @on-success-valid="handleSubmit"></login-iphone>
+          <p class="login-tip">手机登录</p>
         </div>
       </Card>
     </div>
@@ -12,14 +20,21 @@
 </template>
 <script>
 import LoginForm from './c-login-form'
+import LoginIphone from './c-login-iphone'
 import { mapActions } from 'vuex'
 export default {
   components: {
-    LoginForm
+    LoginForm,
+    LoginIphone
+  },
+  data() {
+    return {
+      loginWay: true
+    }
   },
   methods: {
     ...mapActions(['handleLogin', 'getUserInfo']),
-    handleSubmit ({ userName, password }) {
+    handleSubmit({ userName, password }) {
       this.handleLogin({ userName, password }).then(res => {
         this.getUserInfo().then(res => {
           this.$router.push({
@@ -51,6 +66,17 @@ export default {
       font-weight: 300;
       text-align: center;
       padding: 30px 0;
+    }
+    .form-tab {
+      text-align: center;
+      button {
+        margin: 0 10px;
+      }
+      .on {
+        color: #fff;
+        background-color: #2d8cf0;
+        border-color: #2d8cf0;
+      }
     }
     .form-con {
       padding: 10px 0 0;
