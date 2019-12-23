@@ -25,6 +25,26 @@ export default [
     component: () => import('@/views/login/login.vue')
   },
   {
+    path: '/keepAlive',
+    name: 'keepAlive',
+    meta: {
+      icon: 'ios-bug',
+      title: 'activeted'
+    },
+    component: Main,
+    children: [
+      {
+        path: '/activeter',
+        name: 'activeter',
+        meta: {
+          title: 'activeter作用',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/activeter/activeter.vue')
+      }
+    ]
+  },
+  {
     path: '/',
     name: '_home',
     redirect: '/home',
@@ -245,12 +265,12 @@ export default [
           icon: 'ios-bug',
           title: '错误收集',
           hideInMenu: true
-
         },
         component: () => import('@/views/single-page/error-logger')
       }
     ]
   },
+  
   {
     path: '/401',
     name: 'error_401',

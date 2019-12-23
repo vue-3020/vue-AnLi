@@ -1,5 +1,7 @@
 <template>
   <div style="width:600px;margin:0 auto">
+    <h1>activated  keep-alive被激活的时候调用</h1>
+    <h1>deactivated  缓存被激活的时候调用</h1>
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="活动名称">
         <el-input v-model="form.name"></el-input>
@@ -61,6 +63,13 @@ export default {
         desc: ''
       }
     }
+  },
+  //当页面缓存后这个方法才会执行
+  activated(){
+    console.log('activated当页面缓存后这个方法才会执行，是缓存的方法，页面加载或者离开都会被调用')
+  },
+  deactivated(){
+    console.log('deactivated  缓存时候被触发,离开才会被调用')
   },
   methods: {
     onSubmit() {

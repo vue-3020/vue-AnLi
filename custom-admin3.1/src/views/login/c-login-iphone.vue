@@ -7,7 +7,7 @@
       </Button>
       </Input>
     </FormItem>
-    <FormItem prop="password"  v-if="show_password">
+    <FormItem prop="password" v-if="show_password">
       <Input type="password" v-model="form.password" placeholder="请输入密码">
       <span slot="append" @click="show_password=false">
         显示密码
@@ -84,13 +84,20 @@ export default {
       //点击验证多次，定时器会累加，
       if (!this.computeTime) { //只有在没有计时的时候才发送，  只有不等于0 就是true， 
         this.computeTime = 30
-        let interval = setInterval(() => {
+        this.interval = setInterval(() => {
           this.computeTime--
           if (this.computeTime <= 0) { //停止计时
-            clearInterval(interval)
+            clearInterval(this.interval)
           }
         }, 1000);
         //发送请求 也是在里面做
+        // 发送成功返回 0 发送失败返回1
+        let code = 0
+        if (code == 1) {
+          //说明报错，停止定时器
+          clearInterval(this.interval)
+        }
+
       }
 
     }
