@@ -972,9 +972,9 @@ export default new Router({
           breadcrumbLeft: true
         }
       },{
-        path: "vueJs",
-        name: "vueJs",
-        component: resolve => require(["#/potting/vueJs.vue"], resolve),
+        path: "globalMessage",
+        name: "globalMessage",
+        component: resolve => require(["#/potting/globalMessage.vue"], resolve),
         meta: {
           title: "写js组件不用引入vue代码",
           isUseCache: false,

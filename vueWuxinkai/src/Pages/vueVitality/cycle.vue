@@ -32,7 +32,7 @@ export default {
         // console.log('dom渲染完了，操作dom')
         // debugger
     },
-    beforeUpdated(){ //方法不执行
+    beforeUpdated(){ //方法不执行1
         console.log('更新数据前')
     },
     updated(){

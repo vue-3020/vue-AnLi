@@ -30,6 +30,15 @@ Vue.use(vueQuillEditor);
 import VueCodemirror from "vue-codemirror";
 import "codemirror/lib/codemirror.css";
 
+
+
+//自定义全局插件
+//在你的main.js里通过以下方式引入组件
+import globalLoading from './components/globalLoading'
+//然后通过 USE方法全局注册
+Vue.use(globalLoading);
+
+
 // require more codemirror resource...
 
 // you can set default global options and events when use
