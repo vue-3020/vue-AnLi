@@ -43,6 +43,9 @@ export default {
     },
     destroyed(){
         console.log('销毁后')
+    },
+    errorCaptured(){ //当捕获一个来自子孙组件的错误时被调用 ,此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串
+
     }
 }
 </script>

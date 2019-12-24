@@ -971,7 +971,17 @@ export default new Router({
           keepAlive: false,
           breadcrumbLeft: true
         }
-      }]
+      },{
+        path: "vueJs",
+        name: "vueJs",
+        component: resolve => require(["#/potting/vueJs.vue"], resolve),
+        meta: {
+          title: "写js组件不用引入vue代码",
+          isUseCache: false,
+          keepAlive: false,
+          breadcrumbLeft: true
+        }
+      },]
     },
     {
       path: "/threeFolder",

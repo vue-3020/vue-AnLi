@@ -63,10 +63,10 @@ export default {
   mounted() {
     this.initTinymce()
   },
-  activated() {
+  activated() { //keep-alive 组件激活时调用。
     this.initTinymce()
   },
-  deactivated() {
+  deactivated() { // keep-alive 组件停用时调用。
     this.destroyTinymce()
   },
   methods: {

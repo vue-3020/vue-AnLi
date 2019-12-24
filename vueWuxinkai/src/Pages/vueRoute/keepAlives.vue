@@ -65,11 +65,11 @@ export default {
     }
   },
   //当页面缓存后这个方法才会执行
-  activated(){
+  activated(){ // keep-alive 组件激活时调用。
     console.log('activated当页面缓存后这个方法才会执行，是缓存的方法，页面加载或者离开都会被调用')
   },
-  deactivated(){
-    console.log('deactivated  缓存时候被触发,离开才会被调用')
+  deactivated(){ //keep-alive 组件停用时调用。
+    console.log('deactivated  组件停用时调用。')
   },
   methods: {
     onSubmit() {

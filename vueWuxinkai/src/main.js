@@ -121,6 +121,12 @@ Vue.use(BaiduMap, {
 // zoom()
 // window.addEventListener('resize', zoom)
 
+
+//全局函数
+Vue.prototype.globalFunc_one = function(data){
+  alert(data)
+}
+
 /* eslint-disable no-new */
 new Vue({
   el: "#app",

@@ -290,6 +290,9 @@
       }, {
         "index": "/potting/vueFind",
         "title": "将两个数组联系到一起"
+      },{
+        "index": "/potting/vueJs",
+        "title": "写js组件不用引入vue代码"
       }]
     },
     {
