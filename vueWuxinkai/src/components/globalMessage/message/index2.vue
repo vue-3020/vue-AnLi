@@ -2,7 +2,7 @@
   <div class="message-box">
     <h2>{{title}}</h2>
     <p>{{content}}</p>
-    <div class="footer">
+    <div  class="footer">
       <div @click="handleCancle(1)">{{cancel}}</div>
       <div @click="handleOk(2)">{{ok}}</div>
     </div>
@@ -11,7 +11,11 @@
 
 <script>
 export default {
-  name: 'js组件2',
+  name: 'js组件',
+  data() {
+    return {}
+  },
+  methods: { }
 }
 </script>
 <style scoped>

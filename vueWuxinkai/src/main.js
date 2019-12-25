@@ -38,6 +38,9 @@ import globalLoading from './components/globalLoading'
 //然后通过 USE方法全局注册
 Vue.use(globalLoading);
 
+import globalMessage from './components/globalMessage'
+//然后通过 USE方法全局注册
+Vue.use(globalMessage);
 
 // require more codemirror resource...
 

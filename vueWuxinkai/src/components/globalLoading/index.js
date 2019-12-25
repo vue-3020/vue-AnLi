@@ -25,13 +25,11 @@ Load.install = (Vue, options) => {
   let $vm = new lTemp();
   // 此处使用$mount来手动开启编译。用$el来访问元素，并插入到body中
   let tpl = $vm.$mount().$el;
-  
-  document.body.appendChild(tpl);
+  document.body.appendChild(tpl); //页面加载就插入dom
   Vue.prototype.$global_loading = {
     //在原型上增加实例方法，全局使用
     show(options) {
       // //通过传入props改变$vm下的属性控制组件 例如$vm.text = options
-      debugger
       if (options == "loading") {
         //两种loing
         $vm.showLoading = true;

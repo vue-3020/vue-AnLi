@@ -7,6 +7,10 @@
       <el-button @click="cancelloading" type="info">关闭loading组件</el-button>
       <el-button @click="getToast" type="warning">开启loading</el-button>
       <el-button @click="cancelToast" type="danger">关闭loading组件</el-button>
+      <br>
+      <br>
+      <br>
+      <el-button @click="getMessageBox2" type="danger">全局确认组件</el-button>
     </el-row>
 
   </div>
@@ -14,7 +18,7 @@
 
 <script>
 
-import { messageBox } from "&/globalMessage";
+import { messageBox } from "&/globalMessage/index2.js";
 
 
 export default {
@@ -27,13 +31,29 @@ export default {
     };
   },
   methods: {
-    //获取弹出框
+    //在min中注册获取弹出框
     getMessageBox() {
+      this.$global_message.handleShowMessage(
+        {
+          title: "定位",
+          content: "北京",
+          cancel: "取消",
+          ok: "切换定位",
+          handleCancle(data) {
+            console.log(1)
+          },
+          handleOk(data) {
+            console.log(2)
+          }
+        })
+    },
+  //在
+    getMessageBox2() {
       messageBox({
-        title: "定位",
-        content: "北京",
-        cancel: "取消",
-        ok: "切换定位",
+        title: "定位2",
+        content: "北京2",
+        cancel: "取消2",
+        ok: "切换定位2",
         handleCancle() {
           console.log(1)
         },
@@ -53,7 +73,6 @@ export default {
     cancelloading() {
       this.$global_loading.hide()
     },
-
     getToast() {
       this.$global_loading.show('toast')
     },
