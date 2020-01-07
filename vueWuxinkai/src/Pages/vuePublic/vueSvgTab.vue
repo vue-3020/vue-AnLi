@@ -14,8 +14,8 @@
         </canvas>
         <div id="tags">
           <ul>
-            <li><a href="#" style="font-size:30px;">认证考试</a></li>
-            <li><a href="#">UMTS OMSTAR </a></li>
+            <li v-for="(text,index) in textData" :key="index"><a href="#" style="font-size:30px;">{{text}}</a></li>
+            <!-- <li><a href="#">U </a></li>
             <li><a href="#">客户经理角色认知</a></li>
             <li><a href="#">PM角色</a></li>
             <li><a href="#">维修</a></li>
@@ -23,7 +23,7 @@
             <li><a href="#">UMTS OMSTAR </a></li>
             <li><a href="#">客户经理角色认知</a></li>
             <li><a href="#">PM角色</a></li>
-            <li><a href="#">维修</a></li>
+            <li><a href="#">维修</a></li> -->
           </ul>
         </div>
         <div id="iconTags">
@@ -79,6 +79,9 @@ export default {
       ttags: 'taglist',
       shape: "sphere",
       lock: null,
+      textData: ['荀攸','贾诩','郭嘉','程昱','戏志才','刘晔','蒋济','陈群','华歆','钟繇','满宠','董昭','王朗','崔琰','毛玠','杜畿','田畴','王修','杨修','辛毗','杨阜','田豫','王粲','蒯越','张继','杜袭','枣祗','任峻','陈矫'],
+
+
 
       svg_falg: false,
       clear_timer: null, //定时器开关
@@ -89,6 +92,8 @@ export default {
       speedX: Math.PI / 360,//球一帧绕x轴旋转的角度
       speedY: Math.PI / 360,//球-帧绕y轴旋转的角度
       tags: []
+
+
     }
   },
   computed: {
@@ -199,7 +204,7 @@ export default {
       shape: "sphere",
       lock: "y",
       textHeight: 17,
-      radiusX: 2.5,
+      radiusX: 1.5,
       radiusY: .6,
       radiusZ: 1.5,
       textColour: "#489ffc",
