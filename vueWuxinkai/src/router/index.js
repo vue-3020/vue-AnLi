@@ -458,6 +458,17 @@ export default new Router({
           }
         },
         {
+          path: "vueSvgTab",
+          name: "vueSvgTab",
+          component: resolve => require(["#/vuePublic/vueSvgTab.vue"], resolve),
+          meta: {
+            title: "vue云标签",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
           path: "highcharts",
           name: "highcharts",
           component: resolve => require(["#/vuePublic/highcharts.vue"], resolve),

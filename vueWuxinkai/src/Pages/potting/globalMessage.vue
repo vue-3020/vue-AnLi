@@ -47,7 +47,7 @@ export default {
           }
         })
     },
-  //在
+  // 引入 import { messageBox } from "&/globalMessage/index2.js" 后应用
     getMessageBox2() {
       messageBox({
         title: "定位2",

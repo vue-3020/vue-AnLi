@@ -8,6 +8,9 @@ import config from '@/config'
 import appConst from '@/utils/const'
 import jquery from 'jquery'// jquery
 /* 全局组件 */
+
+
+
 import filtersCustom from '@/utils/filters'
 
 import '@/styles/index.less'
@@ -47,5 +50,6 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
+  //这的h是createElement方法
   render: h => h(App)
 }).$mount("#app");

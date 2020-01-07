@@ -85,6 +85,10 @@
           "title": "百度地图"
         },
         {
+          "index": "/vuePublic/vueSvgTab",
+          "title": "vue-svg云标签"
+        },
+        {
           "index": "/vuePublic/highcharts",
           "title": "highcharts"
         },

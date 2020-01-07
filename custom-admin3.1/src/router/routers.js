@@ -81,6 +81,22 @@ export default [
     ]
   },
   {
+    path: '/echarts',
+    name: 'echarts',
+    component: Main,
+    children: [
+      {
+        path: 'maplg',
+        name: 'maplg',
+        meta: {
+          icon: 'ios-bug',
+          title: 'echatr地图'
+        },
+        component: () => import('@/views/echarts/mapLG.vue')
+      }
+    ]
+  },
+  {
     path: '/example',
     name: 'example',
     component: Main,

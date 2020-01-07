@@ -3,7 +3,7 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
-
+import $ from 'jquery'
 import http from "./utils/httpAxios";
 
 import store from "./store"; //vuex
@@ -109,7 +109,7 @@ highcharts3d(Highcharts);
 Vue.use(VueHighcharts, {
   Highcharts
 });
-
+Vue.prototype.$ = $;
 Vue.config.productionTip = false;
 
 require("es6-promise").polyfill();
