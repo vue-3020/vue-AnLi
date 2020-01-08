@@ -173,10 +173,10 @@
     {
       "icon": "make.png",
       "index": "8",
-      "title": "vue面试题",
+      "title": "vue动画",
       "subs": [{
         "index": "/Interview/vueTopic1",
-        "title": "vue面试题"
+        "title": "vue动画"
       }, {
         "index": "/Interview/transition",
         "title": "vue动画"

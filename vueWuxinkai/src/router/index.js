@@ -360,7 +360,7 @@ export default new Router({
         name: "vueTopic1",
         component: resolve => require(["#/Interview/vueTopic1.vue"], resolve),
         meta: {
-          title: "vue面试题",
+          title: "vue动画",
           isUseCache: false,
           keepAlive: false,
           breadcrumbLeft: true //自定义属性
@@ -370,7 +370,7 @@ export default new Router({
         name: "transition",
         component: resolve => require(["#/Interview/transition.vue"], resolve),
         meta: {
-          title: "vue面试题",
+          title: "vue面动画",
           isUseCache: false,
           keepAlive: false,
           breadcrumbLeft: true //自定义属性
