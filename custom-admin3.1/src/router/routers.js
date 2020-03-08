@@ -65,6 +65,35 @@ export default [
     ]
   },
   {
+    path: '/manymenu',
+    name: 'manymenu',
+    component: Main,
+    meta: {
+      icon: 'ios-bug',
+      title: '多级菜单'
+    },
+    children: [
+      {
+        path: 'many_menu_one',
+        name: 'many_menu_one',
+        meta: {
+          icon: 'ios-bug',
+          title: '一级菜单'
+        },
+        component: () => import('@/views/many-menu/manyMenu')
+      },
+      {
+        path: 'many_menu_tow',
+        name: 'many_menu_tow',
+        meta: {
+          icon: 'ios-bug',
+          title: '菜单'
+        },
+        component: () => import('@/views/many-menu/manyMenu2')
+      },
+    ]
+  },
+  {
     path: '/cycle-page',
     name: 'cycle-page',
     component: Main,
@@ -286,7 +315,6 @@ export default [
       }
     ]
   },
-  
   {
     path: '/401',
     name: 'error_401',

@@ -14,7 +14,7 @@ require('echarts-gl');
 //读取json数据
 import StarsDta from "./json/StarsDta";
 //引入全局地址
-import { LocalbaseHref } from '@/api/server.ip'
+
 export default {
   data() {
     return {

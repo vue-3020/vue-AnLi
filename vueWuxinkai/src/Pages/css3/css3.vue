@@ -76,7 +76,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" type="text/scss">
 .red {
   color: red;
 }
