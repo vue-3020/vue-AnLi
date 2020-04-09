@@ -6,9 +6,9 @@ import iView from 'iview'
 import installPlugin from '@/plugin'
 import config from '@/config'
 import appConst from '@/utils/const'
-import jquery from 'jquery'// jquery
+import jquery from 'jquery' // jquery
 /* 全局组件 */
-
+import VueBarcodeScanner from 'vue-barcode-scanner'
 
 
 import filtersCustom from '@/utils/filters'
@@ -23,7 +23,6 @@ Vue.use(VueCompositionApi)
 // 实际打包时应该不引入mock
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock')
-
 Vue.use(iView);
 Vue.use(require('vue-moment'))
 /**
@@ -36,6 +35,21 @@ installPlugin(Vue)
 Vue.prototype.$config = config
 Vue.prototype.$appConst = appConst
 Vue.prototype.$ = jquery
+
+
+
+
+//  使用选项注入条码扫描器(添加声音效果)
+//  声音在扫描时会触发
+let options = {
+  sound: true, //  默认为false
+  soundSrc: '/static/sound.wav', //  默认为blank
+  sensitivity: 300, //  默认值为100 
+  requiredAttr: true //  默认为false 
+}
+
+Vue.use(VueBarcodeScanner, options)
+
 
 // 循环注册全局过滤器
 for (let key in filtersCustom) {

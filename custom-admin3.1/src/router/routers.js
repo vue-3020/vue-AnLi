@@ -74,6 +74,15 @@ export default [
     },
     children: [
       {
+        path: 'barcodeScanner',
+        name: 'barcodeScanner',
+        meta: {
+          icon: 'ios-bug',
+          title: '二维码',
+        },
+        component: () => import('@/views/many-menu/barcodeScanner')
+      },
+      {
         path: 'many_menu_one',
         name: 'many_menu_one',
         meta: {
@@ -90,6 +99,15 @@ export default [
           title: '菜单'
         },
         component: () => import('@/views/many-menu/manyMenu2')
+      },
+      {
+        path: 'ExpressionList',
+        name: 'ExpressionList',
+        meta: {
+          icon: 'ios-bug',
+          title: '三个菜单'
+        },
+        component: () => import('@/views/many-menu/ExpressionList')
       },
     ]
   },
@@ -312,7 +330,7 @@ export default [
           hideInMenu: true
         },
         component: () => import('@/views/single-page/error-logger')
-      }
+      },
     ]
   },
   {

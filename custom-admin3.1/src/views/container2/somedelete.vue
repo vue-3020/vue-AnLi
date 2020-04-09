@@ -32,6 +32,8 @@ export default {
   },
   methods: {//methods中定义了当前vue实例中所有可用的方法
     del(id) {
+      //可能不适合多个删除
+      
       this.list.some((item, i) => {
         if (item.id == id) {
           this.list.splice(i, 1)
@@ -41,23 +43,26 @@ export default {
       })
     },
     del2(id) {
-      var index = this.list.findIndex(item => {
-        if (item.id == id) {
-          return true
-        }
-      })
-      this.list.splice(index, 1)
+      //获取当前索引
+      this.list.splice(this.list.findIndex(item => item.id == id), 1)
+   
+      // var index = this.list.findIndex(item => {
+      //   if (item.id == id) {
+      //     return true
+      //   }
+      // })
+      // this.list.splice(index, 1)
     }
   }
 }
 </script>
 <style scoped  lang="less">
-.flaf{
-    display: flex;
-    width: 100%;
-  justify-content : space-between;
-  button{
-      margin: 0 10px;
+.flaf {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  button {
+    margin: 0 10px;
   }
 }
 </style>

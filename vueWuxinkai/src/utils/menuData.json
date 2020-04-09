@@ -69,6 +69,10 @@
           "title": "图片懒加载"
         },
         {
+          "index": "/vuePublic/vueTabs",
+          "title": "tab切换"
+        },
+        {
           "index": "/vuePublic/preview",
           "title": "图片预览"
         },

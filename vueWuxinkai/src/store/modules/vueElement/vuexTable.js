@@ -4,10 +4,10 @@ const vuesAccount = {
   namespaced: true, //必须加 vuex中的store分模块管理，需要在store的index.js中引入各个模块，为了解决不同模块命名冲突的问题，将不同模块的namespaced:true，之后在不同页面中引入getter、actions、mutations时，需要加上所属的模块名
   state: {
     scores: [
-      { date: "2018-10-12", name: "store的本地数据1", WORK_TITLE: "345",CREATE_USERnow:'12345',USER_TYPEnow:'e233e23e32e',CREATE_TIMEnow:'133222' },
-      { date: "2018-10-12", name: "store的本地数据1", WORK_TITLE: "345",CREATE_USERnow:'12345',USER_TYPEnow:'e233e23e32e',CREATE_TIMEnow:'133222' },
-      { date: "2018-10-12", name: "store的本地数据1", WORK_TITLE: "345",CREATE_USERnow:'12345',USER_TYPEnow:'e233e23e32e',CREATE_TIMEnow:'133222' },
-      { date: "2018-10-12", name: "store的本地数据1", WORK_TITLE: "345",CREATE_USERnow:'12345',USER_TYPEnow:'e233e23e32e',CREATE_TIMEnow:'133222' },
+      { date: "2018-10-12",id:1, name: "store的本地数据1", WORK_TITLE: "345",CREATE_USERnow:'12345',USER_TYPEnow:'e233e23e32e',CREATE_TIMEnow:'133222' },
+      { date: "2018-10-12",id:2, name: "store的本地数据2", WORK_TITLE: "345",CREATE_USERnow:'12345',USER_TYPEnow:'e233e23e32e',CREATE_TIMEnow:'133222' },
+      { date: "2018-10-12",id:3, name: "store的本地数据3", WORK_TITLE: "345",CREATE_USERnow:'12345',USER_TYPEnow:'e233e23e32e',CREATE_TIMEnow:'133222' },
+      { date: "2018-10-12",id:4, name: "store的本地数据4", WORK_TITLE: "345",CREATE_USERnow:'12345',USER_TYPEnow:'e233e23e32e',CREATE_TIMEnow:'133222' },
     ],
     AsynData: [] //异步数据
   },

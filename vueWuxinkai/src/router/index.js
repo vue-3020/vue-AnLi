@@ -503,11 +503,22 @@ export default new Router({
           }
         },
         {
+          path: "vueTabs",
+          name: "vueTabs",
+          component: resolve => require(["#/vuePublic/vueTabs.vue"], resolve),
+          meta: {
+            title: "图片懒加载",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true //自定义属性
+          }
+        },
+        {
           path: "vueLazyload",
           name: "vueLazyload",
           component: resolve => require(["#/vuePublic/vueLazyload.vue"], resolve),
           meta: {
-            title: "图片懒加载",
+            title: "tab切换的原理",
             isUseCache: false,
             keepAlive: false,
             breadcrumbLeft: true //自定义属性

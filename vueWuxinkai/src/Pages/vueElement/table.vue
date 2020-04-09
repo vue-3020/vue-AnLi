@@ -2,8 +2,14 @@
   <div>
     <div>
       <el-button type="info" @click="customColumn">定制可见列</el-button>
-      <el-table :data="getTableList" style="width: 100%">
-        <el-table-column prop="date" label="日期" >
+      <el-button type="info" @click="delAllSelection">批量删除</el-button>
+      <el-table :data="getTableListData" style="width: 100%" border class="table" ref="multipleTable" header-cell-class-name="table-header" @selection-change="handleSelectionChange">
+        <!-- 多选 -->
+        <el-table-column type="selection" width="55">
+        </el-table-column>
+         <el-table-column prop="id"  width="80" label="id">
+        </el-table-column>
+        <el-table-column prop="date" label="日期">
         </el-table-column>
         <el-table-column prop="name" label="姓名">
         </el-table-column>
@@ -32,6 +38,9 @@ import visibleCol from '&/common/visibleCol'
 export default {
   data() {
     return {
+      getTableListData:[],
+      multipleSelection: [], //选中内容
+      delList: [],//被删除的内容
       visibleColShow: { show: false }, //定制可见列的显示和隐藏
       customArrColumns: [ //定制可见列的数组
         { property: 'CREATE_USERnow', label: '发布人' },
@@ -40,8 +49,8 @@ export default {
       ],
       customObjColumns: {  //定制可见列的显示隐藏对象
         CREATE_USERnow: false,
-        USER_TYPEnow: true, 
-        CREATE_TIMEnow: false 
+        USER_TYPEnow: true,
+        CREATE_TIMEnow: false
       },
     }
   },
@@ -54,10 +63,10 @@ export default {
       let _this = this
       if (_this.customArrColumns.length > 0) {
         //判断哪些默认被勾选，如果有勾选的把值传给模态框
-        for(var i=0; i<_this.customArrColumns.length; i++){
+        for (var i = 0; i < _this.customArrColumns.length; i++) {
           const element = _this.customArrColumns[i];
           element.isChecked = _this.customObjColumns[element['property']];
-          this.$set(_this.customArrColumns,i,element) //给data对象新增属性，并触发视图更新
+          this.$set(_this.customArrColumns, i, element) //给data对象新增属性，并触发视图更新
         }
       } else { //自动生成自定义可见列的项，目前未生效
         // this.$refs.tables.columns.forEach(item => {
@@ -78,9 +87,30 @@ export default {
       }
       this.visibleColShow.show = false; //关闭
     },
+    //选中的表格内容
+    handleSelectionChange(val) {
+      this.multipleSelection = val;
+    },
+    delAllSelection() {
+      let _this = this
+      const length = _this.multipleSelection.length;
+      if (length == 0) return _this.$message.error(`请选择删除内容`);
+      let str = '';
+      //报错被删除的内容
+      console.log( _this.getTableListData)
+      _this.delList = _this.delList.concat(_this.multipleSelection);
+      for (let i = 0; i < length; i++) {
+        str += this.multipleSelection[i].name + ' ';
+        _this.getTableListData.splice(_this.getTableListData.findIndex(v => v.id === _this.multipleSelection[i].id), 1);
+      }
+      _this.$message.error(`删除了${str}`);
+      _this.multipleSelection = []; //清空选中内容，
+    },
   },
   mounted() {
-    // console.log(this.getTableList); //获取同步数据
+    // 直接操作dom报错  做这个拷贝  在进行操作  数组拷贝
+
+    this.getTableListData = this.getTableList.slice()
     this.getData() //异步请求第一步
   },
   computed: {
