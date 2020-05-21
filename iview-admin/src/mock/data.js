@@ -7,7 +7,7 @@ const Random = Mock.Random
 export const getTableData = req => {
   debugger
   let tableData = []
-  doCustomTimes(5, () => { // 获取5条
+  doCustomTimes(10, () => { // 获取5条
     tableData.push(Mock.mock({
       name: '@name', // 获取的是字段名字
       email: '@email',

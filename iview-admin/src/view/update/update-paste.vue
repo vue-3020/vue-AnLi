@@ -45,6 +45,7 @@ export default {
       this.errorIndex = index
     },
     handleShow () {
+      debugger
       if (!this.validated) {
         this.$Notice.error({
           title: '您的内容不规范',

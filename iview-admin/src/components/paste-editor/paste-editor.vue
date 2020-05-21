@@ -39,6 +39,7 @@ export default {
     rowNum () {
       return this.pasteDataArr.length
     },
+    //计算第一条有有多少行
     colNum () {
       return this.pasteDataArr[0] ? this.pasteDataArr[0].length : 0
     }
@@ -53,6 +54,7 @@ export default {
     handleContentChanged (content) {
       let pasteData = content.trim()
       this.$emit('on-content-change', pasteData)
+      //（1）以tab作为分隔进行存储
       let rows = pasteData.split((/[\n\u0085\u2028\u2029]|\r\n?/g)).map(row => {
         return row.split('\t')
       })
@@ -67,10 +69,12 @@ export default {
      */
     checkColNumInEveryRow () {
       let i = 0
+      //这是有几行
       const len = this.rowNum
       if (len === 0) return
       while (++i < len) {
         let item = this.pasteDataArr[i]
+        //第一行和第二行 第三行 。。。 进行对比， 行号相同      不能为空， 如果能走进去就报错了 
         if (item.length !== this.colNum && (!(i === len - 1 && item.length === 1 && item[0] === '') || i !== len - 1)) {
           this.markIncorrectRow(i)
           this.$emit('on-error', i)

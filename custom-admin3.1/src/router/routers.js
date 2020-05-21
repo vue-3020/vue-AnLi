@@ -157,7 +157,7 @@ export default [
         name: 'maplg',
         meta: {
           icon: 'ios-bug',
-          title: 'echatr地图'
+          title: '对数据进行深度监听'
         },
         component: () => import('@/views/echarts/mapLG.vue')
       }
@@ -261,7 +261,7 @@ export default [
         path: 'table_list',
         name: 'table_list',
         meta: {
-          title: 'tables',
+          title: 'tables和导出excel功能',
           icon: 'md-git-branch'
         },
         component: () => import('@/views/example/listpage')

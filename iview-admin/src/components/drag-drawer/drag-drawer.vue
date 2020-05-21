@@ -7,7 +7,7 @@
           v-bind="$attrs"
           v-on="$listeners">
     <!-- 所有插槽内容显示在这里 ↓ -->
-
+    <p>6666666666666666666666666666666666666666666666666666666666666</p>
     <template v-for="(slots, slotsName) in $slots">
       <template v-if="slotsName !== 'default'">
         <render-dom v-for="(render, index) in slots"
@@ -16,6 +16,7 @@
                     :slot="slotsName">
         </render-dom>
       </template>
+      
       <template v-else>
         <div :class="`${prefix}-body-wrapper`"
              :key="`b_drawer_${slotsName}`">
