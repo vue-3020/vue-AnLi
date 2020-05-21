@@ -1,5 +1,6 @@
 <template>
   <div style="width:500px;margin:100px auto">
+    <h1>不通的删除的方法</h1>
     <List header="Header" footer="Footer" border>
       <ListItem v-for="(item,index) in list" :key="item.id">
         <div class="flaf">
@@ -34,7 +35,7 @@ export default {
     del(id) {
       //可能不适合多个删除
       
-      this.list.some((item, i) => {
+      this.list.some((item, i) => { //可以获取索引
         if (item.id == id) {
           this.list.splice(i, 1)
           //在数组的some方法中，如果return true，就会立即终止这个数组的后续循环

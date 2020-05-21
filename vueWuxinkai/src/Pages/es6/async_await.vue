@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>(1) 处理 async 函数中的错误</h3>
-    <h3>(2) 正确处理多个 await 操作的并行  串行</h3>
+    <h3>(2) 正确处理多个 await 操作的并行 串行</h3>
     <h3>(3) 使用 Promise.all() 让多个 await 操作并行</h3>
     <h3>(4) 在 for 循环中正确的使用 await</h3>
   </div>
@@ -40,7 +40,7 @@ export default {
     //   });
     // },
     // //4 处理 async 函数中的错误
-  
+
     // async getColumn3(id) {
     //   // debugger
     //   const response = await this.step7(200);

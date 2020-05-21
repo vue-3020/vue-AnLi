@@ -45,6 +45,26 @@ export default [
     ]
   },
   {
+    path: '/socketJS',
+    name: 'socketJS',
+    meta: {
+      icon: 'ios-bug',
+      title: 'socketJS'
+    },
+    component: Main,
+    children: [
+      {
+        path: '/socket',
+        name: 'socket',
+        meta: {
+          title: 'socketJS的用法',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/socketJS/socket.vue')
+      }
+    ]
+  },
+  {
     path: '/',
     name: '_home',
     redirect: '/home',

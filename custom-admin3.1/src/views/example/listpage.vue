@@ -2,6 +2,7 @@
   <div>
     <Card>
       <div class="search-con">
+        
         <Input class="search-input" placeholder="请输入姓名" v-model="searchData.name"/>
         <Select class="search-col" clearable v-model="searchData.gender" placeholder="请选择性别">
           <Option
