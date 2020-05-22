@@ -231,20 +231,41 @@ export const doCustomTimes = (times, callback) => {
  * @description 从Csv文件中解析出表格，解析成二维数组
  */
 export const getArrayFromFile = (file) => {
-  let nameSplit = file.name.split('.')
-  let format = nameSplit[nameSplit.length - 1]
+  debugger
+  let nameSplit = file.name.split('.') //名字用点区分两个数组
+  let format = nameSplit[nameSplit.length - 1] //取最后一个数组
   return new Promise((resolve, reject) => {
-    let reader = new FileReader()
+    let reader = new FileReader() 
     reader.readAsText(file) // 以文本格式读取
     let arr = []
     reader.onload = function (evt) {
       let data = evt.target.result // 读到的数据
-      let pasteData = data.trim()
+/* data 数据格式
+↵袁勇,1,吉林省 吉林市 龙潭区,1994-10-21 08:10:32
+↵朱洋,0,宁夏回族自治区 银川市 贺兰县,1985-10-18 16:45:32
+↵卢涛,0,河北省 秦皇岛市 海港区,1977-06-09 00:24:26
+↵阎敏,1,澳门特别行政区 澳门半岛 -,1994-07-06 17:11:03
+↵谢霞,0,江苏省 淮安市 金湖县,1983-01-30 00:29:14
+↵谢强,0,新疆维吾尔自治区 博尔塔拉蒙古自治州 温泉县,1991-10-27 10:01:44
+↵姜杰,1,山西省 晋城市 泽州县,2003-06-15 22:50:15
+↵彭平,1,黑龙江省 黑河市 嫩江县,2017-05-24 16:53:20
+↵余秀英,1,四川省 自贡市 贡井区,1974-08-19 13:25:12
+↵崔秀兰,1,台湾 基隆市 七堵区,2004-08-05 22:03:30"
+*/ 
+      let pasteData = data.trim() //删除空格
       arr = pasteData.split((/[\n\u0085\u2028\u2029]|\r\n?/g)).map(row => {
-        return row.split('\t')
+        return row.split('\t') //以回车做为拆分，以逗号作为拆分
       }).map(item => {
         return item[0].split(',')
       })
+      
+/* arr的数据格式
+[
+  ["一级分类", "二级分类", "三级分类", "四级分类"],
+  ["袁勇", "1", "吉林省 吉林市 龙潭区", "1994-10-21 08:10:32"],
+  ["朱洋", "0", "宁夏回族自治区 银川市 贺兰县", "1985-10-18 16:45:32"]
+]
+*/
       if (format === 'csv') resolve(arr)
       else reject(new Error('[Format Error]:你上传的不是Csv文件'))
     }

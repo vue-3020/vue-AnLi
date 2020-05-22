@@ -31,6 +31,10 @@
     <pre>
       import excel from '@/libs/excel'
     </pre>
+    <h2>配置文件</h2>
+    <pre>
+    D:\1项目资料\vue-AnLi\custom-admin3.1\src\libs\excel.js
+    </pre>
   </div>
 </template>
 <script>

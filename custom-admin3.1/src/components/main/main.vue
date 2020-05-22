@@ -80,7 +80,7 @@ export default {
       return this.$store.state.user.avatorImgPath
     },
     cacheList() {
-      console.log(this.tagNavList)
+      // console.log(this.tagNavList)
       const list = ['ParentView', ...(this.tagNavList.length ? this.tagNavList.filter(item => !(item.meta && item.meta.notCache)).map(item => item.name) : [])]
       return list
     },

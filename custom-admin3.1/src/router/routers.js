@@ -25,6 +25,26 @@ export default [
     component: () => import('@/views/login/login.vue')
   },
   {
+    path: '/comMethod',
+    name: 'comMethod',
+    meta: {
+      icon: 'ios-bug',
+      title: '常用方法'
+    },
+    component: Main,
+    children: [
+      {
+        path: '/comFn',
+        name: 'comFn',
+        meta: {
+          title: '常用方法comFn',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/comMethod/comFn.vue')
+      }
+    ]
+  },
+  {
     path: '/keepAlive',
     name: 'keepAlive',
     meta: {
@@ -284,15 +304,15 @@ export default [
         },
         component: () => import('@/views/components-example/file-upload')
       },
-      {
-        path: 'file_download',
-        name: 'file_download',
-        meta: {
-          title: '文件下载',
-          icon: 'md-clipboard'
-        },
-        component: () => import('@/views/components-example/file-download')
-      },
+      // {
+      //   path: 'file_download',
+      //   name: 'file_download',
+      //   meta: {
+      //     title: '文件下载',
+      //     icon: 'md-clipboard'
+      //   },
+      //   component: () => import('@/views/components-example/file-download')
+      // },
       {
         path: 'transfer_example',
         name: 'transfer_example',

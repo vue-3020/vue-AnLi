@@ -1,9 +1,11 @@
+//手写jquery的forEach方法
 export const forEach = (arr, fn) => {
   if (!arr.length || !fn) return
   let i = -1
   let len = arr.length
   while (++i < len) {
     let item = arr[i]
+    //回调参数，数组项，下标，原数组
     fn(item, i, arr)
   }
 }
@@ -13,7 +15,7 @@ export const forEach = (arr, fn) => {
  * @param {Array} arr2
  * @description 得到两个数组的交集, 两个数组的元素为数值或字符串
  */
-export const getIntersection = (arr1, arr2) => {
+export const getIntersection = (arr1, arr2) => { 
   let len = Math.min(arr1.length, arr2.length)
   let i = -1
   let res = []
@@ -46,7 +48,7 @@ export const hasOneOf = (targetarr, arr) => {
  * @param {String|Number} value 要验证的字符串或数值
  * @param {*} validList 用来验证的列表
  */
-export function oneOf (value, validList) {
+export function oneOf(value, validList) {
   for (let i = 0; i < validList.length; i++) {
     if (value === validList[i]) {
       return true

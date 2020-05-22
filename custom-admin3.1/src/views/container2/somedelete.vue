@@ -34,7 +34,6 @@ export default {
   methods: {//methods中定义了当前vue实例中所有可用的方法
     del(id) {
       //可能不适合多个删除
-
       this.list.some((item, i) => { //可以获取索引
         if (item.id == id) {
           this.list.splice(i, 1)

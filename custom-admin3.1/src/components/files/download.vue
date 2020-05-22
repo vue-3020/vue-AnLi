@@ -4,10 +4,10 @@
     <ul class="ivu-upload-list">
       <li v-for="(item,index) in downList" :key="index" class="ivu-upload-list-file ivu-upload-list-file-finish">
         <span @click="download(item)">{{item.attachmentName}}</span>
-        <!-- <i
+        <i
           class="ivu-icon ivu-icon-ios-trash ivu-upload-list-remove"
           @click="handelRemove(item,index)"
-        ></i>-->
+        ></i>
       </li>
     </ul>
 
