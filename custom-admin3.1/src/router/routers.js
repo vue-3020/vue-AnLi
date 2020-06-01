@@ -41,6 +41,23 @@ export default [
           icon: 'md-home'
         },
         component: () => import('@/views/comMethod/comFn.vue')
+      },{
+        path: '/animation',
+        name: 'animation',
+        meta: {
+          title: 'animation动画',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/comMethod/animation.vue')
+      },
+      {
+        path: '/bigMinGrid',
+        name: 'bigMinGrid',
+        meta: {
+          title: '分组 大小标签问题',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/comMethod/bigMinGrid.vue')
       }
     ]
   },
