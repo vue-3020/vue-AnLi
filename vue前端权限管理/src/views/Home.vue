@@ -76,7 +76,7 @@ export default {
   },
   created() {
     //初始化加载菜单
-    debugger
+    // debugger
     this.getMenuList = this.getRightList
     this.loginUserName = this.getUsername
     // this.activePath = window.sessionStorage.getItem('activePath')

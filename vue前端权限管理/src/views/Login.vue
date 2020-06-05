@@ -56,7 +56,9 @@
 </template>
 <script>
 import { checkUserById, userLogin } from '@/utils/sys_utils/sysAction'
-import {mapState, mapMutations, mapGetters, mapActions } from 'vuex'
+import { setSessionStorage } from "@/utils/common"
+import { mapState, mapMutations, mapGetters, mapActions } from 'vuex'
+import { initDynamicRoutes } from '@/router/index'
 export default {
   name: 'Login',
   data() {
@@ -88,7 +90,7 @@ export default {
     });
   },
   methods: {
-    ...mapMutations(['setRightList','setUserName']),
+    ...mapMutations(['setRightList', 'setUserName']),
     // 改变图标
     changeimg(id) {
       if (id === 1) {
@@ -109,12 +111,14 @@ export default {
         //发送给vuex  src\store\module\userMenu.js
         _this.setRightList(res.rights)
         _this.setUserName(res.data.username)
+        setSessionStorage('token', res.data.token)
+
+        //根据用户的权限，添加路由规则
+        initDynamicRoutes()
         if (res.meta.status !== 200) return this.$Message.error('登录失败！')
         this.$Message.success('登录成功')
         this.$router.push('/')
       })
-
-
     },
   }
 }
