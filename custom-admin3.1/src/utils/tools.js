@@ -223,3 +223,40 @@ export const objEqual = (obj1, obj2) => {
   else if (keysArr1.length === 0 && keysArr2.length === 0) return true
   /* eslint-disable-next-line */ else { return !keysArr1.some(key => obj1[key] !== obj2[key]) }
 }
+
+
+ // 验证邮箱的规则
+ export const  checkEmail = (value, cb) => {
+  // 验证邮箱的正则表达式
+  const regEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/
+
+  if (regEmail.test(value)) {
+    // 合法的邮箱
+    return cb()
+  }
+
+  cb(new Error('请输入合法的邮箱'))
+}
+
+ // 验证手机号的规则
+ export const checkMobile = ( value, cb) => {
+  // 验证手机号的正则表达式
+  const regMobile = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/
+
+  if (regMobile.test(value)) {
+    return cb()
+  }
+
+  cb(new Error('请输入合法的手机号'))
+}
+
+// 从页面的URL中获取参数的方法
+export const getParams = url => {
+  const keyValueArr = url.split("?")[1].split("&");
+  let paramObj = {};
+  keyValueArr.forEach(item => {
+    const keyValue = item.split("=");
+    paramObj[keyValue[0]] = keyValue[1];
+  });
+  return paramObj;
+};
