@@ -6,6 +6,10 @@ import iView from 'iview'
 import installPlugin from '@/plugin'
 import config from '@/config'
 import appConst from '@/utils/const'
+//引入全局指令
+import rotate from '../publics/index.js'
+Vue.use(rotate)
+
 import jquery from 'jquery' // jquery
 /* 全局组件 */
 import VueBarcodeScanner from 'vue-barcode-scanner'

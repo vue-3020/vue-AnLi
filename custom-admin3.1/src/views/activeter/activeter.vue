@@ -1,6 +1,6 @@
 <template>
   <Card>
-    wsssss
+    只有在和keep-alive 缓存下应该才会起作用
   </Card>
 </template>
 <script>

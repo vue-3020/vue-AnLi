@@ -15,7 +15,6 @@ const router = new Router({
   // base: '/base/'
 })
 const LOGIN_PAGE_NAME = 'login'
-
 const turnTo = (to, access, next) => {
   if (canTurnTo(to.name, access, routes)) next()
   // 有权限，可访问

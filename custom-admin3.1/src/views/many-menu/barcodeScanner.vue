@@ -7,7 +7,7 @@
 export default {
    data() {
     return {
-      onBarcodeScanned: null
+      // onBarcodeScanned: null
     }
   },
   created() {

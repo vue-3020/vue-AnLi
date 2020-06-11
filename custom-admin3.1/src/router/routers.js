@@ -58,6 +58,15 @@ export default [
           icon: 'md-home'
         },
         component: () => import('@/views/comMethod/bigMinGrid.vue')
+      },
+      {
+        path: '/customFn',
+        name: 'customFn',
+        meta: {
+          title: '自定义指令转全局组件',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/comMethod/customFn.vue')
       }
     ]
   },
@@ -135,7 +144,7 @@ export default [
         name: 'barcodeScanner',
         meta: {
           icon: 'ios-bug',
-          title: '二维码',
+          title: '全局组件',
         },
         component: () => import('@/views/many-menu/barcodeScanner')
       },
