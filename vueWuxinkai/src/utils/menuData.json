@@ -43,6 +43,12 @@
       }, {
         "index": "/vueVitality/brother",
         "title": "(兄弟组件通信)发布订阅"
+      },{
+        "index": "/vueVitality/target",
+        "title": "事件委托"
+      },{
+        "index": "/vueVitality/fuzzySearch",
+        "title": "模糊搜索"
       }]
     },
     {

@@ -1,9 +1,9 @@
 <template>
   <div>
     <img style="width:44px" :src="setImg(weatherImg)" alt="">
-      <div class="now-time" >秦皇島</div>
-      <div class="now-time" v-if="weather">{{weather}}</div>
-      <div class="now-time" v-else><i class="no-weather">未获取到天气</i></div>
+    <div class="now-time">秦皇島</div>
+    <div class="now-time" v-if="weather">{{weather}}</div>
+    <div class="now-time" v-else><i class="no-weather">未获取到天气</i></div>
   </div>
 </template>
 
@@ -37,6 +37,10 @@ export default {
       // }).catch(function (err) {
       //   console.log('获取菜单失败' + err.message)
       // })
+
+      // 代理的跨越地址在 D:\1项目资料\vue-AnLi\vueWuxinkai\config\index.js
+      //https://free-api.heweather.net/s6/weather/now
+      
       this.$axios.get(`?location=${param}&key=fec79ff1f8454d72b9d92486f43cb571`)
         .then(res => {
           if (res) {
@@ -51,7 +55,7 @@ export default {
           console.log(err)
         })
     },
-     //转义图片
+    //转义图片
     setImg(img) {
       if (/\b2/.test(img)) {
         return require(`../../../static/images/weather/200d.png`)

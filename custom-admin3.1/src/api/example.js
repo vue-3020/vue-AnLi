@@ -50,6 +50,14 @@ export function fetchCities () {
 
   })
 }
+export function footerData () {
+  return axios.request({
+    url: 'example/list',
+    method: 'get'
+
+  })
+}
+
 export function uploadFile (data) {
   return axios.request({
     url: 'example/uploadFile',

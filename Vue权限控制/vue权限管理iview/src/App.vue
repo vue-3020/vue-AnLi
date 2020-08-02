@@ -11,7 +11,7 @@ export default {
   mounted() {
    setTimeout(()=>{
       initDynamicRoutes()
-   },10)
+   },100)
       // initDynamicRoutes()
   }
 }

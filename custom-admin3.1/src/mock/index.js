@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 import { login, logout, getUserInfo } from './login'
 // import { fetchPages, fetchList, fetchCities, addApp, updateApp, deleteApp, fetchApp, uploadFile, removeFile } from './example'
 // import { logout, getUserInfo } from './login'
-import { fetchPages, fetchList, fetchCities, addApp, updateApp, deleteApp, fetchApp, removeFile } from './example'
+import { fetchPages, fetchList, fetchCities, footerData,addApp, updateApp, deleteApp, fetchApp, removeFile } from './example'
 
 // 配置Ajax请求延时，可用来测试网络延迟大时项目中一些效果
 // Mock.setup({
@@ -19,6 +19,7 @@ Mock.mock(/\/example\/update/, 'post', updateApp)
 Mock.mock(/\/example\/delete/, 'post', deleteApp)
 Mock.mock(/\/example\/details[\s\S]*?/, 'get', fetchApp)
 Mock.mock(/\/example\/cities/, 'get', fetchCities)
+Mock.mock(/\/example\/list/, 'get', footerData)
 // Mock.mock(/\/uploadFile/, 'post', uploadFile)
 Mock.mock(/\/removeFile/, 'post', removeFile)
 Mock.mock(/\/save_error_logger/, 'success')

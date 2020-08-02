@@ -6,12 +6,15 @@ import iView from 'iview'
 import installPlugin from '@/plugin'
 import config from '@/config'
 import appConst from '@/utils/const'
+import VueLazyload from "vue-lazyload"; //（1111）图片懒加载
 //引入全局指令
 import rotate from '../publics/index.js'
 Vue.use(rotate)
-
 import jquery from 'jquery' // jquery
 /* 全局组件 */
+
+
+
 import VueBarcodeScanner from 'vue-barcode-scanner'
 
 
@@ -40,6 +43,17 @@ Vue.prototype.$config = config
 Vue.prototype.$appConst = appConst
 Vue.prototype.$ = jquery
 
+
+import loading from "../src/assets/images/loading.gif";
+import error_data from "../src/assets/images/error.jpg";
+// 222 图片懒加载配置
+Vue.use(VueLazyload, {
+  preLoad: 1.3, //预载高度比例
+  error: error_data, //当加载图片失败的时候
+  loading: loading, //当加载图片成功的时候
+  attempt: 1, //尝试计数
+ 
+});
 
 
 

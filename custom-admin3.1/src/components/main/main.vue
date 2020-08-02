@@ -85,6 +85,7 @@ export default {
       return list
     },
     menuList() {
+      debugger
       return this.$store.getters.menuList
     },
     local() {
@@ -111,7 +112,7 @@ export default {
       'handleLogin'
     ]),
     turnToPage(route) {
-      debugger
+      // debugger
       let { name, params, query } = {}
       if (typeof route === 'string') name = route
       else {

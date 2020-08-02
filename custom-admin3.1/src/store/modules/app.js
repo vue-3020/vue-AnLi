@@ -69,7 +69,6 @@ export default {
           if (router.name === homeName) state.tagNavList.unshift(router)
           else state.tagNavList.splice(1, 0, router)
         }
-        debugger
         setTagNavListInLocalstorage([...state.tagNavList])
       }
     },

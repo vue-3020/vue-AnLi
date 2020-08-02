@@ -16,6 +16,7 @@ Vue.directive('permission', {
     const effect = binding.value.effect //禁用
     // 按钮是否有权限
     const currentRight = router.currentRoute.meta
+    debugger
     //如果不包含就会走false  ["view", "edit", "add", "delete"] 包含任何一个都不会消失
     if (currentRight) {
       // 判断有就保留 没意见就删除

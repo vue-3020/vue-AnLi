@@ -13,7 +13,7 @@
       <div slot="header" class="clearfix">
         <span>数组去重</span>
       </div>
-      <div>原数组：{{testArray}},</div>
+      <div>原数组：{{testArray}}</div>
       <div>去重后{{testArray | unique}}</div>
     </el-card>
   </div>
@@ -23,8 +23,11 @@ export default {
   data() {
     return {
       testStr: "ABCDEFG",
-      testArray: [1, 2, 3, 5, 6, 1, 2, 3],
+      testArray: [1, 2, 3, 5, 6, 1, 2, 3]
     }
+  },
+  mounted(){
+   
   }
 }
 </script>

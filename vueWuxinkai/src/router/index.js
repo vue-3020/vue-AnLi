@@ -300,6 +300,28 @@ export default new Router({
           }
         },
         {
+          path: "target",
+          name: "target",
+          component: resolve => require(["#/vueVitality/target.vue"], resolve),
+          meta: {
+            title: "事件委托",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true
+          }
+        },
+        {
+          path: "fuzzySearch",
+          name: "fuzzySearch",
+          component: resolve => require(["#/vueVitality/fuzzySearch.vue"], resolve),
+          meta: {
+            title: "模糊搜索",
+            isUseCache: false,
+            keepAlive: false,
+            breadcrumbLeft: true
+          }
+        },
+        {
           path: "slot",
           name: "slot",
           component: resolve => require(["#/vueVitality/slot.vue"], resolve),
@@ -993,7 +1015,7 @@ export default new Router({
           keepAlive: false,
           breadcrumbLeft: true
         }
-      },{
+      }, {
         path: "globalMessage",
         name: "globalMessage",
         component: resolve => require(["#/potting/globalMessage.vue"], resolve),
@@ -1003,7 +1025,7 @@ export default new Router({
           keepAlive: false,
           breadcrumbLeft: true
         }
-      },]
+      }, ]
     },
     {
       path: "/threeFolder",
@@ -1086,24 +1108,26 @@ export default new Router({
         keepAlive: false
       },
       children: [{
-        path: "es01",
-        name: "es01",
-        component: resolve => require(["#/es6/es01.vue"], resolve),
-        meta: {
-          title: "01",
-          isUseCache: false,
-          keepAlive: false
+          path: "es01",
+          name: "es01",
+          meta: {
+            title: "01",
+            isUseCache: false,
+            keepAlive: false
+          },
+          component: resolve => require(["#/es6/es01.vue"], resolve),
         },
-        path: "async_await",
-        name: "async_await",
-        component: resolve => require(["#/es6/async_await.vue"], resolve),
-        meta: {
-          title: "async_await",
-          isUseCache: false,
-          keepAlive: false
+        {
+          path: "async_await",
+          name: "async_await",
+          meta: {
+            title: "async_await",
+            isUseCache: false,
+            keepAlive: false
+          },
+          component: resolve => require(["#/es6/async_await.vue"], resolve)
         }
-      }]
-
+      ]
     },
   ]
 });

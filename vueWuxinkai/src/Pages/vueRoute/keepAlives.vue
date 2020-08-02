@@ -73,6 +73,7 @@ export default {
   },
   methods: {
     onSubmit() {
+      debugger
       this.$router.push({ name:'useMiXin',
         params: {
           formData: this.form

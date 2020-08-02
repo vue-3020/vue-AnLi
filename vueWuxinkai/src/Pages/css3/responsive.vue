@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import './style/common.scss'
+// import './style/common.scss'
 import './style/mixin.scss'
 import './style/variables.scss'
 import ellipsis from '@/utils/ellipsis'

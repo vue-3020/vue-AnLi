@@ -168,7 +168,7 @@ export default {
     this.menuList1()
 
     //解决报错问题
-    this.getColumn3()
+    // this.getColumn3()
     // this.menuList2()
   }
 };

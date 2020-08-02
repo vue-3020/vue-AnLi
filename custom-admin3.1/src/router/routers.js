@@ -24,52 +24,7 @@ export default [
     },
     component: () => import('@/views/login/login.vue')
   },
-  {
-    path: '/comMethod',
-    name: 'comMethod',
-    meta: {
-      icon: 'ios-bug',
-      title: '常用方法'
-    },
-    component: Main,
-    children: [
-      {
-        path: '/comFn',
-        name: 'comFn',
-        meta: {
-          title: '常用方法comFn',
-          icon: 'md-home'
-        },
-        component: () => import('@/views/comMethod/comFn.vue')
-      },{
-        path: '/animation',
-        name: 'animation',
-        meta: {
-          title: 'animation动画',
-          icon: 'md-home'
-        },
-        component: () => import('@/views/comMethod/animation.vue')
-      },
-      {
-        path: '/bigMinGrid',
-        name: 'bigMinGrid',
-        meta: {
-          title: '分组 大小标签问题',
-          icon: 'md-home'
-        },
-        component: () => import('@/views/comMethod/bigMinGrid.vue')
-      },
-      {
-        path: '/customFn',
-        name: 'customFn',
-        meta: {
-          title: '自定义指令转全局组件',
-          icon: 'md-home'
-        },
-        component: () => import('@/views/comMethod/customFn.vue')
-      }
-    ]
-  },
+
   {
     path: '/keepAlive',
     name: 'keepAlive',
@@ -116,17 +71,92 @@ export default [
     redirect: '/home',
     component: Main,
     meta: {
-      notCache: true
+      notCache: true,
+      title: '首页',
+      icon: 'md-home'
     },
     children: [
       {
         path: '/home',
-        name: 'home',
+        name: 'home',  
         meta: {
-          title: '首页',
+          title: 'home页面',
           icon: 'md-home'
         },
         component: () => import('@/views/single-page/home')
+      }, 
+      {
+        path: '/vueImgPosition',
+        name: 'vueImgPosition',
+        meta: {
+          title: '图片定位',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/single-page/vueImgPosition')
+      },
+      {
+        path: '/compressImage',
+        name: 'compressImage',
+        meta: {
+          title: '图片压缩',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/single-page/compressImage')
+      }
+    ]
+  },
+  {
+    path: '/comMethod',
+    name: 'comMethod',
+    meta: {
+      icon: 'ios-bug',
+      title: '常用方法'
+    },
+    component: Main,
+    children: [
+      {
+        path: '/comFn',
+        name: 'comFn',
+        meta: {
+          title: '常用方法comFn',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/comMethod/comFn.vue')
+      },{
+        path: '/animation',
+        name: 'animation',
+        meta: {
+          title: 'animation动画',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/comMethod/animation.vue')
+      },
+      {
+        path: '/animation2',
+        name: 'animation2',
+        meta: {
+          title: '定位动画',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/comMethod/animation2.vue')
+      },
+      {
+        path: '/bigMinGrid',
+        name: 'bigMinGrid',
+        meta: {
+          title: '分组 大小标签问题',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/comMethod/bigMinGrid.vue')
+      },
+      {
+        path: '/customFn',
+        name: 'customFn',
+        meta: {
+          title: '自定义指令转全局组件',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/comMethod/customFn.vue')
       }
     ]
   },
@@ -180,6 +210,10 @@ export default [
   {
     path: '/cycle-page',
     name: 'cycle-page',
+    meta: {
+      icon: 'ios-bug',
+      title: '生命周期'
+    },
     component: Main,
     children: [
       {
@@ -190,6 +224,15 @@ export default [
           title: '生命周期'
         },
         component: () => import('@/views/cycle-page/cycle')
+      },
+      {
+        path: 'vuex',
+        name: 'vuex',
+        meta: {
+          icon: 'ios-bug',
+          title: 'vuex的存储'
+        },
+        component: () => import('@/views/cycle-page/vuex')
       }
     ]
   },

@@ -7,10 +7,7 @@
     <br>
     <h1>查看Network里面就会请求一次数据</h1>
     <ul>
-      <li
-        v-for="(item, index) in items"
-        :key="index"
-      >{{item.title}}</li>
+      <li v-for="(item, index) in items" :key="index">{{item.title}}</li>
     </ul>
   </div>
 </template>
@@ -19,7 +16,8 @@ import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
-      msg: "1234"
+      msg: "1234",
+      items: []
     };
   },
   created() {

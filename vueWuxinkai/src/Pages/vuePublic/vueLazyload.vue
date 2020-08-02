@@ -10,7 +10,7 @@
     <p>2,在preview.vue中</p>
     <div class="item2">
       <img v-lazy="'static/images/head_icon.jpg'">
-
+      <img v-lazy="'static/images/秋田犬.jpg'">
     </div>
   </div>
 </template>
