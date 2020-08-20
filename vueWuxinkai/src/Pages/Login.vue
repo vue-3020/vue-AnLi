@@ -14,10 +14,30 @@
           <el-input v-model="userInfo.username" prefix-icon="el-icon-goods" placeholder="username"></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input ref="password" class="form-inputs" prefix-icon="el-icon-edit login-pwd-icon" @input="onfocus" type="password" placeholder="密码" v-model="userInfo.password" @keyup.enter.native="submitForm('userInfo')" v-if=!isShow>
+          <el-input
+            ref="password"
+            class="form-inputs"
+            prefix-icon="el-icon-edit login-pwd-icon"
+            @input="onfocus"
+            type="password"
+            placeholder="密码"
+            v-model="userInfo.password"
+            @keyup.enter.native="submitForm('userInfo')"
+            v-if="!isShow"
+          >
             <i slot="suffix" class="el-icon-view" @click="lookPass"></i>
           </el-input>
-          <el-input ref="password" class="form-inputs" placeholder="密码" prefix-icon="el-icon-edit login-pwd-icon" @input="onfocus" type="text" v-model="userInfo.password" @keyup.enter.native="submitForm('userInfo')" v-if=isShow>
+          <el-input
+            ref="password"
+            class="form-inputs"
+            placeholder="密码"
+            prefix-icon="el-icon-edit login-pwd-icon"
+            @input="onfocus"
+            type="text"
+            v-model="userInfo.password"
+            @keyup.enter.native="submitForm('userInfo')"
+            v-if="isShow"
+          >
             <i slot="suffix" class="el-icon-view" @click="lookPass"></i>
           </el-input>
         </el-form-item>
@@ -31,6 +51,7 @@
 </template>
 
 <script>
+import { setSessionStorage, clearSessionStorage, getSessionStorage } from "@/utils/common";
 /*利用vuex 实现数据存储*/
 import { mapGetters, mapActions, mapMutations } from 'vuex';
 export default {
@@ -54,13 +75,12 @@ export default {
     //登陆
     submitForm(formName) {
       let _this = this
-      console.log(formName);
       this.$refs[formName].validate(valid => { // 验证elementUi 表单
         if (valid) {
           this.loading = true
-          // this.$router.push("/");
           localStorage.removeItem("localMenus") //清楚routeStorage.vue的缓存菜单
           _this.login(_this.userInfo).then((data) => {
+            setSessionStorage(`CommData`, data);
             this.$router.push("/");
           }).catch(error => {
             // this.$message.error(error);

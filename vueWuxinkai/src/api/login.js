@@ -13,7 +13,6 @@ function resorve(path) {
  * 
  */
 export function loginByUsername(username, password) {
-  debugger
   const params = {
     'username': username,
   }

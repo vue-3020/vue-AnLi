@@ -85,7 +85,7 @@ export default {
       return list
     },
     menuList() {
-      debugger
+      
       return this.$store.getters.menuList
     },
     local() {

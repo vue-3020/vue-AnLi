@@ -38,7 +38,7 @@ export default [
         path: '/activeter',
         name: 'activeter',
         meta: {
-          title: 'activeter作用',
+          title: 'activeter作用 和单点登录',
           icon: 'md-home'
         },
         component: () => import('@/views/activeter/activeter.vue')
@@ -62,6 +62,35 @@ export default [
           icon: 'md-home'
         },
         component: () => import('@/views/socketJS/socket.vue')
+      }
+    ]
+  },
+  {
+    path: '/storeLasting',
+    name: 'storeLasting',
+    meta: {
+      icon: 'ios-bug',
+      title: '状态持久化'
+    },
+    component: Main,
+    children: [
+      {
+        path: '/cache',
+        name: 'cache',
+        meta: {
+          title: '状态持久化缓存',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/storeLasting/cache.vue')
+      },
+      {
+        path: 'vuex',
+        name: 'vuex',
+        meta: {
+          icon: 'ios-bug',
+          title: 'vuex的存储'
+        },
+        component: () => import('@/views/storeLasting/vuex')
       }
     ]
   },
@@ -224,15 +253,6 @@ export default [
           title: '生命周期'
         },
         component: () => import('@/views/cycle-page/cycle')
-      },
-      {
-        path: 'vuex',
-        name: 'vuex',
-        meta: {
-          icon: 'ios-bug',
-          title: 'vuex的存储'
-        },
-        component: () => import('@/views/cycle-page/vuex')
       }
     ]
   },
@@ -465,5 +485,11 @@ export default [
       hideInMenu: true
     },
     component: () => import('@/views/error-page/404.vue')
-  }
+  },
+  { //单点登录
+    path: "/agent",
+    name: "agent",
+    component: (resolve) => require(["@/views/agent.vue"], resolve),
+    meta: {},
+  },
 ]

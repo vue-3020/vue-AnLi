@@ -27,7 +27,7 @@ const vuesAccount = {
             const username = userInfo.username.trim() //trim浏览器版本限制：JavaScript Version 1.8
             return new Promise((resolve, reject) => {
                 loginByUsername(username, userInfo.password, userInfo.code).then(response => {
-                    const data = response
+                    resolve(`{"org_user_id":"admin","org_dept_id":"110001","org_term_no":"218.10.97.236","orguser_cn_name":"超级管理员","orgdept_cn_name":"恒丰企业","org_channel_code":"01","org_work_code":"","submit_type":1,"org_dprl_expls":"平台超级管理员","br_sbsbno":"","work_seq":"20200806000000052","token":"-1918411306","org_rs_code":"15","is_need_token":1}`)
                 })
             })
         }
