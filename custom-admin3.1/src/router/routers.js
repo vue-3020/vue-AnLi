@@ -124,6 +124,15 @@ export default [
         component: () => import('@/views/single-page/vueImgPosition')
       },
       {
+        path: '/bgImg',
+        name: 'bgImg',
+        meta: {
+          title: '背景图动起来',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/single-page/bgImg')
+      },
+      {
         path: '/compressImage',
         name: 'compressImage',
         meta: {
@@ -253,6 +262,26 @@ export default [
           title: '生命周期'
         },
         component: () => import('@/views/cycle-page/cycle')
+      }
+    ]
+  },
+  {
+    path: '/canvasBox',
+    name: 'canvasBox',
+    meta: {
+      icon: 'ios-bug',
+      title: 'canvas图形编辑器'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'canvas-contant',
+        name: 'canvas-contant',
+        meta: {
+          icon: 'ios-bug',
+          title: 'canvas图形编辑器'
+        },
+        component: () => import('@/views/canvasBox/canvas-contant')
       }
     ]
   },

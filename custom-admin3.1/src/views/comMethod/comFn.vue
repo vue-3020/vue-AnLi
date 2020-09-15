@@ -193,6 +193,7 @@ export default {
 
     //（2）数组对象去重
     this.data1 = doubleUnique([...this.list, ...this.list2], 'id')
+    debugger
     console.log(`数组求并集，去重`, this.data1)
 
     //（3）数组求差集

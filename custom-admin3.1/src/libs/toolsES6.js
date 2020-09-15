@@ -1,6 +1,8 @@
 //求并集 数组对象去重
 export const doubleUnique = (arr, attr, flag = false) => {
+  
   let obj = {}
+  debugger
   if (flag) {
     for (let i = 0; i < arr.length; i++) {
       for (let j = 1; j < arr.length; j++) {

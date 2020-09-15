@@ -126,10 +126,14 @@ export default {
       })
     },
     handlePageChange (page) {
+      //显示多少条
+      debugger
       this.searchData.page = page
       this.searchExamples()
     },
+    //跳过多少条
     handlePageSizeChange (pageSize) {
+      debugger
       this.searchData.pageSize = pageSize
       this.searchExamples()
     },

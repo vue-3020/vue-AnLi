@@ -34,7 +34,8 @@ export default [
     component: Main,
     meta: {
       hideInMenu: true,
-      notCache: true
+      notCache: true,
+      title: '11111',
     },
     children: [
       {
@@ -62,27 +63,31 @@ export default [
   {
     path: '/join',
     name: 'join',
-    component: Main,
     meta: {
-      hideInBread: true
+      title: '_qq',
+      icon: 'ios-book'
+    
     },
-    children: [
-      {
-        path: 'join_page',
-        name: 'join_page',
-        meta: {
-          icon: '_qq',
-          title: 'QQ群'
-        },
-        component: () => import('@/view/join-page.vue')
-      }
-    ]
+    component: () => import('@/view/join-page.vue')
+    
+    // children: [
+    //   {
+    //     path: 'join_page',
+    //     name: 'join_page',
+    //     meta: {
+    //       icon: '_qq',
+    //       title: 'QQ群嗯嗯嗯'
+    //     },
+    //     component: () => import('@/view/join-page.vue')
+    //   }
+    // ]
   },
   {
     path: '/message',
     name: 'message',
     component: Main,
     meta: {
+      title: '11111',
       hideInBread: true,
       hideInMenu: true
     },
