@@ -18,11 +18,8 @@ export default {
     return {
       canvas: null,
       context: null,
-      imgData: null,
-      isDraw: false,
       shapes: [],//用于记录canvas中所有可做碰撞检测的图形
       polygonPoints: [], //存放图形
-      pointsItem: [],// 单个图形
       polygonStrokeStyles: [], //设置图形颜色
       polygonFillStyles: [],//碰撞后文字提示颜色
       mousedown: { x: 0, y: 0 }, //用于记录鼠标按下的位置
@@ -37,7 +34,27 @@ export default {
       _this.canvas = document.getElementById("canvas");
       _this.context = _this.canvas.getContext("2d");
       _this.shapes = [];
-
+      _this.polygonPoints = [
+        //用于存入3个多边形的顶点集合
+        [
+          new Point(250, 150),
+          new Point(250, 250),
+          new Point(350, 250)
+        ],
+        [
+          new Point(100, 100),
+          new Point(100, 150),
+          new Point(150, 150),
+          new Point(150, 100),
+        ],
+        [
+          new Point(400, 100),
+          new Point(380, 150),
+          new Point(500, 150),
+          new Point(520, 100),
+        ],
+      ];
+      console.log( _this.polygonPoints)
       _this.polygonStrokeStyles = ["blue", "yellow", "pink"]; //3个多边形的描边颜色
       _this.polygonFillStyles = ["rgba(255,255,0,0.7)", "rgba(100,140,230,0.6)", "rgba(255,255,255,0.8)",]; //3个之边形的填充颜色
 
@@ -70,17 +87,12 @@ export default {
       _this.context.restore();
 
     },
-    //开始拖拽
-    windowToCanvas(canvas, x, y) {
-      let _this = this
-      if (!canvas) {
-        console.log("canvas not exist");
-        return { x: 0, y: 0 };
-      }
-      var box = _this.canvas.getBoundingClientRect();
+    //转换坐标到canvas
+    windowToCanvas(x, y) {
+      var bbox = canvas.getBoundingClientRect();
       return {
-        x: x - box.left * (canvas.width / box.width),
-        y: y - box.top * (canvas.height / box.height),
+        x: x - bbox.left * (canvas.width / bbox.width),
+        y: y - bbox.top * (canvas.height / bbox.height),
       };
     },
     //绘制全部形状
@@ -88,7 +100,7 @@ export default {
       let _this = this
       _this.shapes.forEach(function (shape) {
         // shape.stroke(context);
-
+        
         shape.fill(_this.context);
       });
     },
@@ -113,93 +125,49 @@ export default {
           }
         }
       }
-    },
-
-
-    //删除
-    clear() {
-      let _this = this
-      if (_this.imgData) {
-        _this.restoreImageData();
-      } else {
-        _this.context.clearRect(0, 0, _this.canvas.width, _this.canvas.height);
-        // drawGrid("#999", 20, 20);
-      }
-    },
-    //将内容放回到画布
-    restoreImageData() {
-      let _this = this
-      _this.context.putImageData(_this.imgData, 0, 0);
-    },
-    //绘制完成
-    drawingComplete() {
-      let _this = this
-      _this.context.fill(); // 填充图形，
-      _this.canvas.style.cursor = "pointer";
-      _this.isDraw = false;
-      _this.addAllPoint(_this.pointsItem);
-      _this.pointsItem = [];
-      _this.imgData = _this.context.getImageData(0, 0, _this.canvas.width, _this.canvas.height);
-      _this.context.putImageData(_this.imgData, 0, 0);
-    },
-    //转化为我们需要得格式
-    addAllPoint(pointItem) {
-      let _this = this
-      let array = pointItem.map((v) => new Point(v.x, v.y));
-      _this.polygonPoints.push(array);
-      _this.init()
     }
+
+
   },
   mounted() {
     let _this = this
     _this.init()
     //事件
-
-
-
-
-
-    _this.context.lineWidth = 0.5; //线得粗细
-    _this.context.strokeStyle = "rgba(255,0,0,1)"; //填充边线颜色
-    _this.context.fillStyle = "rgba(100,140,230,0.5)"; //填充图形颜色
-
-
-    //点下按钮
-    _this.canvas.addEventListener("mousedown", function (e) {
-      if (e.buttons == 1) {//按下的是左键
-        var pos = _this.windowToCanvas(_this.canvas, e.clientX, e.clientY);
-        _this.pointsItem.push(pos);
-        _this.isDraw = true;
-        canvas.style.cursor = "crosshair";
-        console.log(`获取画布上的位置`, pos);
-      }
-    }, false);
-
-    // 点击下去 移动
-    _this.canvas.addEventListener("mousemove", function (e) {
-      if (!_this.isDraw) return;
-      var pos = _this.windowToCanvas(_this.canvas, e.clientX, e.clientY);
-      _this.context.save();
-      _this.clear();
-      _this.context.beginPath(); //创造另一条路径的分界线
-      _this.pointsItem.forEach((p, i) => {
-        //过滤掉undefined
-        _this.context[i != 0 ? "lineTo" : "moveTo"](p.x, p.y); //moveTo  移动起始点     lineTo 绘制线(矩形、圆形、图片...)
+    //鼠标近下点
+    _this.canvas.onmousedown = function (e) {
+      var location = _this.windowToCanvas(e.clientX, e.clientY);
+      //遍历所有的多边形，找到鼠标按下点所在的坐标形进行拖拽
+      _this.shapes.forEach(function (shape) {
+        if (shape.isPointInPath(_this.context, location.x, location.y)) {
+          _this.shapeBeingDragged = shape;
+          _this.mousedown.x = location.x;
+          _this.mousedown.y = location.y;
+          _this.lastdrag.x = location.x;
+          _this.lastdrag.y = location.y;
+        }
       });
-      _this.context.lineTo(pos.x, pos.y);
-      _this.context.stroke(); //绘制边线
-      _this.context.restore();
-    },
-      false
-    );
-
-    //结束绘制
-    canvas.addEventListener("dblclick", function () {
-      _this.drawingComplete();
-    }, false);
-
-
-
+    };
+    //鼠标移动
+    _this.canvas.onmousemove = function (e) {
+      var location;
+      var dragVector; //用于记录拖拽对方
+      //鼠标按下点在一个多边形上，在canvas空白处不做任何处理
+      if (_this.shapeBeingDragged != undefined) {
+        //console.log('有可拖拽图形')
+        location = _this.windowToCanvas(e.clientX, e.clientY);
+        dragVector = { x: location.x - _this.lastdrag.x, y: location.y - _this.lastdrag.y };
+        _this.shapeBeingDragged.move(dragVector.x, dragVector.y);
+        _this.lastdrag.x = location.x;
+        _this.lastdrag.y = location.y;
+        _this.context.clearRect(0, 0, _this.canvas.width, _this.canvas.height);
+        _this.drawShapes(); //绘制图形
+        _this.detectCollosions(); //碰撞检测
+      }
+    };
+    //鼠标抬起
+    _this.canvas.onmouseup = function (e) {
+      _this.shapeBeingDragged = undefined;
+    };
   }
 }
 </script>
