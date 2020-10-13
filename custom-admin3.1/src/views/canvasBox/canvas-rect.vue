@@ -3,13 +3,13 @@
     <canvas id="canvas" width="800" height="600"></canvas>
     <Row>
       <ul>
-        <li v-for="item in addBtnList"><Button @click="addRect(item)" size="large">{{item.name}}</Button></li>
+        <li v-for="item in addBtnList"><Button :class="{'active':item.type==btnStyle}" @click="addRect(item)" size="large">{{item.name}}</Button></li>
       </ul>
     </Row>
     <br>
     <Row>
       <ul>
-        <li v-for="item in deleteBtnList"><Button @click="handleDeleteRect()" size="large">{{item.name}}</Button></li>
+        <li v-for="item in deleteBtnList"><Button @click="handleDeleteRect(item)" size="large">{{item.name}}</Button></li>
       </ul>
     </Row>
   </div>
@@ -20,6 +20,8 @@ export default {
   props: [],
   data() {
     return {
+      delItemTpye: {},//删除的类型
+      btnStyle: '',//按钮颜色
       context: null, //画布方法属性
       canvas: null,// 画布
       isDraw: false, //判断是否点击事件
@@ -63,12 +65,12 @@ export default {
       _this.context.fillText("请进行区域管理操作", _this.context.canvas.width / 2 - 107, _this.context.canvas.height / 2);
 
 
-      var iconImg = new Image();
-      //等待图片加载完成    
-      iconImg.src = require('../../assets/images/del_b.png');
-      iconImg.onload = function () {
-        _this.context.drawImage(iconImg, 10, 10)
-      };
+      // var iconImg = new Image();
+      // //等待图片加载完成    
+      // iconImg.src = require('../../assets/images/del_b.png');
+      // iconImg.onload = function () {
+      //   _this.context.drawImage(iconImg, 10, 10)
+      // };
 
 
 
@@ -118,9 +120,21 @@ export default {
     },
     //设置多边形背景色
     addRect(item) {
-      this.isEdit = false
-      this.rectStyleAll = item
-      this.clear()
+      debugger
+      if (item.style) {
+        this.addBtnList.map(v => v.style = 0)
+        this.btnStyle = ''
+        this.isEdit = true
+        this.rectStyleAll = {}
+      } else {
+        this.isEdit = false
+        this.rectStyleAll = item
+        this.clear()
+        this.addBtnList.map(v => v.style = 0)
+        item.style = 1
+        this.btnStyle = item.type
+      }
+
     },
     //删除 画布上其其他东西
     clear() {
@@ -147,7 +161,36 @@ export default {
     },
     //分类删除
     handleDeleteRect(item) {
-      this.isEdit = true
+      let _this = this
+      _this.addBtnList.map(v => v.style = 0)
+      _this.btnStyle = ''
+      _this.isEdit = true
+      //添加图标
+      _this.delItemTpye = item
+      _this.addIcon(item)
+    },
+    //添加图标
+    addIcon(item) {
+      let _this = this
+      if (_this.polygons.length == 0) return
+      _this.clear(); //先删除画布 从新画进去
+      var iconImg = new Image();
+      iconImg.src = require('../../assets/images/del_b.png');
+      iconImg.onload = function () {
+        _this.polygons.forEach(function (v, i) {  //利用圆形上的方法划入到页面
+          if (v.rectType == item.type) {
+            let xAll = v.points.map(v => v.x)
+            let xMax = Math.max.apply(null, xAll)
+            let xMin = Math.min.apply(null, xAll)
+            let yAll = v.points.map(v => v.y)
+            let yMax = Math.max.apply(null, yAll)
+            let yMin = Math.min.apply(null, yAll)
+            let X = (xMax + xMin - 10) / 2
+            let Y = (yMax + yMin - 10) / 2
+            _this.context.drawImage(iconImg, X, Y)
+          }
+        });
+      };
     },
     //确认删除
     handleDelRectItem(item) {
@@ -163,11 +206,7 @@ export default {
   },
   mounted() {
     let _this = this
-
-
     //对象新增属性 用了做删除用
-
-
     _this.canvasInit()
     //构造函数  ------------------------------------------------------------------------------
     function Polygon(points, sides, item, isFill) {
@@ -206,8 +245,6 @@ export default {
     }
     //构造函数  ------------------------------------------------------------------------------
 
-
-
     //鼠标 点击 事件
     _this.canvas.addEventListener("mousedown", function (e) {
       if (Object.keys(_this.rectStyleAll).length == 0) return _this.$Message.error('请选择区域')
@@ -218,18 +255,22 @@ export default {
           canvas.style.cursor = "crosshair";//改变划线鼠标样式
           _this.pointsItem.push(pos);
         } else {
-          canvas.style.cursor = 'crosshair';
+          //是否有删除权限
+          canvas.style.cursor = 'auto';
           _this.polygons.forEach(function (item, i) {
             item.createPath();//创建路径时才能检测点是否在当前路径中
             if (_this.context.isPointInPath(pos.x, pos.y)) {
-              console.log("要删除的对象", item);
-              _this.$Modal.confirm({
-                title: '提示',
-                content: '<p>是否删除</p>',
-                onOk: () => {
-                  _this.handleDelRectItem(item)
-                }
-              });
+              if (_this.delItemTpye.type == item.rectType) {
+                _this.$Modal.confirm({
+                  title: '提示',
+                  content: '<p>是否删除</p>',
+                  onOk: () => {
+                    _this.handleDelRectItem(item)
+                  }
+                });
+              } else {
+                console.log('类型不同无法删除')
+              }
             }
           });
         }
@@ -254,6 +295,7 @@ export default {
     //双击失去焦点
     canvas.addEventListener("dblclick", function () {
       //绘制图形
+      if(_this.pointsItem.length==0) return
       _this.rectStyleAll.id = _this.makeId() //删除用
       _this.polygons.push(new Polygon(_this.pointsItem, _this.rectLineWidth, _this.rectStyleAll, true));
       _this.currPolygon = _this.polygons[_this.polygons.length - 1];
@@ -279,5 +321,10 @@ ul {
   li {
     margin-right: 30px;
   }
+}
+.ivu-btn.active {
+  background-color: #e13d13;
+  border-color: #e13d13;
+  color: #fff;
 }
 </style>

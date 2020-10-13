@@ -60,6 +60,8 @@ export default {
   methods: {
     //新增图形
     addRect(item) {
+       
+      debugger
       if (item.style) {
         this.btnStyle = ''
         this.rectBgColor = ''
@@ -67,9 +69,9 @@ export default {
       } else {
         this.addBtnList.map(v => v.style = 0)
         item.style = 1
-        this.btnStyle = item.type
-        this.rectBgColor = item.color
-        this.rectBorderColor = item.lineColor
+        // this.btnStyle = item.type
+        // this.rectBgColor = item.color
+        // this.rectBorderColor = item.lineColor
       }
     },
     //删除图形
