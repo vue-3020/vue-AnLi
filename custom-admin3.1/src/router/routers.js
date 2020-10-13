@@ -195,6 +195,15 @@ export default [
           icon: 'md-home'
         },
         component: () => import('@/views/comMethod/customFn.vue')
+      },
+      {
+        path: '/vxeTable',
+        name: 'vxeTable',
+        meta: {
+          title: '手动引入表格插件',
+          icon: 'md-home'
+        },
+        component: () => import('@/views/comMethod/vxeTable.vue')
       }
     ]
   },
@@ -282,6 +291,15 @@ export default [
           title: 'canvas图形编辑器'
         },
         component: () => import('@/views/canvasBox/canvas-contant')
+      },
+      {
+        path: 'canvas-rect',
+        name: 'canvas-rect',
+        meta: {
+          icon: 'ios-bug',
+          title: 'canvas图形编辑器2'
+        },
+        component: () => import('@/views/canvasBox/canvas-rect')
       }
     ]
   },
@@ -327,6 +345,15 @@ export default [
           title: '无缝书桌定制'
         },
         component: () => import('@/views/container2/desk')
+      },
+      {
+        path: 'bigData',
+        name: 'bigData',
+        meta: {
+          icon: 'ios-bug',
+          title: '大数据了量加载内容'
+        },
+        component: () => import('@/views/container2/bigData')
       },
       {
         path: 'somedelete',

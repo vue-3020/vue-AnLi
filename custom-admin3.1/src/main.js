@@ -13,7 +13,10 @@ Vue.use(rotate)
 import jquery from 'jquery' // jquery
 /* 全局组件 */
 
-
+import 'xe-utils'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
+Vue.use(VXETable)
 
 import VueBarcodeScanner from 'vue-barcode-scanner'
 
