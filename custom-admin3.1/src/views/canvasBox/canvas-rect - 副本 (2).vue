@@ -15,12 +15,10 @@
     <br>
     <Row>
       <Button @click="move()" size="large">移动</Button>
-      <Button @click="addUser()" size="large">新增图标一个</Button>
     </Row>
   </div>
 </template>
 <script>
-import Polygon from "./Projection";
 export default {
   name: 'canvas-rect',
   props: [],
@@ -52,76 +50,6 @@ export default {
       polygons: [], //构造函数获取所有信息
       currPolygon: null,
     }
-  },
-  mounted() {
-    let _this = this
-    //对象新增属性 用了做删除用
-    _this.canvasInit()
-
-    //鼠标 点击 事件
-    _this.canvas.addEventListener("mousedown", function (e) {
-      if (Object.keys(_this.rectStyleAll).length == 0) return _this.$Message.error('请选择区域')
-      if (e.buttons == 1) {
-        var pos = _this.windowToCanvas(_this.canvas, e.clientX, e.clientY);
-        if (!_this.isEdit) {
-          _this.isDraw = true; //按下的是左键
-          canvas.style.cursor = "crosshair";//改变划线鼠标样式
-          _this.pointsItem.push(pos);
-        } else {
-          //是否有删除权限
-          canvas.style.cursor = 'auto';
-          _this.polygons.forEach(function (item, i) {
-            item.createPath(_this.context);//创建路径时才能检测点是否在当前路径中
-            if (_this.context.isPointInPath(pos.x, pos.y)) {
-              if (_this.delItemTpye.type == item.rectType) {
-                _this.$Modal.confirm({
-                  title: '提示',
-                  content: '<p>是否删除</p>',
-                  onOk: () => {
-                    _this.handleDelRectItem(item)
-                  }
-                });
-              } else {
-                console.log('类型不同无法删除')
-              }
-            }
-          });
-        }
-      }
-    }, false);
-    //鼠标 移动 事件
-    _this.canvas.addEventListener("mousemove", function (e) {
-      if (_this.isDraw) {
-        var pos = _this.windowToCanvas(_this.canvas, e.clientX, e.clientY); //获取图形移动坐标点
-        _this.clear();
-        _this.context.beginPath(); //开辟一个新路径
-        _this.pointsItem.forEach((p, i) => {
-          //过滤掉undefined
-          _this.context[i != 0 ? "lineTo" : "moveTo"](p.x, p.y); //moveTo  移动起始点     lineTo 绘制线(矩形、圆形、图片...)
-        });
-        _this.context.lineWidth = _this.rectLineWidth; //边线粗细
-        _this.context.strokeStyle = _this.rectStyleAll.lineColor; //边线颜色
-        _this.context.lineTo(pos.x, pos.y);
-        _this.context.stroke(); //绘制边线
-      }
-    }, false);
-    //双击失去焦点
-    canvas.addEventListener("dblclick", function () {
-      //绘制图形
-      if (_this.pointsItem.length == 0) return
-      //生成随机id
-      _this.rectStyleAll.id = _this.makeId() //删除用
-      //移动参数
-      let move = {
-        x: (Math.random() - 0.5) * 3,
-        y: (Math.random() - 0.5) * 3,
-      }
-
-      _this.polygons.push(new Polygon(_this.pointsItem, _this.rectLineWidth, _this.rectStyleAll, true, move));
-      _this.currPolygon = _this.polygons[_this.polygons.length - 1];
-      _this.currPolygon.createPath(_this.context).draw(_this.context)
-      _this.drawingComplete();
-    }, false);
   },
   methods: {
     //初始化代码
@@ -240,7 +168,7 @@ export default {
       _this.context.clearRect(0, 0, _this.canvas.width, _this.canvas.height);
       _this.drawGrid("lightgray", 20, 20);
       _this.polygons.forEach(function (item, i) {  //利用圆形上的方法划入到页面
-        item.createPath(_this.context).draw(_this.context).addIncon(_this.context, _this.delItemTpye);
+        item.createPath().draw().addIncon();
       });
       _this.imgData = _this.context.getImageData(0, 0, _this.canvas.width, _this.canvas.height);
     },
@@ -253,67 +181,136 @@ export default {
     },
     //边界判断，离开边界删除内容
     move() {
-      let _this = this
-      window.requestAnimationFrame(_this.move);
-      _this.context.clearRect(0, 0, _this.canvas.width, _this.canvas.height);
-      _this.drawGrid("lightgray", 20, 20);
-      if (_this.imgData) {
-        _this.context.putImageData(_this.imgData, 0, 0);
-      }
-      let userItem = _this.polygons.filter(v => v.rectType == "U1")
-      let i = userItem.length;
-      while (i--) {
-        this.rectMove(userItem[i], i);
-      }
-    },
-    // 设置移动位置
-    rectMove(item, index) {
-      let _this = this
-      for (var i = 0; i < item.points.length; i++) {
-        let cur = item.points[i]
-        cur.x += 2
-        // cur.y += item.rectY
-
-        //判断是否走到了边界,走到边界删除 当前人员
-        if (cur.x - 10 >= _this.canvas.width || cur.x + 10 <= 0 || cur.y - 10 >= _this.canvas.height || cur.y + 10 <= 0) {
-          _this.polygons.some((v, s) => { //可以获取索引
-            if (v.id == item.id) {
-              _this.polygons.splice(s, 1)
-              return true
-            }
-          })
-          console.log(_this.polygons)
-        }
-      }
-      item.createPath(_this.context).draw(_this.context)
-    },
-    //添加图标人员图标
-    addUser() {
-      let _this = this
-      let pointsItem = [
-        { x: 10, y: 10 },
-        { x: 20, y: 10 },
-        { x: 20, y: 20 },
-        { x: 10, y: 20 },
-      ]
-      let move = {
-        x: (Math.random() - 0.5) * 3,
-        y: (Math.random() - 0.5) * 3,
-      }
-      let user = {
-        color: "red",
-        id: _this.makeId(),
-        lineColor: "red",
-        name: "添加警戒区",
-        style: 1,
-        type: "U1",
-      }
-      _this.polygons.push(new Polygon(pointsItem, 1.5, user, true, move));
-      _this.currPolygon = _this.polygons[_this.polygons.length - 1];
-      _this.currPolygon.createPath(_this.context).draw(_this.context)
+      console.log(5555)
     }
   },
+  mounted() {
+    let _this = this
+    //对象新增属性 用了做删除用
+    _this.canvasInit()
+    //构造函数  ------------------------------------------------------------------------------
 
+    //图形构造函数
+    function Polygon(points, sides, item, isFill) {
+      this.id = item.id; // id
+      this.rectType = item.type; // 矩形类型
+      this.rectName = item.name; // 矩形名字
+      this.delIcon = require(`../../assets/images/${item.type}.png`); // 图标颜色
+      this.rectX = 0; //物体移动速度x
+      this.rectY = 0; //物体y移动速度y
+      this.strokeStyle = item.lineColor; // 边线颜色
+      this.fillStyle = item.color; //背景色
+      this.sides = sides; // 边线粗细
+      this.isFill = isFill; //新增还是删除
+      this.points = points; //数据
+    }
+    Polygon.prototype = {
+      //绘制路径，
+      createPath: function () {
+        _this.context.beginPath();
+        _this.context.moveTo(this.points[0].x, this.points[0].y);
+        for (var i = 0, len = this.points.length; i < len; i++) {
+          _this.context.lineTo(this.points[(i + 1) % len].x, this.points[(i + 1) % len].y);
+        }
+        _this.context.closePath();
+        return this;
+      },
+      //填充到页面
+      draw: function () {
+        _this.context.save();
+        _this.context.strokeStyle = this.strokeStyle;
+        _this.context.lineWidth = this.sides;
+        _this.context.fillStyle = this.fillStyle;
+        _this.context.stroke();
+        if (this.isFill) {
+          _this.context.fill();
+        }
+        _this.context.restore();
+        return this;
+      },
+      //添加图标
+      addIncon: function () {
+        let _ths = this
+        var iconImg = new Image();
+        iconImg.src = this.delIcon;
+        iconImg.onload = function () {
+          if (_this.delItemTpye.type == _ths.rectType) {
+            let xAll = _ths.points.map(v => v.x)
+            let xMax = Math.max.apply(null, xAll)
+            let xMin = Math.min.apply(null, xAll)
+            let yAll = _ths.points.map(v => v.y)
+            let yMax = Math.max.apply(null, yAll)
+            let yMin = Math.min.apply(null, yAll)
+            let X = (xMax + xMin - 10) / 2
+            let Y = (yMax + yMin - 10) / 2
+            _this.context.drawImage(iconImg, X, Y) //插入图形
+          }
+        };
+        return this
+      }
+    }
+    //构造函数  ------------------------------------------------------------------------------
+
+    //鼠标 点击 事件
+    _this.canvas.addEventListener("mousedown", function (e) {
+      if (Object.keys(_this.rectStyleAll).length == 0) return _this.$Message.error('请选择区域')
+      if (e.buttons == 1) {
+        var pos = _this.windowToCanvas(_this.canvas, e.clientX, e.clientY);
+        if (!_this.isEdit) {
+          _this.isDraw = true; //按下的是左键
+          canvas.style.cursor = "crosshair";//改变划线鼠标样式
+          _this.pointsItem.push(pos);
+        } else {
+          //是否有删除权限
+          canvas.style.cursor = 'auto';
+          _this.polygons.forEach(function (item, i) {
+            item.createPath();//创建路径时才能检测点是否在当前路径中
+            if (_this.context.isPointInPath(pos.x, pos.y)) {
+              if (_this.delItemTpye.type == item.rectType) {
+                _this.$Modal.confirm({
+                  title: '提示',
+                  content: '<p>是否删除</p>',
+                  onOk: () => {
+                    _this.handleDelRectItem(item)
+                  }
+                });
+              } else {
+                console.log('类型不同无法删除')
+              }
+            }
+          });
+        }
+      }
+    }, false);
+    //鼠标 移动 事件
+    _this.canvas.addEventListener("mousemove", function (e) {
+      if (_this.isDraw) {
+        var pos = _this.windowToCanvas(_this.canvas, e.clientX, e.clientY); //获取图形移动坐标点
+        _this.clear();
+        _this.context.beginPath(); //开辟一个新路径
+        _this.pointsItem.forEach((p, i) => {
+          //过滤掉undefined
+          _this.context[i != 0 ? "lineTo" : "moveTo"](p.x, p.y); //moveTo  移动起始点     lineTo 绘制线(矩形、圆形、图片...)
+        });
+        _this.context.lineWidth = _this.rectLineWidth; //边线粗细
+        _this.context.strokeStyle = _this.rectStyleAll.lineColor; //边线颜色
+        _this.context.lineTo(pos.x, pos.y);
+        _this.context.stroke(); //绘制边线
+      }
+    }, false);
+    //双击失去焦点
+    canvas.addEventListener("dblclick", function () {
+      //绘制图形
+      if (_this.pointsItem.length == 0) return
+      //生成随机id
+      _this.rectStyleAll.id = _this.makeId() //删除用
+      //分类插入不同颜色 删除图标
+      _this.polygons.push(new Polygon(_this.pointsItem, _this.rectLineWidth, _this.rectStyleAll, true));
+      _this.currPolygon = _this.polygons[_this.polygons.length - 1];
+      _this.currPolygon.createPath().draw()
+      _this.drawingComplete();
+    }, false);
+  }
 }
 </script>
 <style lang="less" scoped>
