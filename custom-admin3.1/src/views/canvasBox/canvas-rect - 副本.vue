@@ -50,6 +50,8 @@ export default {
     //初始化代码
     canvasInit() {
       let _this = this
+
+
       _this.canvas = document.getElementById("canvas");
       _this.context = _this.canvas.getContext("2d");
       _this.canvas.style.border = "1px solid #f9f9f9";
@@ -61,6 +63,17 @@ export default {
       // _this.context.font = "14px arial";
       _this.context.fillText("目前所有区域为空", _this.context.canvas.width / 2 - 100, _this.context.canvas.height / 2 - 30);
       _this.context.fillText("请进行区域管理操作", _this.context.canvas.width / 2 - 107, _this.context.canvas.height / 2);
+
+
+      // var iconImg = new Image();
+      // //等待图片加载完成    
+      // iconImg.src = require('../../assets/images/del_b.png');
+      // iconImg.onload = function () {
+      //   _this.context.drawImage(iconImg, 10, 10)
+      // };
+
+
+
       _this.context.restore();
     },
     //生成随机数
@@ -105,9 +118,9 @@ export default {
         y: y - box.top * (canvas.height / box.height),
       };
     },
-    //新增 多边形
+    //设置多边形背景色
     addRect(item) {
-      let _this = this
+      debugger
       if (item.style) {
         this.addBtnList.map(v => v.style = 0)
         this.btnStyle = ''
@@ -123,7 +136,7 @@ export default {
       }
 
     },
-    //删除 或复制画布内容
+    //删除 画布上其其他东西
     clear() {
       let _this = this
       if (_this.imgData) {
@@ -133,7 +146,7 @@ export default {
         _this.drawGrid("lightgray", 20, 20);
       }
     },
-    //绘制 形状 完成
+    //绘制 完成
     drawingComplete() {
       let _this = this
       _this.context.closePath();
@@ -144,6 +157,7 @@ export default {
       _this.imgData = _this.context.getImageData(0, 0, _this.canvas.width, _this.canvas.height);
       _this.context.putImageData(_this.imgData, 0, 0);
       _this.context.closePath();
+      console.log(`这是画布上图形的所有信息`, _this.polygons)
     },
     //分类删除
     handleDeleteRect(item) {
@@ -153,24 +167,41 @@ export default {
       _this.isEdit = true
       //添加图标
       _this.delItemTpye = item
-      _this.handleResetRect()
+      // _this.addIcon(item)
     },
-    //重新绘制页面
-    handleResetRect() {
+    //添加图标
+    addIcon(item) {
       let _this = this
-      _this.context.clearRect(0, 0, _this.canvas.width, _this.canvas.height);
-      _this.drawGrid("lightgray", 20, 20);
-      _this.polygons.forEach(function (item, i) {  //利用圆形上的方法划入到页面
-        item.createPath().draw().addIncon();
-      });
-      _this.imgData = _this.context.getImageData(0, 0, _this.canvas.width, _this.canvas.height);
+      if (_this.polygons.length == 0) return
+      _this.clear(); //先删除画布 从新画进去
+      var iconImg = new Image();
+      iconImg.src = require('../../assets/images/del_b.png');
+      iconImg.onload = function () {
+        _this.polygons.forEach(function (v, i) {  //利用圆形上的方法划入到页面
+          if (v.rectType == item.type) {
+            let xAll = v.points.map(v => v.x)
+            let xMax = Math.max.apply(null, xAll)
+            let xMin = Math.min.apply(null, xAll)
+            let yAll = v.points.map(v => v.y)
+            let yMax = Math.max.apply(null, yAll)
+            let yMin = Math.min.apply(null, yAll)
+            let X = (xMax + xMin - 10) / 2
+            let Y = (yMax + yMin - 10) / 2
+            _this.context.drawImage(iconImg, X, Y)
+          }
+        });
+      };
     },
     //确认删除
     handleDelRectItem(item) {
       let _this = this
       _this.polygons = _this.polygons.filter(v => v.id != item.id)
-      //清除画布从新写入到画布上
-      _this.handleResetRect()
+      _this.imgData = null
+      _this.clear(); //先删除画布 从新画进去
+      _this.polygons.forEach(function (item, i) {  //利用圆形上的方法划入到页面
+        item.createPath().draw();
+      });
+
     }
   },
   mounted() {
@@ -178,14 +209,10 @@ export default {
     //对象新增属性 用了做删除用
     _this.canvasInit()
     //构造函数  ------------------------------------------------------------------------------
-
-    //图形构造函数
     function Polygon(points, sides, item, isFill) {
       this.id = item.id; // id
       this.rectType = item.type; // 矩形类型
       this.rectName = item.name; // 矩形名字
-      this.delIcon = require(`../../assets/images/${item.type}.png`); // 图标颜色
-      this.delPosition = []; // 图标位置
       this.strokeStyle = item.lineColor; // 边线颜色
       this.fillStyle = item.color; //背景色
       this.sides = sides; // 边线粗细
@@ -193,7 +220,6 @@ export default {
       this.points = points; //数据
     }
     Polygon.prototype = {
-      //绘制路径，
       createPath: function () {
         _this.context.beginPath();
         _this.context.moveTo(this.points[0].x, this.points[0].y);
@@ -203,11 +229,11 @@ export default {
         _this.context.closePath();
         return this;
       },
-      //填充到页面
       draw: function () {
         _this.context.save();
         _this.context.strokeStyle = this.strokeStyle;
         _this.context.lineWidth = this.sides;
+
         _this.context.fillStyle = this.fillStyle;
         _this.context.stroke();
         if (this.isFill) {
@@ -215,26 +241,6 @@ export default {
         }
         _this.context.restore();
         return this;
-      },
-      //添加图标
-      addIncon: function () {
-        let _ths = this
-        var iconImg = new Image();
-        iconImg.src = this.delIcon;
-        iconImg.onload = function () {
-          if (_this.delItemTpye.type == _ths.rectType) {
-            let xAll = _ths.points.map(v => v.x)
-            let xMax = Math.max.apply(null, xAll)
-            let xMin = Math.min.apply(null, xAll)
-            let yAll = _ths.points.map(v => v.y)
-            let yMax = Math.max.apply(null, yAll)
-            let yMin = Math.min.apply(null, yAll)
-            let X = (xMax + xMin - 10) / 2
-            let Y = (yMax + yMin - 10) / 2
-            _this.context.drawImage(iconImg, X, Y) //插入图形
-          }
-        };
-        return this
       }
     }
     //构造函数  ------------------------------------------------------------------------------
@@ -289,13 +295,12 @@ export default {
     //双击失去焦点
     canvas.addEventListener("dblclick", function () {
       //绘制图形
-      if (_this.pointsItem.length == 0) return
-      //生成随机id
+      if(_this.pointsItem.length==0) return
       _this.rectStyleAll.id = _this.makeId() //删除用
-      //分类插入不同颜色 删除图标
       _this.polygons.push(new Polygon(_this.pointsItem, _this.rectLineWidth, _this.rectStyleAll, true));
       _this.currPolygon = _this.polygons[_this.polygons.length - 1];
-      _this.currPolygon.createPath().draw()
+      _this.currPolygon.createPath().draw();
+      //删除图形中的临时参数
       _this.drawingComplete();
     }, false);
   }
